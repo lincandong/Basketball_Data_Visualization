@@ -183,3 +183,28 @@ __篮球数据可视化：俱乐部数据以及球员个人数据的收集与可
 #工具：
 	爬取数据（py脚本）
 	UI（QT）
+
+#目录树
+	|-view
+		|- new button
+			|- .cpp & .h
+		|- new slider
+			|- .cpp & .h
+		...
+	|-viewModel
+	|-model
+	|-app
+	|-command
+		|- base
+			|- base command .cpp & .h
+			|- base parameter .cpp & .h
+		|-a command
+			|- .cpp & .h (inherit any new parameter from base parameter)
+		...
+	|-notification
+		|-base
+			|- receiver .cpp & .h
+			|- sender .cpp & .h
+		|- inheritent
+			|- view receiver : public receiver
+			|- vm receiver : public receiver
