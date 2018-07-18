@@ -39,7 +39,7 @@ const string& model::get_b()
 }
 
 //algorithms
-string a_plus_b()
+int a_plus_b()
 {
     //........................
 }

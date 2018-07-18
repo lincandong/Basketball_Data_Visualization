@@ -1,3 +1,5 @@
+#ifndef SENDER_H
+#define SENDER_H
 #include "..\..\common\common.h"
 #include "receiver.h"
 class sender
@@ -20,3 +22,5 @@ class senderCommandComplete : public sender
 public:
     senderCommandComplete() = default;
 };
+
+#endif // !SENDER_H

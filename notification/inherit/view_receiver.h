@@ -1,3 +1,5 @@
+#ifndef VIEW_RECEIVER_H
+#define VIEW_RECEIVER_H
 #include "..\base\receiver.h"
 #include "..\..\view\view.h"
 
@@ -13,4 +15,5 @@ public:
     /* ... */
 
     virtual void exec(string&& str);
-}
+};
+#endif //  VIEW_RECEIVER_H

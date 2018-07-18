@@ -7,7 +7,7 @@ void vm_receiver::exec(string str)
 {
     if(str == "a has been set")
     {
-        vm->set_c(m.a_plus_b());
+        vm->set_c(vm->m.a_plus_b());
     }
     /* ....... */
 

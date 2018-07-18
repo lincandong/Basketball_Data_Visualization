@@ -6,5 +6,17 @@ viewModel::viewModel()
     name = make_shared<string>("");
     /* ... */   
 
-    m.model();
+    //m.model();
+}
+void viewModel::set_c(int&& value)
+{
+    *c = value;
+}
+const int & viewModel::get_c()
+{
+    return *c;
+}
+const command* viewModel::get_cmd1()
+{
+    return c1;
 }

@@ -1,3 +1,5 @@
+#ifndef MODEL_H
+#define MODEL_H
 #include "..\common\common.h"
 #include "..\notification\base\sender.h"
 
@@ -20,8 +22,9 @@ public:
     const string& get_b();
 
     //algorithms
-    string a_plus_b();
+    int a_plus_b();
     /* ... */
 
     sender snd;
 };
+#endif // !MODEL_H
