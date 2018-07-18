@@ -1,15 +1,32 @@
 #ifndef VIEW_H
 #define VIEW_H
-#include "..\command\base\command.h"
-#include "..\notification\inherit\view_receiver.h"
 
 #include <QMainWindow>
 #include <QStackedWidget>
-////////// 需要实现的部分 ////////////////////////////
-#include "..\command\inherit\openfile.h"
+#include <QLayout>
 
+#include "myLabel.h"
+
+////////// 需要实现的部分 ////////////////////////////
+/*#include "..\command\inherit\openfile.h"
+
+class view
+{
+private:
+    //QPushButtion* q;
+    /* ... */
+    
+    //openfile* c1;
+    /* ... */
+//public:
+//    void set_cmd1(openfile* ptr);
+    /* ... */
+
+//    view_receiver rec;
+//}
+///////////////////////////////////////////////////
 namespace Ui {
-    class view;
+class view;
 }
 
 class view : public QMainWindow
@@ -20,22 +37,23 @@ public:
     explicit view(QWidget *parent = 0);
     ~view();
 
-    void switchPageStart();
-    void switchPageRank();
-    void switchPageData();
-    
-    void set_cmd1(command*& ptr);
-    /* ... */
-
-    view_receiver rec;
 private:
     Ui::view *ui;
 
-    //QPushButtion* q;
-    /* ... */
-    
-    command* c1;
-    /* ... */
+    QList<myLabel *>* listLabel;
+
+    int currentTeamIndex;
+
+    void addLabel(myLabel *label, int row, int col);
+
+    void updatePageTeam();
+
+    void switchPageStart();
+    void switchPageRank();
+    void switchPageData();
+    void switchPageTeam(int index);
+    void switchPageTeamDetail();
+    void switchPagePlayer();
 };
 
 #endif // VIEW_H
