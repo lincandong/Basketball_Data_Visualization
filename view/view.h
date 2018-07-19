@@ -2,29 +2,13 @@
 #define VIEW_H
 
 #include <QMainWindow>
-#include <QStackedWidget>
-#include <QLayout>
 
-#include "myLabel.h"
+#include "pageStart.h"
+#include "pageRank.h"
+#include "pageData.h"
+#include "pageTeam.h"
+#include "pagePlayer.h"
 
-////////// 需要实现的部分 ////////////////////////////
-/*#include "..\command\inherit\openfile.h"
-
-class view
-{
-private:
-    //QPushButtion* q;
-    /* ... */
-    
-    //openfile* c1;
-    /* ... */
-//public:
-//    void set_cmd1(openfile* ptr);
-    /* ... */
-
-//    view_receiver rec;
-//}
-///////////////////////////////////////////////////
 namespace Ui {
 class view;
 }
@@ -40,20 +24,22 @@ public:
 private:
     Ui::view *ui;
 
-    QList<myLabel *>* listLabel;
+    pageStart *page_start;
+    pageRank *page_rank;
+    pageData *page_data;
+    pageTeam *page_team;
+    pagePlayer *page_player;
 
-    int currentTeamIndex;
-
-    void addLabel(myLabel *label, int row, int col);
-
-    void updatePageTeam();
-
+    // switch pages
     void switchPageStart();
     void switchPageRank();
     void switchPageData();
-    void switchPageTeam(int index);
-    void switchPageTeamDetail();
+    void switchPageTeam();
     void switchPagePlayer();
+
+    // set commands
+    // void setCommand(shared_ptr<command> pCommand);
+    // view_receiver rec;
 };
 
 #endif // VIEW_H

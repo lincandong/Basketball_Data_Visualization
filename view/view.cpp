@@ -3,130 +3,72 @@
 
 #include <QLabel>
 
-////////// 需要实现的部分 //////////////
-/*void view::set_cmd1(openfile* ptr)
-{
-    c1 = ptr;
-}
-/* ... */
-///////////////////////////////////////
-
-QString teamName[6][5] = {
-    {"ATL", "CHA", "MIA", "ORL", "WAS"},
-    {"CHI", "CLE", "DET", "IND", "MIL"},
-    {"BKN", "BOS", "NYK", "PHI", "TOR"},
-    {"GSW", "LAC", "LAL", "PHO", "SAC"},
-    {"DEN", "MIN", "OKC", "POR", "UTA"},
-    {"DAL", "HOU", "MEM", "NOH", "SAS"}
-};
-
 view::view(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::view)
 {
     ui->setupUi(this);
 
+    page_start = new pageStart;
+    page_rank = new pageRank;
+    page_data = new pageData;
+    page_team = new pageTeam;
+    page_player = new pagePlayer;
+
+    ui->stackedWidget->addWidget(page_start);
+    ui->stackedWidget->addWidget(page_rank);
+    ui->stackedWidget->addWidget(page_data);
+    ui->stackedWidget->addWidget(page_team);
+    ui->stackedWidget->addWidget(page_player);
+
+    ui->stackedWidget->setCurrentWidget(page_start);
+    this->resize(800, 600);
+
+    // connect
+    connect(page_start, &pageStart::showPageRank, this, &view::switchPageRank);
+    connect(page_start, &pageStart::showPageData, this, &view::switchPageData);
+
     // connect
     connect(ui->actionStart, &QAction::triggered, this, &view::switchPageStart);
     connect(ui->actionRank, &QAction::triggered, this, &view::switchPageRank);
     connect(ui->actionData, &QAction::triggered, this, &view::switchPageData);
 
-    connect(ui->pushButtonRank, &QPushButton::clicked, this, &view::switchPageRank);
-    connect(ui->pushButtonData, &QPushButton::clicked, this, &view::switchPageData);
-
-    connect(ui->pushButtonTeam, &QPushButton::clicked, this, &view::switchPageTeamDetail);
-    connect(ui->pushButtonPlayer, &QPushButton::clicked, this, &view::switchPagePlayer);
-
-    // show picture
-    int width = 99;
-    int height = 66;
-
-    listLabel = new QList<myLabel *>;
-    for (int i = 0; i < 6; i++)
-    {
-        for (int j = 0; j < 5; j++)
-        {
-            QString name = ":/gif/gif/";
-            name.append(teamName[i][j]);
-            name.append(".gif");
-            QPixmap pix(name);
-            myLabel *qlabel = new myLabel;
-            pix = pix.scaled(QSize(width, height), Qt::KeepAspectRatio);
-            qlabel->setPixmap(pix);
-            qlabel->setScaledContents(true);
-            qlabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-            qlabel->setValue(i * 5 + j);
-            listLabel->push_back(qlabel);
-            addLabel(qlabel, j * 2, i);
-
-            myLabel *qlabelName = new myLabel;
-            qlabelName->setText(teamName[i][j]);
-            qlabelName->setAlignment(Qt::AlignVCenter);
-            qlabelName->setAlignment(Qt::AlignHCenter);
-            qlabelName->setValue(i * 5 + j);
-            listLabel->push_back(qlabelName);
-            addLabel(qlabelName, j * 2 + 1, i);
-        }
-    }
+    QList<myLabel *> *temp = page_data->listLabel;
+    for (int i = 0; i < 60; i++)
+        connect(temp->at(i), &myLabel::clicked, this, &view::switchPageTeam);
 }
 
 view::~view()
 {
-    listLabel->clear();
-
     delete ui;
-}
-
-void view::updatePageTeam()
-{
-    int i = currentTeamIndex / 5;
-    int j = currentTeamIndex % 5;
-
-    QString name = ":/gif/gif/";
-    name.append(teamName[i][j]);
-    name.append(".gif");
-    QPixmap pix(name);
-
-    ui->labelTeamPix->setPixmap(pix);
-    ui->labelTeamName->setText(teamName[i][j]);
 }
 
 void view::switchPageStart()
 {
-    ui->stackedWidget->setCurrentWidget(ui->pageStart);
+    ui->stackedWidget->currentWidget()->hide();
+    ui->stackedWidget->setCurrentWidget(page_start);
 }
 
 void view::switchPageRank()
 {
-    ui->stackedWidget->setCurrentWidget(ui->pageRank);
+    ui->stackedWidget->currentWidget()->hide();
+    ui->stackedWidget->setCurrentWidget(page_rank);
 }
 
 void view::switchPageData()
 {
-    ui->stackedWidget->setCurrentWidget(ui->pageData);
+    ui->stackedWidget->currentWidget()->hide();
+    ui->stackedWidget->setCurrentWidget(page_data);
 }
 
-void view::switchPageTeam(int index)
+void view::switchPageTeam()
 {
-    currentTeamIndex = index;
-
-    updatePageTeam();
-
-    ui->stackedWidget->setCurrentWidget(ui->pageTeam);
-}
-
-void view::switchPageTeamDetail()
-{
-    ui->stackedWidgetTeam->setCurrentWidget(ui->pageTeamDetail);
+    ui->stackedWidget->currentWidget()->hide();
+    ui->stackedWidget->setCurrentWidget(page_team);
 }
 
 void view::switchPagePlayer()
 {
-    ui->stackedWidgetTeam->setCurrentWidget(ui->pagePlayer);
-}
-
-void view::addLabel(myLabel *label, int row, int col)
-{
-    ui->gridLayoutTeam->addWidget(label, row, col);
-    connect(label, &myLabel::clicked, this, &view::switchPageTeam);
+    ui->stackedWidget->currentWidget()->hide();
+    ui->stackedWidget->setCurrentWidget(page_player);
 }
