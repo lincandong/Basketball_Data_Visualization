@@ -1,7 +1,7 @@
 #ifndef VM_RECEIVER_H
 #define VM_RECEIVER_H
-#include "..\base\receiver.h"
-#include "..\..\viewmodel\viewmodel.h"
+#include "../../common/receiver.h"
+#include "../viewmodel.h"
 class vm_receiver : public receiver
 {
 private:
