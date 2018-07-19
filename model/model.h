@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 #include "..\common\common.h"
-#include "..\notification\base\sender.h"
+#include "..\common\sender.h"
 
 class model
 {

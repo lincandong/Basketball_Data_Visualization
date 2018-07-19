@@ -1,9 +1,9 @@
 #ifndef VIEWMODEL_H
 #define VIEWMODEL_H
-#include "..\notification\inherit\vm_receiver.h"
-#include "..\notification\base\sender.h"
-#include "..\model\model.h"
-#include "..\command\allcommand.h"
+#include "receiver/vm_receiver.h"
+#include "../common/sender.h"
+#include "../model/model.h"
+#include "../commands/allcommand.h"
 
 class viewModel
 {
