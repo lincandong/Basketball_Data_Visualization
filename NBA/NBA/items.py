@@ -7,12 +7,8 @@
 
 import scrapy
 
-
-class NbaItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
 class PlayerItem(scrapy.Item):
+    date = scrapy.Field()#######
     name = scrapy.Field()
     gs = scrapy.Field()
     mp = scrapy.Field()
@@ -35,3 +31,7 @@ class PlayerItem(scrapy.Item):
     tov = scrapy.Field()
     pf = scrapy.Field()
     pts = scrapy.Field()
+
+class GameItem(scrapy.Item):
+    date = scrapy.Field()
+    data = []

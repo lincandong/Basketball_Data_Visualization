@@ -1,6 +1,6 @@
 #!/user
 import scrapy
-from NBA.items import PlayerItem
+from NBA.items import PlayerItem, GameItem
 
 class NBASpider(scrapy.spiders.Spider):
     name = "NBA"
@@ -8,8 +8,19 @@ class NBASpider(scrapy.spiders.Spider):
     start_urls = [
         "http://www.stat-nba.com/game/42391.html"
     ]
-    
     def parse(self, response):
+        yield scrapy.Request(response.url, callback = self.parse_data)
+
+        cnt = 1
+
+        for page in response.xpath('//div[@class = \"teamDiv\"]/div//a[@target = \"_blank\"]/@href'):
+            if(cnt == 3  or cnt == 7):
+                link = 'http://www.stat-nba.com' + page.extract()
+                yield scrapy.Request(link, callback = self.parse_data)
+            cnt += 1
+
+
+    def parse_data(self, response):
         pathArray = [
         "normal player_name_out change_color col0 row",
         "normal fgper change_color col3 row",
@@ -34,10 +45,13 @@ class NBASpider(scrapy.spiders.Spider):
         "current gs change_color col1 row",
         "normal mp change_color col2 row"
         ]
+        game = GameItem()
+        game['date'] = response.xpath('//head//meta[@name = \"description\"]/@content').extract()
         for teams in response.xpath('//table[@class = \"stat_box\"]/tbody'):
             cnt = 0
             for sel in teams.xpath('tr[@class = \"sort\"]'):
                 item = PlayerItem()
+                item['date'] = response.xpath('//head//meta[@name = \"description\"]/@content').extract()#########
                 path = 'td[@class = \"' + pathArray[0] + str(cnt) + '\"]/a/text()'
                 item['name'] = sel.xpath(path).extract()
                 path = 'td[@class = \"' + pathArray[20] + str(cnt) + '\"]/text()'
@@ -82,5 +96,6 @@ class NBASpider(scrapy.spiders.Spider):
                 item['pf'] = sel.xpath(path).extract()
                 path = 'td[@class = \"' + pathArray[19] + str(cnt) + '\"]/text()'
                 item['pts'] = sel.xpath(path).extract()
-                yield item
+                game.data.append(item)
                 cnt += 1
+        yield game
