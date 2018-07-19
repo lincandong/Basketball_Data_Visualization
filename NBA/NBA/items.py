@@ -14,6 +14,8 @@ class NbaItem(scrapy.Item):
     pass
 class PlayerItem(scrapy.Item):
     name = scrapy.Field()
+    gs = scrapy.Field()
+    mp = scrapy.Field()
     fgper = scrapy.Field()
     fg = scrapy.Field()
     fga = scrapy.Field()
