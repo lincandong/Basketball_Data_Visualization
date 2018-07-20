@@ -65,9 +65,10 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'NBA.pipelines.WritePipeline': 300,
+    'NBA.pipelines.FilterPipeline': 300,
+    'NBA.pipelines.WritePipeline': 500,
 }
-
+DUPEFILTER_CLASS = 'scrapy.dupefilters.RFPDupeFilter'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
