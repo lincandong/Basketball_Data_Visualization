@@ -1,28 +1,22 @@
 #include "viewCommandReceiver.h"
+#include "../view.h"
 
-ViewCommandReceiver::ViewCommandReceiver(std::shared_ptr<view> ptr)
+ViewCommandReceiver::ViewCommandReceiver()
+{
+
+}
+
+ViewCommandReceiver::ViewCommandReceiver(view *ptr)
 {
     pView = ptr;
 }
 
 void ViewCommandReceiver::exec(std::string str, bool bOK)
 {
-    QString message;
-
     if (bOK == false)
     {
-        switch(str)
-        {
-            case "teamRankOptionChangedCommand":
-            case "playerRankOptionChangedCommand":
-            case "teamChangedCommand":
-            case "playerChangedCommand":
-            case "teamOptionChangedCommand":
-            case "playerOptionChangedCommand":
-                QMessageBox messageBox;
-                messageBox.setWindowTitle(QString("error!"));
-                messageBox.exec();
-            break;
-        }
+        QMessageBox messageBox;
+        messageBox.setWindowTitle("Error");
+        messageBox.show();
     }
 }

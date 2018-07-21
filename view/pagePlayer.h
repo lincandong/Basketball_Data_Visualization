@@ -19,6 +19,19 @@ public:
 
 private:
     Ui::pagePlayer *ui;
+
+    QChartView *viewTemp;
+
+    void showTotal();
+    void showShoot();
+    void showThree();
+    void showPenalty();
+    void showBackboard();
+    void showAssisting();
+    void showFalut();
+    void showScore();
+    void showVictory();
+
 };
 
 #endif // PAGEPLAYER_H

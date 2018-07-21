@@ -16,10 +16,6 @@ pageData::pageData(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // show picture
-    int width = 92;
-    int height = 30;
-
     listLabel = new QList<myLabel *>;
     for (int i = 0; i < 6; i++)
     {
@@ -30,7 +26,6 @@ pageData::pageData(QWidget *parent) :
             name.append(".gif");
             QPixmap pix(name);
             myLabel *qlabel = new myLabel;
-            pix = pix.scaled(QSize(width, height), Qt::KeepAspectRatio);
 
             qlabel->setPixmap(pix);
             qlabel->setScaledContents(true);

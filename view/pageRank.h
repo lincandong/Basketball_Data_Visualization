@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QtCharts>
 
+#include <memory>
+
 QT_CHARTS_USE_NAMESPACE
 
 namespace Ui {
@@ -20,6 +22,18 @@ public:
 
 private:
     Ui::pageRank *ui;
+
+    QList<QChartView *> list;
+    bool isTeam;
+    /*
+    void showShoot();
+    void showThree();
+    void showPenalty();
+    void showBackboard();
+    void showAssisting();
+    void showFalut();
+    void showScore();
+    void showVictory();*/
 };
 
 #endif // PAGERANK_H

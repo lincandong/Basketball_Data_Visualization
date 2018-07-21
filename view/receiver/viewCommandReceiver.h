@@ -2,18 +2,19 @@
 #define VIEW_COMMAND_RECEIVER_H
 
 #include "../../common/receiver.h"
-#include "../view.h"
 
 #include <memory>
 #include <string>
 
+class view;
 class ViewCommandReceiver : public commandReceiver
 {
 private:
-    std::shared_ptr<view> pView;
+    view *pView;
 
 public:
-    ViewCommandReceiver(std::shared_ptr<view> ptr = nullptr);
+    ViewCommandReceiver();
+    ViewCommandReceiver(view *ptr);
     void exec(std::string str, bool bOK);
 };
 

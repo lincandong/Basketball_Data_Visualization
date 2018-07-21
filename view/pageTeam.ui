@@ -34,7 +34,7 @@
        <item>
         <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0" rowspan="2">
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="labelTeamPix">
            <property name="minimumSize">
             <size>
              <width>66</width>
@@ -47,7 +47,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="labelTeamEn">
            <property name="text">
             <string>队伍中文名</string>
            </property>
@@ -57,7 +57,7 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="labelTeamCh">
            <property name="text">
             <string>队伍英文名</string>
            </property>
@@ -86,27 +86,97 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
          <string>球队数据</string>
         </attribute>
-        <widget class="QChartView" name="widget" native="true">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>20</y>
-           <width>331</width>
-           <height>241</height>
-          </rect>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,6">
+         <item>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="0" column="2">
+            <widget class="QPushButton" name="buttonPenalty">
+             <property name="text">
+              <string>罚球</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="buttonVictory">
+             <property name="text">
+              <string>胜负</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="buttonShoot">
+             <property name="text">
+              <string>投篮</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="buttonScore">
+             <property name="text">
+              <string>分数</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QPushButton" name="buttonBackboard">
+             <property name="text">
+              <string>篮板</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="buttonFalut">
+             <property name="text">
+              <string>失误/犯规</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="buttonAssisting">
+             <property name="text">
+              <string>助攻/抢断/盖帽</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="buttonThree">
+             <property name="text">
+              <string>三分</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="1" column="0">
+            <widget class="QChartView" name="widget_3" native="true"/>
+           </item>
+           <item row="0" column="1">
+            <widget class="QChartView" name="widget_2" native="true"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="QChartView" name="widget" native="true"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tab_2">
         <attribute name="title">
          <string>球队成员</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayoutPlayer"/>
+         </item>
+        </layout>
        </widget>
       </widget>
      </item>

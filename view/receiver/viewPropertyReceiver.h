@@ -10,10 +10,11 @@
 class ViewPropertyReceiver : public propertyReceiver
 {
 private:
-    std::shared_ptr<view> pView;
+    view *pView;
 
 public:
-    ViewPropertyReceiver(shared_ptr<view> ptr = nullptr);
+    ViewPropertyReceiver();
+    ViewPropertyReceiver(view *ptr);
     void exec(std::string str);
 };
 
