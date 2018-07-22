@@ -2,7 +2,7 @@
 #define PAGESTART_H
 
 #include <QWidget>
-//#include "../commands/command.h"
+#include "../commands/command.h"
 
 namespace Ui {
 class pageStart;
@@ -16,8 +16,6 @@ public:
     explicit pageStart(QWidget *parent = 0);
     ~pageStart();
 
-    //void setTeamRankCommand(std::shared_ptr<command> ptr);
-
 signals:
     void showPageData();
     void showPageRank();
@@ -28,9 +26,6 @@ private slots:
 
 private:
     Ui::pageStart *ui;
-
-   // std::shared_ptr<rankParameter> para;
-    //std::shared_ptr<command> teamRankCommand;
 };
 
 #endif // PAGESTART_H

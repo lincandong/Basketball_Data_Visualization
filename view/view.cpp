@@ -9,7 +9,7 @@ view::view(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //viewCommandReceiver = make_shared<ViewCommandReceiver>(this);
+    receiver = make_shared<ViewCommandReceiver>(this);
 
     page_start = new pageStart;
     page_rank = new pageRank;
@@ -37,9 +37,8 @@ view::view(QWidget *parent) :
 
     connect(page_team, &pageTeam::showPagePlayer, this, &view::switchPagePlayer);
 
-    QList<myLabel *> *temp = page_data->listLabel;
-    for (int i = 0; i < 60; i++)
-        connect(temp->at(i), &myLabel::clicked, this, &view::switchPageTeam);
+    connect(page_data, &pageData::showPageTeam, page_team, &pageTeam::setName);
+    connect(page_data, &pageData::showPageTeam, this, &view::switchPageTeam);
 }
 
 view::~view()
@@ -49,38 +48,44 @@ view::~view()
 
 void view::switchPageStart()
 {
-    ui->stackedWidget->currentWidget()->hide();
+    if (ui->stackedWidget->currentWidget() != page_start)
+        ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_start);
 }
 
 void view::switchPageRank()
-{/*
-    shared_ptr<rankParameter> para = make_shared<rankParameter>("fgper", 17);
-    teamRankCommand->setParameter(static_pointer_cast<parameters, rankParameter>(para));
-    teamRankCommand->action();
-*/
-    ui->stackedWidget->currentWidget()->hide();
+{
+    if (ui->stackedWidget->currentWidget() != page_rank)
+        ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_rank);
+
+    // 初始化队伍排名的命令
+    //page_rank->init();
 }
 
 void view::switchPageData()
 {
-    ui->stackedWidget->currentWidget()->hide();
+    if (ui->stackedWidget->currentWidget() != page_data)
+        ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_data);
 }
 
 void view::switchPageTeam()
 {
-    ui->stackedWidget->currentWidget()->hide();
+    if (ui->stackedWidget->currentWidget() != page_team)
+        ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_team);
+
+    page_team->update();
 }
 
 void view::switchPagePlayer()
 {
-    ui->stackedWidget->currentWidget()->hide();
+    if (ui->stackedWidget->currentWidget() != page_player)
+        ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_player);
 }
-/*
+
 void view::setPlayerDataCommand(shared_ptr<command> ptr)
 {
     this->playerDataCommand = ptr;
@@ -90,19 +95,20 @@ void view::setPlayerRankCommand(shared_ptr<command> ptr)
 {
     this->playerRankCommand = ptr;
 
-    page_rank->setPlayerRankCommand(ptr);
+    page_player->setPlayerDataCommand(ptr);
 }
 
 void view::setTeamDataCommand(shared_ptr<command> ptr)
 {
     this->teamDataCommand = ptr;
+
+    page_team->setTeamDataCommand(ptr);
 }
 
 void view::setTeamRankCommand(shared_ptr<command> ptr)
 {
     this->teamRankCommand = ptr;
 
-    page_start->setTeamRankCommand(ptr);
     page_rank->setTeamRankCommand(ptr);
 }
 
@@ -116,12 +122,12 @@ void view::setTeamRank(shared_ptr<vector<team_avg *>> teamRank)
     page_rank->setTeamRank(teamRank);
 }
 
-void view::setPlayer(vector<float *> player)
+void view::setPlayer(shared_ptr<vector<player_avg *>> player)
 {
-
+    page_player->setPlayer(player);
 }
 
-void view::setTeam(vector<float *> team)
+void view::setTeam(shared_ptr<vector<team_avg *>> team)
 {
-
-}*/
+    page_team->setTeam(team);
+}

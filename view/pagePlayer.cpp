@@ -43,6 +43,11 @@ pagePlayer::~pagePlayer()
 {
     delete ui;
 }
+
+void pagePlayer::update()
+{
+
+}
 /*
 void pagePlayer::showTotal()
 {
@@ -117,3 +122,13 @@ void pagePlayer::showVictory()
 
 }
 */
+
+void pagePlayer::setPlayerDataCommand(shared_ptr<command> ptr)
+{
+    playerDataCommand = ptr;
+}
+
+void pagePlayer::setPlayer(shared_ptr<vector<player_avg *> > player)
+{
+    this->player = player;
+}

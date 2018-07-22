@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QList>
 #include "myLabel.h"
+#include "../common/data.h"
 
 namespace Ui {
 class pageData;
@@ -19,8 +20,11 @@ public:
     explicit pageData(QWidget *parent = 0);
     ~pageData();
 
+    void setTeamName(int value);
+    void initialize();
+
 signals:
-    void showPageTeam();
+    void showPageTeam(QString name);
 
 private:
     Ui::pageData *ui;

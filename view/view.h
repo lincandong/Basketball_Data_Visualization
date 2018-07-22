@@ -2,6 +2,8 @@
 #define VIEW_H
 
 #include <QMainWindow>
+#include <memory>
+#include <vector>
 
 #include "pageStart.h"
 #include "pageRank.h"
@@ -10,6 +12,9 @@
 #include "pagePlayer.h"
 
 #include "receiver/viewCommandReceiver.h"
+#include "../common/data.h"
+
+using namespace std;
 
 namespace Ui {
 class view;
@@ -20,7 +25,7 @@ class view : public QMainWindow
     Q_OBJECT
 
 public:
-    //shared_ptr<ViewCommandReceiver> viewCommandReceiver;
+    shared_ptr<ViewCommandReceiver> receiver;
 
     explicit view(QWidget *parent = 0);
     ~view();
@@ -31,7 +36,8 @@ public:
     void switchPageData();
     void switchPageTeam();
     void switchPagePlayer();
-/*
+
+    // set
     void setPlayerDataCommand(shared_ptr<command> ptr);
     void setPlayerRankCommand(shared_ptr<command> ptr);
     void setTeamDataCommand(shared_ptr<command> ptr);
@@ -39,9 +45,8 @@ public:
 
     void setPlayerRank(shared_ptr<vector<player_avg *>> playerRank);
     void setTeamRank(shared_ptr<vector<team_avg *>> teamRank);
-    void setPlayer(vector<float *> player);
-    void setTeam(vector<float *> team);
-*/
+    void setPlayer(shared_ptr<vector<player_avg *>> player);
+    void setTeam(shared_ptr<vector<team_avg *>> team);
 private:
     Ui::view *ui;
 
@@ -50,12 +55,12 @@ private:
     pageData *page_data;
     pageTeam *page_team;
     pagePlayer *page_player;
-/*
-    // 绑定的命令
+
+    // 命令
     shared_ptr<command> playerDataCommand;
     shared_ptr<command> playerRankCommand;
     shared_ptr<command> teamDataCommand;
-    shared_ptr<command> teamRankCommand;*/
+    shared_ptr<command> teamRankCommand;
 };
 
 #endif // VIEW_H

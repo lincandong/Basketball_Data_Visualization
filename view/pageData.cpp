@@ -43,12 +43,25 @@ pageData::pageData(QWidget *parent) :
             addLabel(qlabelName, j * 2 + 1, i);
         }
     }
+
+    for (int i = 0; i < 60; i++)
+        connect(listLabel->at(i), &myLabel::clicked, this, &pageData::setTeamName);
 }
 
 pageData::~pageData()
 {
     delete ui;
 }
+
+void pageData::setTeamName(int value)
+{
+    int i, j;
+    i = value / 5;
+    j = value % 5;
+
+   emit showPageTeam(teamName[i][j]);
+}
+
 
 void pageData::addLabel(myLabel *label, int row, int col)
 {

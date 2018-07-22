@@ -46,27 +46,17 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="labelTeamEn">
-           <property name="text">
-            <string>队伍中文名</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLabel" name="labelTeamCh">
-           <property name="text">
-            <string>队伍英文名</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-          </widget>
-         </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelTeamEn">
+         <property name="text">
+          <string>队伍名</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer name="horizontalSpacer_2">
@@ -86,7 +76,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -155,12 +145,6 @@
          </item>
          <item>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="1" column="0">
-            <widget class="QChartView" name="widget_3" native="true"/>
-           </item>
-           <item row="0" column="1">
-            <widget class="QChartView" name="widget_2" native="true"/>
-           </item>
            <item row="0" column="0">
             <widget class="QChartView" name="widget" native="true"/>
            </item>
