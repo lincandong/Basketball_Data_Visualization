@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'pageRank.ui'
 **
-** Created by: Qt User Interface Compiler version 5.11.1
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,13 +10,17 @@
 #define UI_PAGERANK_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -43,7 +47,31 @@ public:
     QLabel *label;
     QSpinBox *boxSeason;
     QSpacerItem *horizontalSpacer_2;
-    QGridLayout *gridLayoutTable;
+    QStackedWidget *stackedWidget;
+    QWidget *pageShoot;
+    QVBoxLayout *verticalLayout_2;
+    QGridLayout *layoutShoot;
+    QWidget *pageThree;
+    QVBoxLayout *verticalLayout_3;
+    QGridLayout *layoutThree;
+    QWidget *pagePenalty;
+    QVBoxLayout *verticalLayout_4;
+    QGridLayout *layoutPenalty;
+    QWidget *pageBackboard;
+    QVBoxLayout *verticalLayout_5;
+    QGridLayout *layoutBackboard;
+    QWidget *pageAssisting;
+    QVBoxLayout *verticalLayout_6;
+    QGridLayout *layoutAssisting;
+    QWidget *pageFalut;
+    QVBoxLayout *verticalLayout_7;
+    QGridLayout *layoutFalut;
+    QWidget *pageScore;
+    QVBoxLayout *verticalLayout_8;
+    QGridLayout *layoutScore;
+    QWidget *pageVictory;
+    QVBoxLayout *verticalLayout_9;
+    QGridLayout *layoutVictory;
 
     void setupUi(QWidget *pageRank)
     {
@@ -149,10 +177,90 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        gridLayoutTable = new QGridLayout();
-        gridLayoutTable->setObjectName(QStringLiteral("gridLayoutTable"));
+        stackedWidget = new QStackedWidget(pageRank);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
+        pageShoot = new QWidget();
+        pageShoot->setObjectName(QStringLiteral("pageShoot"));
+        verticalLayout_2 = new QVBoxLayout(pageShoot);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        layoutShoot = new QGridLayout();
+        layoutShoot->setObjectName(QStringLiteral("layoutShoot"));
 
-        verticalLayout->addLayout(gridLayoutTable);
+        verticalLayout_2->addLayout(layoutShoot);
+
+        stackedWidget->addWidget(pageShoot);
+        pageThree = new QWidget();
+        pageThree->setObjectName(QStringLiteral("pageThree"));
+        verticalLayout_3 = new QVBoxLayout(pageThree);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        layoutThree = new QGridLayout();
+        layoutThree->setObjectName(QStringLiteral("layoutThree"));
+
+        verticalLayout_3->addLayout(layoutThree);
+
+        stackedWidget->addWidget(pageThree);
+        pagePenalty = new QWidget();
+        pagePenalty->setObjectName(QStringLiteral("pagePenalty"));
+        verticalLayout_4 = new QVBoxLayout(pagePenalty);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        layoutPenalty = new QGridLayout();
+        layoutPenalty->setObjectName(QStringLiteral("layoutPenalty"));
+
+        verticalLayout_4->addLayout(layoutPenalty);
+
+        stackedWidget->addWidget(pagePenalty);
+        pageBackboard = new QWidget();
+        pageBackboard->setObjectName(QStringLiteral("pageBackboard"));
+        verticalLayout_5 = new QVBoxLayout(pageBackboard);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
+        layoutBackboard = new QGridLayout();
+        layoutBackboard->setObjectName(QStringLiteral("layoutBackboard"));
+
+        verticalLayout_5->addLayout(layoutBackboard);
+
+        stackedWidget->addWidget(pageBackboard);
+        pageAssisting = new QWidget();
+        pageAssisting->setObjectName(QStringLiteral("pageAssisting"));
+        verticalLayout_6 = new QVBoxLayout(pageAssisting);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
+        layoutAssisting = new QGridLayout();
+        layoutAssisting->setObjectName(QStringLiteral("layoutAssisting"));
+
+        verticalLayout_6->addLayout(layoutAssisting);
+
+        stackedWidget->addWidget(pageAssisting);
+        pageFalut = new QWidget();
+        pageFalut->setObjectName(QStringLiteral("pageFalut"));
+        verticalLayout_7 = new QVBoxLayout(pageFalut);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        layoutFalut = new QGridLayout();
+        layoutFalut->setObjectName(QStringLiteral("layoutFalut"));
+
+        verticalLayout_7->addLayout(layoutFalut);
+
+        stackedWidget->addWidget(pageFalut);
+        pageScore = new QWidget();
+        pageScore->setObjectName(QStringLiteral("pageScore"));
+        verticalLayout_8 = new QVBoxLayout(pageScore);
+        verticalLayout_8->setObjectName(QStringLiteral("verticalLayout_8"));
+        layoutScore = new QGridLayout();
+        layoutScore->setObjectName(QStringLiteral("layoutScore"));
+
+        verticalLayout_8->addLayout(layoutScore);
+
+        stackedWidget->addWidget(pageScore);
+        pageVictory = new QWidget();
+        pageVictory->setObjectName(QStringLiteral("pageVictory"));
+        verticalLayout_9 = new QVBoxLayout(pageVictory);
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        layoutVictory = new QGridLayout();
+        layoutVictory->setObjectName(QStringLiteral("layoutVictory"));
+
+        verticalLayout_9->addLayout(layoutVictory);
+
+        stackedWidget->addWidget(pageVictory);
+
+        verticalLayout->addWidget(stackedWidget);
 
         verticalLayout->setStretch(0, 1);
         verticalLayout->setStretch(1, 2);

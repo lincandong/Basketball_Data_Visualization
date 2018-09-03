@@ -10,22 +10,13 @@ pageRank::pageRank(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->buttonShoot, &QPushButton::clicked, this, &pageRank::showShoot);
-    connect(ui->buttonThree, &QPushButton::clicked, this, &pageRank::showThree);
+    /*connect(ui->buttonThree, &QPushButton::clicked, this, &pageRank::showThree);
     connect(ui->buttonPenalty, &QPushButton::clicked, this, &pageRank::showPenalty);
     connect(ui->buttonBackboard, &QPushButton::clicked, this, &pageRank::showBackboard);
     connect(ui->buttonAssisting, &QPushButton::clicked, this, &pageRank::showAssisting);
     connect(ui->buttonFalut, &QPushButton::clicked, this, &pageRank::showFalut);
     connect(ui->buttonScore, &QPushButton::clicked, this, &pageRank::showScore);
-    connect(ui->buttonVictory, &QPushButton::clicked, this, &pageRank::showVictory);
-
-    view1 = new QChartView;
-    view2 = new QChartView;
-    view3 = new QChartView;
-    view4 = new QChartView;
-    ui->gridLayoutTable->addWidget(view1, 0, 0);
-    ui->gridLayoutTable->addWidget(view2, 0, 1);
-    ui->gridLayoutTable->addWidget(view3, 1, 0);
-    ui->gridLayoutTable->addWidget(view4, 1, 1);
+    connect(ui->buttonVictory, &QPushButton::clicked, this, &pageRank::showVictory);*/
 
     para = make_shared<rankParameter>("fgper", 17);
     isTeam = true;
@@ -36,141 +27,11 @@ pageRank::~pageRank()
     delete ui;
 }
 
-void pageRank::init()
-{
-    showShoot();
-}
-
-void pageRank::getData()
-{
-    data.clear();
-    dataName.clear();
-    if (isTeam)
-    {
-        if (para->option == "fgper")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->fgper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "threepper")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->threepper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "ftper")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->threepper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "trb")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->threepper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "ast")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->ast);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "tov")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->tov);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "pts")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->pts);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "wg")
-            foreach(shared_ptr<team_avg> temp, *teamRank)
-            {
-                data.push_back(temp->wg);
-                dataName.push_back(temp->name);
-            }
-    }
-    else
-    {
-        if (para->option == "fgper")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->fgper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "threepper")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->threepper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "ftper")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->threepper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "trb")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->threepper);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "ast")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->ast);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "tov")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->tov);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "pts")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->pts);
-                dataName.push_back(temp->name);
-            }
-        else if (para->option == "w")
-            foreach(shared_ptr<player_avg> temp, *playerRank)
-            {
-                data.push_back(temp->w);
-                dataName.push_back(temp->name);
-            }
-    }
-}
-
-QChart *pageRank::drawTable(const QString &title)
-{
-    QBarSet *set;
-    QBarSeries *series = new QBarSeries;
-    QChart *chart = new QChart;
-    for (unsigned int i = 0; i < data.size(); i++)
-    {
-        set = new QBarSet(QString::fromStdString(dataName.at(i)));
-        *set << data.at(i);
-        series->append(set);
-    }
-    chart->addSeries(series);
-    chart->createDefaultAxes();
-    chart->setTitle(title);
-    return chart;
-}
-
 void pageRank::showShoot()
 {
+    // 改变参数，发出命令
     para->option = "fgper";
     para->season = ui->boxSeason->value();
-
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -181,9 +42,68 @@ void pageRank::showShoot()
         playerRankCommand->setParameter(para);
         playerRankCommand->action();
     }
-    view1->setChart(drawTable("投篮"));
-}
 
+    // 初始化布局
+    if (ui->layoutShoot->itemAt(0) == nullptr)
+    {
+        QBarSet *set1 = new QBarSet("投篮");
+        QBarSet *set2 = new QBarSet("命中");
+        QBarSet *set3 = new QBarSet("出手");
+        if (isTeam)
+        {
+            vector<shared_ptr<team_avg>>::iterator iter;
+            for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+            {
+                *set1 << (*iter)->fgper;
+                *set2 << (*iter)->fg;
+                *set3 << (*iter)->fga;
+            }
+        }
+        else
+        {
+            vector<shared_ptr<player_avg>>::iterator iter;
+            for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+            {
+                *set1 << (*iter)->fgper;
+                *set2 << (*iter)->fg;
+                *set3 << (*iter)->fga;
+            }
+
+        }
+        QBarSeries *series1 = new QBarSeries;
+        series1->append(set1);
+        QBarSeries *series2 = new QBarSeries;
+        series2->append(set2);
+        QBarSeries *series3 = new QBarSeries;
+        series3->append(set3);
+
+        QChart *chart1 = new QChart;
+        chart1->setAnimationOptions(QChart::SeriesAnimations);
+        chart1->addSeries(series1);
+        QChart *chart2 = new QChart;
+        chart2->setAnimationOptions(QChart::SeriesAnimations);
+        chart2->addSeries(series2);
+        QChart *chart3 = new QChart;
+        chart3->setAnimationOptions(QChart::SeriesAnimations);
+        chart3->addSeries(series3);
+
+        QChartView *view1 = new QChartView;
+        view1->setChart(chart1);
+        QChartView *view2 = new QChartView;
+        view2->setChart(chart2);
+        QChartView *view3 = new QChartView;
+        view3->setChart(chart3);
+
+        ui->layoutShoot->addWidget(view1, 0, 0);
+        ui->layoutShoot->addWidget(view2, 0, 1);
+        ui->layoutShoot->addWidget(view3, 1, 0);
+    }
+
+
+    // chart view
+
+}
+/*
 void pageRank::showThree()
 {
     para->option = "threepper";
@@ -303,7 +223,7 @@ void pageRank::showVictory()
     }
     view1->setChart(drawTable("胜"));
 }
-
+*/
 void pageRank::setTeamRankCommand(std::shared_ptr<command> ptr)
 {
     teamRankCommand = ptr;
@@ -345,11 +265,9 @@ void pageRank::on_boxSeason_valueChanged(int arg1)
 void pageRank::on_buttonTeam_clicked()
 {
     isTeam = true;
-    init();
 }
 
 void pageRank::on_buttonPlayer_clicked()
 {
     isTeam = false;
-    init();
 }

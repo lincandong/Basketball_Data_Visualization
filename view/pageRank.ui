@@ -179,7 +179,64 @@
     </layout>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayoutTable"/>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QWidget" name="pageShoot">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QGridLayout" name="layoutShoot"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageThree">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QGridLayout" name="layoutThree"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pagePenalty">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QGridLayout" name="layoutPenalty"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageBackboard">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QGridLayout" name="layoutBackboard"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageAssisting">
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <layout class="QGridLayout" name="layoutAssisting"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageFalut">
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <layout class="QGridLayout" name="layoutFalut"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageScore">
+      <layout class="QVBoxLayout" name="verticalLayout_8">
+       <item>
+        <layout class="QGridLayout" name="layoutScore"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageVictory">
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <item>
+        <layout class="QGridLayout" name="layoutVictory"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>

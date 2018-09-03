@@ -30,9 +30,6 @@ public:
     void setPlayerRank(shared_ptr<vector<shared_ptr<player_avg>>> playerRank);
     void setTeamRank(shared_ptr<vector<shared_ptr<team_avg>>> teamRank);
 
-    void init();
-    void update();
-
 private slots:
     void on_boxSeason_valueChanged(int arg1);
 
@@ -42,8 +39,6 @@ private slots:
 
 private:
     Ui::pageRank *ui;
-
-    QChartView *view1, *view2, *view3, *view4;
 
     // 参数
     bool isTeam;
@@ -57,19 +52,14 @@ private:
     shared_ptr<command> playerRankCommand;
     shared_ptr<command> teamRankCommand;
 
-    vector<float> data;
-    vector<string> dataName;
-    void getData();
-    QChart *drawTable(const QString &title);
-
     void showShoot();
-    void showThree();
+    /*void showThree();
     void showPenalty();
     void showBackboard();
     void showAssisting();
     void showFalut();
     void showScore();
-    void showVictory();
+    void showVictory();*/
 };
 
 #endif // PAGERANK_H
