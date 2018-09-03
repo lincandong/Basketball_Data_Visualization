@@ -3,6 +3,7 @@
 #include "common.h"
 #include "receiver.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 class senderPropertyChange
 {
 private:
@@ -26,6 +27,8 @@ public:
 
 #endif // !SENDER_H
 =======
+=======
+>>>>>>> origin/master
 class sender
 {
 private:
@@ -47,5 +50,9 @@ public:
     senderCommandComplete() = default;
 };
 
+<<<<<<< HEAD
 #endif // !SENDER_H
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+#endif // !SENDER_H
+>>>>>>> origin/master

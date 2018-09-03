@@ -10,12 +10,17 @@ QT_CHARTS_USE_NAMESPACE
 using namespace std;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../commands/base/command.h"
 #include "../common/dataType.h"
 =======
 #include "../commands/command.h"
 #include "../common/data.h"
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+#include "../commands/command.h"
+#include "../common/data.h"
+>>>>>>> origin/master
 
 namespace Ui {
 class pageRank;
@@ -33,12 +38,17 @@ public:
     void setTeamRankCommand(shared_ptr<command> ptr);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     void setPlayerRank(shared_ptr<vector<shared_ptr<player_avg>>> playerRank);
     void setTeamRank(shared_ptr<vector<shared_ptr<team_avg>>> teamRank);
 =======
     void setPlayerRank(shared_ptr<vector<player_avg *>> playerRank);
     void setTeamRank(shared_ptr<vector<team_avg *>> teamRank);
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+    void setPlayerRank(shared_ptr<vector<player_avg *>> playerRank);
+    void setTeamRank(shared_ptr<vector<team_avg *>> teamRank);
+>>>>>>> origin/master
 
     void init();
     void update();
@@ -61,12 +71,17 @@ private:
 
     // 数据
 <<<<<<< HEAD
+<<<<<<< HEAD
     shared_ptr<vector<shared_ptr<player_avg>>> playerRank;
     shared_ptr<vector<shared_ptr<team_avg>>> teamRank;
 =======
     shared_ptr<vector<player_avg *>> playerRank;
     shared_ptr<vector<team_avg *>> teamRank;
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+    shared_ptr<vector<player_avg *>> playerRank;
+    shared_ptr<vector<team_avg *>> teamRank;
+>>>>>>> origin/master
 
     // 命令
     shared_ptr<command> playerRankCommand;

@@ -3,6 +3,7 @@
 viewModel::viewModel()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //command instance
     PlayerDataCmd = make_shared<playerDataCommand>();
     PlayerDataCmd->setVm(this);
@@ -158,6 +159,8 @@ void viewModel::UpdateTeamRank()
     *TeamRank = *tmpTeam;
 }
 =======
+=======
+>>>>>>> origin/master
     age = make_shared<int>(0);
     name = make_shared<string>("");
     /* ... */   
@@ -175,5 +178,9 @@ const int & viewModel::get_c()
 const command* viewModel::get_cmd1()
 {
     return c1;
+<<<<<<< HEAD
 }
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+}
+>>>>>>> origin/master

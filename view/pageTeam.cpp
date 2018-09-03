@@ -45,10 +45,14 @@ void pageTeam::update()
     // 更新图表
 //    QLineSeries *series = new QLineSeries;
 <<<<<<< HEAD
+<<<<<<< HEAD
 //    foreach(shared_ptr<team_avg> temp, *teamData)
 =======
 //    foreach(team_avg *temp, *teamData)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+//    foreach(team_avg *temp, *teamData)
+>>>>>>> origin/master
 //    {
 //        QPoint *point = new QPoint(temp->season, temp->fgper);
 //        series->append(point);
@@ -65,6 +69,7 @@ void pageTeam::update()
     // 循环中为队员标签添加点击事件 myLabel... connect();
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void pageTeam::getData()
 {
@@ -141,6 +146,9 @@ void pageTeam::setTeam(shared_ptr<vector<shared_ptr<team_avg>>> ptr)
 =======
 void pageTeam::setTeam(shared_ptr<vector<team_avg *>> ptr)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+void pageTeam::setTeam(shared_ptr<vector<team_avg *>> ptr)
+>>>>>>> origin/master
 {
     teamData = ptr;
 }

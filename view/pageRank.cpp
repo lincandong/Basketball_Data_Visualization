@@ -49,80 +49,112 @@ void pageRank::getData()
     {
         if (para->option == "fgper")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->fgper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "threepper")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->threepper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "ftper")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->threepper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "trb")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->threepper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "ast")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->ast);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "tov")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->tov);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "pts")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->pts);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "wg")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<team_avg> temp, *teamRank)
 =======
             foreach(team_avg *temp, *teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(team_avg *temp, *teamRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->wg);
                 dataName.push_back(temp->name);
@@ -132,80 +164,112 @@ void pageRank::getData()
     {
         if (para->option == "fgper")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->fgper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "threepper")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->threepper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "ftper")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->threepper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "trb")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->threepper);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "ast")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->ast);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "tov")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->tov);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "pts")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->pts);
                 dataName.push_back(temp->name);
             }
         else if (para->option == "w")
 <<<<<<< HEAD
+<<<<<<< HEAD
             foreach(shared_ptr<player_avg> temp, *playerRank)
 =======
             foreach(player_avg *temp, *playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            foreach(player_avg *temp, *playerRank)
+>>>>>>> origin/master
             {
                 data.push_back(temp->w);
                 dataName.push_back(temp->name);
@@ -235,9 +299,12 @@ void pageRank::showShoot()
     para->option = "fgper";
     para->season = ui->boxSeason->value();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -383,19 +450,27 @@ void pageRank::setPlayerRankCommand(shared_ptr<command> ptr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pageRank::setPlayerRank(shared_ptr<vector<shared_ptr<player_avg>>> playerRank)
 =======
 void pageRank::setPlayerRank(shared_ptr<vector<player_avg *>> playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+void pageRank::setPlayerRank(shared_ptr<vector<player_avg *>> playerRank)
+>>>>>>> origin/master
 {
     this->playerRank = playerRank;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void pageRank::setTeamRank(shared_ptr<vector<shared_ptr<team_avg>>> teamRank)
 =======
 void pageRank::setTeamRank(shared_ptr<vector<team_avg *>> teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+void pageRank::setTeamRank(shared_ptr<vector<team_avg *>> teamRank)
+>>>>>>> origin/master
 {
     this->teamRank = teamRank;
 }

@@ -2,6 +2,7 @@
     "files.associations": {
         "any": "cpp",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "typeinfo": "cpp",
         "string": "cpp",
         "xstring": "cpp",
@@ -20,5 +21,8 @@
 =======
         "typeinfo": "cpp"
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+        "typeinfo": "cpp"
+>>>>>>> origin/master
     }
 }

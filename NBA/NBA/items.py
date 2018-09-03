@@ -63,9 +63,12 @@ class GlobalVar:
 
 class PlayerDataItem(scrapy.Item):
 <<<<<<< HEAD
+<<<<<<< HEAD
     name = scrapy.Field()###
 =======
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
     season = scrapy.Field()
     tm = scrapy.Field()
     g = scrapy.Field()
@@ -118,6 +121,7 @@ class TeamDataItem(scrapy.Item):
 
 class PlayerItem(scrapy.Item):
 <<<<<<< HEAD
+<<<<<<< HEAD
     name = scrapy.Field()
     data = []
     image_url = scrapy.Field()
@@ -127,6 +131,11 @@ class PlayerItem(scrapy.Item):
     name = scrapy.Field()
     data = []
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+    ID = scrapy.Field()
+    name = scrapy.Field()
+    data = []
+>>>>>>> origin/master
 
 class SeasonItem(scrapy.Item):
     season = scrapy.Field()
@@ -135,6 +144,7 @@ class SeasonItem(scrapy.Item):
 
 class TeamItem(scrapy.Item):
     name = scrapy.Field()
+<<<<<<< HEAD
 <<<<<<< HEAD
     seasons = []
 
@@ -149,3 +159,6 @@ class ImageItem(scrapy.Item):
 =======
     seasons = []
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+    seasons = []
+>>>>>>> origin/master

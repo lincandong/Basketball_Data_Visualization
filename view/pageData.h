@@ -5,10 +5,14 @@
 #include <QList>
 #include "myLabel.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../common/dataType.h"
 =======
 #include "../common/data.h"
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+#include "../common/data.h"
+>>>>>>> origin/master
 
 namespace Ui {
 class pageData;

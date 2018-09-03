@@ -57,9 +57,12 @@ ROBOTSTXT_OBEY = True
 #}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -70,6 +73,7 @@ ROBOTSTXT_OBEY = True
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
 <<<<<<< HEAD
+<<<<<<< HEAD
     'NBA.pipelines.FilterPipeline': 500,
     'NBA.pipelines.ImagePipeline': 300,
     'NBA.pipelines.WritePipeline': 800,
@@ -77,11 +81,16 @@ ITEM_PIPELINES = {
 IMAGES_STORE = './data/image'
 IMAGES_EXPIRES = 90
 =======
+=======
+>>>>>>> origin/master
     'NBA.pipelines.FilterPipeline': 300,
     'NBA.pipelines.WritePipeline': 500,
 }
 DUPEFILTER_CLASS = 'scrapy.dupefilters.RFPDupeFilter'
+<<<<<<< HEAD
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True

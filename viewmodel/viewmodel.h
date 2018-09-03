@@ -1,6 +1,7 @@
 #ifndef VIEWMODEL_H
 #define VIEWMODEL_H
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #include "receiver/receiverFromModel.h"
 #include "receiver/receiverFromView.h"
@@ -10,15 +11,21 @@
 #include "../commands/allcommand.h"
 #include "../common/dataType.h"
 =======
+=======
+>>>>>>> origin/master
 #include "receiver/vm_receiver.h"
 #include "../common/sender.h"
 #include "../model/model.h"
 #include "../commands/allcommand.h"
+<<<<<<< HEAD
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
 
 class viewModel
 {
 private:
+<<<<<<< HEAD
 <<<<<<< HEAD
     //binding variables
     shared_ptr<vector<shared_ptr<player_avg>>> PlayerRank;
@@ -75,6 +82,8 @@ public:
 
 #endif // !VIEWMODEL_H
 =======
+=======
+>>>>>>> origin/master
     shared_ptr<int> c;
     shared_ptr<int> age;
     shared_ptr<string> name;
@@ -100,5 +109,9 @@ public:
     viewModel();
 };
 
+<<<<<<< HEAD
 #endif // !VIEWMODEL_H
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+#endif // !VIEWMODEL_H
+>>>>>>> origin/master

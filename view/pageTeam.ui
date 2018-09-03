@@ -145,14 +145,20 @@
          </item>
          <item>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <layout class="QGridLayout" name="gridLayoutTable"/>
 =======
+=======
+>>>>>>> origin/master
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
             <widget class="QChartView" name="widget" native="true"/>
            </item>
           </layout>
+<<<<<<< HEAD
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
          </item>
         </layout>
        </widget>
@@ -173,7 +179,10 @@
   </layout>
  </widget>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/master
  <customwidgets>
   <customwidget>
    <class>QChartView</class>
@@ -182,7 +191,10 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+<<<<<<< HEAD
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
  <resources/>
  <connections/>
 </ui>

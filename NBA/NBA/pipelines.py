@@ -9,6 +9,7 @@ import json
 import codecs
 import sys
 <<<<<<< HEAD
+<<<<<<< HEAD
 import scrapy
 from scrapy.exceptions import DropItem
 from NBA.items import PlayerItem, TeamItem, ImageItem
@@ -17,6 +18,10 @@ from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
 from NBA.items import PlayerItem, TeamItem
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+from scrapy.exceptions import DropItem
+from NBA.items import PlayerItem, TeamItem
+>>>>>>> origin/master
 class WritePipeline(object):
 
     def process_item(self, item, spider):
@@ -24,6 +29,7 @@ class WritePipeline(object):
             self.file = codecs.open('./data/players/' + item['name'] + '.json', "w", encoding = 'utf-8')
             self.file.write('[\n')
             for i in range(0, len(item.data)):
+<<<<<<< HEAD
 <<<<<<< HEAD
                 if(item.data[i]['name'] == item['name']):
                     content = dict(item.data[i])
@@ -49,6 +55,8 @@ class WritePipeline(object):
         return item
     
 =======
+=======
+>>>>>>> origin/master
                 self.file.write(json.dumps(dict(item.data[i]), ensure_ascii=False))
                 if(i < len(item.data)-1):
                     self.file.write(',')
@@ -66,7 +74,10 @@ class WritePipeline(object):
                     self.file.write('\n')
                 self.file.write('],\n' + json.dumps(dict(S['data']), ensure_ascii=False) + "\n]")
         return item
+<<<<<<< HEAD
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
 
 
 class FilterPipeline(object):
@@ -76,6 +87,7 @@ class FilterPipeline(object):
 
     def process_item(self, item, spider):
         if(isinstance(item, PlayerItem)):
+<<<<<<< HEAD
 <<<<<<< HEAD
             if item['name'] in self.ids_seen:
                 raise DropItem("Duplicate item found: %s" % item)
@@ -104,11 +116,17 @@ class ImagePipeline(ImagesPipeline):
             down_file_name = u'/full/{0}.jpg'.format(request.meta['PlayerName'])
             return down_file_name
 =======
+=======
+>>>>>>> origin/master
             if item['ID'] in self.ids_seen:
                 raise DropItem("Duplicate item found: %s" % item)
             else:
                 self.ids_seen.add(item['ID'])
                 return item
         else:
+<<<<<<< HEAD
             return item
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+            return item
+>>>>>>> origin/master

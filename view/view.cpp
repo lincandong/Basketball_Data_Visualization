@@ -10,11 +10,15 @@ view::view(QWidget *parent) :
     ui->setupUi(this);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     commandReceiver = make_shared<ViewCommandReceiver>(this);
     propertyReceiver = make_shared<ViewPropertyReceiver>(this);
 =======
     receiver = make_shared<ViewCommandReceiver>(this);
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+    receiver = make_shared<ViewCommandReceiver>(this);
+>>>>>>> origin/master
 
     page_start = new pageStart;
     page_rank = new pageRank;
@@ -51,6 +55,7 @@ view::~view()
     delete ui;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 shared_ptr<ViewCommandReceiver> view::getCommandReceiver()
 {
     return commandReceiver;
@@ -62,6 +67,8 @@ shared_ptr<ViewPropertyReceiver> view::getPropertyReceiver()
 }
 =======
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+>>>>>>> origin/master
 
 void view::switchPageStart()
 {
@@ -130,37 +137,53 @@ void view::setTeamRankCommand(shared_ptr<command> ptr)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void view::setPlayerRank(shared_ptr<vector<shared_ptr<player_avg>>> playerRank)
 =======
 void view::setPlayerRank(shared_ptr<vector<player_avg *>> playerRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+void view::setPlayerRank(shared_ptr<vector<player_avg *>> playerRank)
+>>>>>>> origin/master
 {
     page_rank->setPlayerRank(playerRank);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void view::setTeamRank(shared_ptr<vector<shared_ptr<team_avg>>> teamRank)
 =======
 void view::setTeamRank(shared_ptr<vector<team_avg *>> teamRank)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+void view::setTeamRank(shared_ptr<vector<team_avg *>> teamRank)
+>>>>>>> origin/master
 {
     page_rank->setTeamRank(teamRank);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void view::setPlayer(shared_ptr<vector<shared_ptr<player_avg>>> player)
 =======
 void view::setPlayer(shared_ptr<vector<player_avg *>> player)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+void view::setPlayer(shared_ptr<vector<player_avg *>> player)
+>>>>>>> origin/master
 {
     page_player->setPlayer(player);
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void view::setTeam(shared_ptr<vector<shared_ptr<team_avg>>> team)
 =======
 void view::setTeam(shared_ptr<vector<team_avg *>> team)
 >>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+void view::setTeam(shared_ptr<vector<team_avg *>> team)
+>>>>>>> origin/master
 {
     page_team->setTeam(team);
 }
