@@ -1,0 +1,34 @@
+<RCC>
+    <qresource prefix="/gif">
+        <file>gif/ATL.gif</file>
+        <file>gif/BKN.gif</file>
+        <file>gif/BOS.gif</file>
+        <file>gif/CHA.gif</file>
+        <file>gif/CHI.gif</file>
+        <file>gif/CLE.gif</file>
+        <file>gif/DAL.gif</file>
+        <file>gif/DEN.gif</file>
+        <file>gif/DET.gif</file>
+        <file>gif/GSW.gif</file>
+        <file>gif/HOU.gif</file>
+        <file>gif/IND.gif</file>
+        <file>gif/LAC.gif</file>
+        <file>gif/LAL.gif</file>
+        <file>gif/MEM.gif</file>
+        <file>gif/MIA.gif</file>
+        <file>gif/MIL.gif</file>
+        <file>gif/MIN.gif</file>
+        <file>gif/NOH.gif</file>
+        <file>gif/NYK.gif</file>
+        <file>gif/OKC.gif</file>
+        <file>gif/ORL.gif</file>
+        <file>gif/PHI.gif</file>
+        <file>gif/PHO.gif</file>
+        <file>gif/POR.gif</file>
+        <file>gif/SAC.gif</file>
+        <file>gif/SAS.gif</file>
+        <file>gif/TOR.gif</file>
+        <file>gif/UTA.gif</file>
+        <file>gif/WAS.gif</file>
+    </qresource>
+</RCC>
