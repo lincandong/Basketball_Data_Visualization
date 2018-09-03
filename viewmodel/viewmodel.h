@@ -1,7 +1,5 @@
 #ifndef VIEWMODEL_H
 #define VIEWMODEL_H
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 #include "receiver/receiverFromModel.h"
 #include "receiver/receiverFromView.h"
@@ -10,23 +8,10 @@
 #include "compare/compare.h"
 #include "../commands/allcommand.h"
 #include "../common/dataType.h"
-=======
-=======
->>>>>>> origin/master
-#include "receiver/vm_receiver.h"
-#include "../common/sender.h"
-#include "../model/model.h"
-#include "../commands/allcommand.h"
-<<<<<<< HEAD
->>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
-=======
->>>>>>> origin/master
 
 class viewModel
 {
 private:
-<<<<<<< HEAD
-<<<<<<< HEAD
     //binding variables
     shared_ptr<vector<shared_ptr<player_avg>>> PlayerRank;
     shared_ptr<vector<shared_ptr<player_avg>>> PlayerData;
@@ -81,37 +66,3 @@ public:
 };
 
 #endif // !VIEWMODEL_H
-=======
-=======
->>>>>>> origin/master
-    shared_ptr<int> c;
-    shared_ptr<int> age;
-    shared_ptr<string> name;
-    /* ... */
-public:
-    //pairs of set() and get()
-    void set_c(int&& value);
-    const int & get_c();
-
-    //command instantiation
-    openfile* c1;
-
-    //get() for command
-    const command* get_cmd1();
-
-    //basic members
-    model m;
-    vm_receiver m2vm;
-    vm_receiver vm2v;
-    senderPropertyChange spc;
-    senderCommandComplete scc;
-
-    viewModel();
-};
-
-<<<<<<< HEAD
-#endif // !VIEWMODEL_H
->>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
-=======
-#endif // !VIEWMODEL_H
->>>>>>> origin/master

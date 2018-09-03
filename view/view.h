@@ -12,16 +12,8 @@
 #include "pagePlayer.h"
 
 #include "receiver/viewCommandReceiver.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "receiver/viewPropertyReceiver.h"
 #include "../common/dataType.h"
-=======
-#include "../common/data.h"
->>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
-=======
-#include "../common/data.h"
->>>>>>> origin/master
 
 using namespace std;
 
@@ -34,16 +26,8 @@ class view : public QMainWindow
     Q_OBJECT
 
 public:
-<<<<<<< HEAD
-<<<<<<< HEAD
     shared_ptr<ViewCommandReceiver> getCommandReceiver();
     shared_ptr<ViewPropertyReceiver> getPropertyReceiver();
-=======
-    shared_ptr<ViewCommandReceiver> receiver;
->>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
-=======
-    shared_ptr<ViewCommandReceiver> receiver;
->>>>>>> origin/master
 
     explicit view(QWidget *parent = 0);
     ~view();
@@ -61,8 +45,6 @@ public:
     void setTeamDataCommand(shared_ptr<command> ptr);
     void setTeamRankCommand(shared_ptr<command> ptr);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     void setPlayerRank(shared_ptr<vector<shared_ptr<player_avg>>> playerRank);
     void setTeamRank(shared_ptr<vector<shared_ptr<team_avg>>> teamRank);
     void setPlayer(shared_ptr<vector<shared_ptr<player_avg>>> player);
@@ -70,18 +52,6 @@ public:
 private:
     shared_ptr<ViewCommandReceiver> commandReceiver;
     shared_ptr<ViewPropertyReceiver> propertyReceiver;
-=======
-=======
->>>>>>> origin/master
-    void setPlayerRank(shared_ptr<vector<player_avg *>> playerRank);
-    void setTeamRank(shared_ptr<vector<team_avg *>> teamRank);
-    void setPlayer(shared_ptr<vector<player_avg *>> player);
-    void setTeam(shared_ptr<vector<team_avg *>> team);
-private:
-<<<<<<< HEAD
->>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
-=======
->>>>>>> origin/master
     Ui::view *ui;
 
     pageStart *page_start;

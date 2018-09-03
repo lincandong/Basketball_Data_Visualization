@@ -128,15 +128,7 @@ void pagePlayer::setPlayerDataCommand(shared_ptr<command> ptr)
     playerDataCommand = ptr;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 void pagePlayer::setPlayer(shared_ptr<vector<shared_ptr<player_avg>> > player)
-=======
-void pagePlayer::setPlayer(shared_ptr<vector<player_avg *> > player)
->>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
-=======
-void pagePlayer::setPlayer(shared_ptr<vector<player_avg *> > player)
->>>>>>> origin/master
 {
     this->player = player;
 }

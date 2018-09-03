@@ -33,7 +33,6 @@ HEADERS += commands/allcommand.h \
            view/pageTeam.h \
            view/view.h \
            viewmodel/viewmodel.h \
-           viewmodel/compare/compare.h \
            commands/base/command.h \
            commands/base/parameters.h \
            commands/inherit/playerDataCommand.h \
@@ -109,6 +108,5 @@ SOURCES += common/sender.cpp \
            view/receiver/viewPropertyReceiver.cpp \
            viewmodel/receiver/receiverFromModel.cpp \
            viewmodel/receiver/receiverFromView.cpp \
-           viewmodel/compare/compare.cpp \
     app/main.cpp
 RESOURCES += resources/resources.qrc

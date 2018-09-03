@@ -2,15 +2,7 @@
 #define PAGESTART_H
 
 #include <QWidget>
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include "../commands/base/command.h"
-=======
-#include "../commands/command.h"
->>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
-=======
-#include "../commands/command.h"
->>>>>>> origin/master
 
 namespace Ui {
 class pageStart;

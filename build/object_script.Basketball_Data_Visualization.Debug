@@ -18,7 +18,6 @@ INPUT(
 ./debug\viewPropertyReceiver.o
 ./debug\receiverFromModel.o
 ./debug\receiverFromView.o
-./debug\compare.o
 ./debug\main.o
 ./debug\qrc_resources.o
 ./debug\moc_myLabel.o
