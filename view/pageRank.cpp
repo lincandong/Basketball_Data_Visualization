@@ -18,6 +18,11 @@ pageRank::pageRank(QWidget *parent) :
     connect(ui->buttonScore, &QPushButton::clicked, this, &pageRank::showScore);
     connect(ui->buttonVictory, &QPushButton::clicked, this, &pageRank::showVictory);*/
 
+    PlayerTableModel *tablemodel = new PlayerTableModel;
+    QTableView *view = new QTableView;
+    view->setModel(tablemodel);
+    ui->layoutShoot->addWidget(view, 0, 0);
+
     para = make_shared<rankParameter>("fgper", 17);
     isTeam = true;
 }

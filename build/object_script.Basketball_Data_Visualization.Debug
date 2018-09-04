@@ -19,6 +19,7 @@ INPUT(
 ./debug\receiverFromModel.o
 ./debug\receiverFromView.o
 ./debug\main.o
+./debug\playertablemodel.o
 ./debug\qrc_resources.o
 ./debug\moc_myLabel.o
 ./debug\moc_pageData.o

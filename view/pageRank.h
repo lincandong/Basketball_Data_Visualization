@@ -11,6 +11,7 @@ using namespace std;
 
 #include "../commands/base/command.h"
 #include "../common/dataType.h"
+#include "playertablemodel.h"
 
 namespace Ui {
 class pageRank;

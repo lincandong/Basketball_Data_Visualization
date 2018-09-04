@@ -19,6 +19,7 @@ INPUT(
 ./release\receiverFromModel.o
 ./release\receiverFromView.o
 ./release\main.o
+./release\playertablemodel.o
 ./release\qrc_resources.o
 ./release\moc_myLabel.o
 ./release\moc_pageData.o
