@@ -1,0 +1,50 @@
+#include "compare.h"
+
+bool PlayerCompare::cmp_g(player_avg* a, player_avg* b){return a->g > b->g;}
+bool PlayerCompare::cmp_gs(player_avg* a, player_avg* b){return a->gs > b->gs;}
+bool PlayerCompare::cmp_mp(player_avg* a, player_avg* b){return a->mp > b->mp;}
+bool PlayerCompare::cmp_fgper(player_avg* a, player_avg* b){return a->fgper > b->fgper;}
+bool PlayerCompare::cmp_fg(player_avg* a, player_avg* b){return a->fg > b->fg;}
+bool PlayerCompare::cmp_fga(player_avg* a, player_avg* b){return a->fga > b->fga;}
+bool PlayerCompare::cmp_threepper(player_avg* a, player_avg* b){return a->threepper > b->threepper;}
+bool PlayerCompare::cmp_threep(player_avg* a, player_avg* b){return a->threep > b->threep;}
+bool PlayerCompare::cmp_threepa(player_avg* a, player_avg* b){return a->threepa > b->threepa;}
+bool PlayerCompare::cmp_ftper(player_avg* a, player_avg* b){return a->ftper > b->ftper;}
+bool PlayerCompare::cmp_ft(player_avg* a, player_avg* b){return a->ft > b->ft;}
+bool PlayerCompare::cmp_fta(player_avg* a, player_avg* b){return a->fta > b->fta;}
+bool PlayerCompare::cmp_ts(player_avg* a, player_avg* b){return a->ts > b->ts;}
+bool PlayerCompare::cmp_trb(player_avg* a, player_avg* b){return a->trb > b->trb;}
+bool PlayerCompare::cmp_orb(player_avg* a, player_avg* b){return a->orb > b->orb;}
+bool PlayerCompare::cmp_drb(player_avg* a, player_avg* b){return a->drb > b->drb;}
+bool PlayerCompare::cmp_ast(player_avg* a, player_avg* b){return a->ast > b->ast;}
+bool PlayerCompare::cmp_stl(player_avg* a, player_avg* b){return a->stl > b->stl;}
+bool PlayerCompare::cmp_blk(player_avg* a, player_avg* b){return a->blk > b->blk;}
+bool PlayerCompare::cmp_tov(player_avg* a, player_avg* b){return a->tov > b->tov;}
+bool PlayerCompare::cmp_pf(player_avg* a, player_avg* b){return a->pf > b->pf;}
+bool PlayerCompare::cmp_pts(player_avg* a, player_avg* b){return a->pts > b->pts;}
+bool PlayerCompare::cmp_w(player_avg* a, player_avg* b){return a->w > b->w;}
+bool PlayerCompare::cmp_l(player_avg* a, player_avg* b){return a->l > b->l;}
+
+
+bool TeamCompare::cmp_g(team_avg* a, team_avg* b){return a->g > b->g;}
+bool TeamCompare::cmp_wg(team_avg* a, team_avg* b){return a->wg > b->wg;}
+bool TeamCompare::cmp_lg(team_avg* a, team_avg* b){return a->lg > b->lg;}
+bool TeamCompare::cmp_fgper(team_avg* a, team_avg* b){return a->fgper > b->fgper;}
+bool TeamCompare::cmp_fg(team_avg* a, team_avg* b){return a->fg > b->fg;}
+bool TeamCompare::cmp_fga(team_avg* a, team_avg* b){return a->fga > b->fga;}
+bool TeamCompare::cmp_threepper(team_avg* a, team_avg* b){return a->threepper > b->threepper;}
+bool TeamCompare::cmp_threep(team_avg* a, team_avg* b){return a->threep > b->threep;}
+bool TeamCompare::cmp_threepa(team_avg* a, team_avg* b){return a->threepa > b->threepa;}
+bool TeamCompare::cmp_ftper(team_avg* a, team_avg* b){return a->ftper > b->ftper;}
+bool TeamCompare::cmp_ft(team_avg* a, team_avg* b){return a->ft > b->ft;}
+bool TeamCompare::cmp_fta(team_avg* a, team_avg* b){return a->fta > b->fta;}
+bool TeamCompare::cmp_ts(team_avg* a, team_avg* b){return a->ts > b->ts;}
+bool TeamCompare::cmp_trb(team_avg* a, team_avg* b){return a->trb > b->trb;}
+bool TeamCompare::cmp_orb(team_avg* a, team_avg* b){return a->orb > b->orb;}
+bool TeamCompare::cmp_drb(team_avg* a, team_avg* b){return a->drb > b->drb;}
+bool TeamCompare::cmp_ast(team_avg* a, team_avg* b){return a->ast > b->ast;}
+bool TeamCompare::cmp_stl(team_avg* a, team_avg* b){return a->stl > b->stl;}
+bool TeamCompare::cmp_blk(team_avg* a, team_avg* b){return a->blk > b->blk;}
+bool TeamCompare::cmp_tov(team_avg* a, team_avg* b){return a->tov > b->tov;}
+bool TeamCompare::cmp_pf(team_avg* a, team_avg* b){return a->pf > b->pf;}
+bool TeamCompare::cmp_pts(team_avg* a, team_avg* b){return a->pts > b->pts;}
