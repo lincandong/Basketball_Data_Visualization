@@ -149,33 +149,6 @@ model_test/fast:
 	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.s
 .PHONY : 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.s
 
-json.obj: json.cpp.obj
-
-.PHONY : json.obj
-
-# target to build an object file
-json.cpp.obj:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/json.cpp.obj
-.PHONY : json.cpp.obj
-
-json.i: json.cpp.i
-
-.PHONY : json.i
-
-# target to preprocess a source file
-json.cpp.i:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/json.cpp.i
-.PHONY : json.cpp.i
-
-json.s: json.cpp.s
-
-.PHONY : json.s
-
-# target to generate assembly for a file
-json.cpp.s:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/json.cpp.s
-.PHONY : json.cpp.s
-
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -242,9 +215,6 @@ help:
 	@echo ... 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.obj
 	@echo ... 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.i
 	@echo ... 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.s
-	@echo ... json.obj
-	@echo ... json.i
-	@echo ... json.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

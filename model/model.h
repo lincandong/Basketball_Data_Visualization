@@ -1,11 +1,11 @@
-#include "../common/rapidjson/filereadstream.h"
-#include "../common/rapidjson/document.h"
 #ifndef MODEL_H
 #define MODEL_H
-#include "..\common\common.h"
-#include "..\common\sender.h"
-#include "..\common\dataType.h"
-#include "..\viewmodel\receiver\receiverFromModel.h"
+#include "../common/rapidjson/filereadstream.h"
+#include "../common/rapidjson/document.h"
+#include "../common/common.h"
+#include "../common/sender.h"
+#include "../common/dataType.h"
+#include "../viewmodel/receiver/receiverFromModel.h"
 class model
 {
 private:    
@@ -19,7 +19,7 @@ private:
 	vector<team_avg*> v_team;
 
 public:
-    model():v_team(vector<team_avg*>(5)){};
+    // model():v_team(vector<team_avg*>(5)){};
     ~model() = default;
     void InitSender(shared_ptr<receiverFromModel> ptr);
 

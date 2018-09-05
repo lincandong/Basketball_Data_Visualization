@@ -20,4 +20,4 @@ elseif (UNIX)
 	link_libraries(X11 m dl Xxf86vm Xrandr Xi Xcursor Xinerama pthread)
 endif ()
 
-add_executable("model_test" ${SOURCE})
+add_executable("test" ${SOURCE})
