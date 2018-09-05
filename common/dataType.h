@@ -66,6 +66,7 @@ struct team_avg {
 
 };
 
+<<<<<<< HEAD
 struct ability
 {
 	float offense;
@@ -81,5 +82,14 @@ struct ability
 		reb = p->trb;
 		efficiency = p->pts + p->trb + p->ast + p->stl + p->blk - p->fga + p->fg - p->fta + p->ft;
 	}
+=======
+struct ability {
+	float attack;
+	float defense;
+	float shoot;
+	float run;
+	float point;
+	float reb;
+>>>>>>> 7f6c48f4a0c11627f163285f46c5a1849c82ed95
 };
 #endif // !DATATYPE_H

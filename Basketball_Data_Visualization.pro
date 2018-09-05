@@ -3,7 +3,10 @@
 ######################################################################
 QT += widgets
 QT += charts
+<<<<<<< HEAD
 QT += core gui
+=======
+>>>>>>> 7f6c48f4a0c11627f163285f46c5a1849c82ed95
 TEMPLATE = app
 TARGET = Basketball_Data_Visualization
 INCLUDEPATH += .

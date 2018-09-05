@@ -1,0 +1,28 @@
+{
+    "files.associations": {
+        "any": "cpp",
+<<<<<<< HEAD
+<<<<<<< HEAD
+        "typeinfo": "cpp",
+        "string": "cpp",
+        "xstring": "cpp",
+        "vector": "cpp",
+        "xutility": "cpp",
+        "memory": "cpp",
+        "ios": "cpp",
+        "list": "cpp",
+        "system_error": "cpp",
+        "xhash": "cpp",
+        "xiosbase": "cpp",
+        "iterator": "cpp",
+        "unordered_map": "cpp",
+        "initializer_list": "cpp",
+        "regex": "cpp"
+=======
+        "typeinfo": "cpp"
+>>>>>>> aff148d556a7acb797fa639d41fcc4d63a296c6d
+=======
+        "typeinfo": "cpp"
+>>>>>>> origin/master
+    }
+}
