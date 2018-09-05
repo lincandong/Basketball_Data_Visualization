@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 #include "../common/rapidjson/filereadstream.h"
 #include "../common/rapidjson/document.h"
-=======
-#include "rapidjson/filereadstream.h"
-#include "rapidjson/document.h"
->>>>>>> 7f6c48f4a0c11627f163285f46c5a1849c82ed95
 #include <cstdio>
 #include <iostream>
 #include "windows.h"
