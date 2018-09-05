@@ -1,6 +1,6 @@
 /build/
 /.vscode/
-
+/*.o/
 /model/build/
 /model/CMakeFiles/
 /model/cmake_install.cmake
