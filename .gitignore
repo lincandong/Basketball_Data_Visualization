@@ -1,2 +1,8 @@
 /build/
 /.vscode/
+/*.o/
+/model/build/
+/model/CMakeFiles/
+/model/cmake_install.cmake
+/model/CMakeCache.txt
+/model/model_test.exe
