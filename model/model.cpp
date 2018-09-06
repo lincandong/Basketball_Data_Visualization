@@ -1,4 +1,10 @@
 #include "model.h"
+model::model()
+{
+	v_player.resize(5);
+	load_player(m_player, v_player);
+	load_team(m_team, v_team);
+}
 void model::InitSender(shared_ptr<receiverFromModel> ptr)
 {
     snd.add(ptr);
@@ -24,8 +30,7 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 		_findclose(hFile);
 	}
 }
-
-void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<vector<player_avg*>>& s)
+ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<vector<player_avg*>>& s)
 {
 	vector<string> files2;
 	cf_findFileFromDir2("../NBA/data/players", files2);
@@ -83,14 +88,13 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
 		m[v] = temp;
 		fclose(fp);
 	}
-	//cout << m["ÀÕ²¼ÀÊ-Õ²Ä·Ë¹"][2]->pts << endl;
+	//cout << m["Ã€Ã•Â²Â¼Ã€ÃŠ-Ã•Â²Ã„Â·Ã‹Â¹"][2]->pts << endl;
 	
 }
-
-void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
+ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
 {
 	vector<string> files;
-	cf_findFileFromDir2("../teams/17-18Èü¼¾", files);
+	cf_findFileFromDir2("../teams/17-18ÃˆÃ¼Â¼Â¾", files);
 	char readBuffer[65536];
 	cout << "team" << endl;
 	for(auto& v : files)
@@ -143,11 +147,9 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 		fclose(fp);
 	}
 	
-	//cout << m["¶í¿ËÀ­ºÉÂíÀ×öª¶Ó"]->pts << endl;
+	//cout << m["Â¶Ã­Â¿Ã‹Ã€Â­ÂºÃ‰Ã‚Ã­Ã€Ã—Ã¶ÂªÂ¶Ã“"]->pts << endl;
 }
-
-
-void model::player_series(string& name, string& begin, string& end, vector<shared_ptr<player_avg>>& players)
+ void model::player_series(string& name, string& begin, string& end, vector<shared_ptr<player_avg>>& players)
 {
 	players.clear();
 	if(m_player.find(name)!=m_player.end())
@@ -163,8 +165,7 @@ void model::player_series(string& name, string& begin, string& end, vector<share
 	}
 	snd.notify("player has been set");
 }
-
-void model::player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p)
+ void model::player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p)
 {
 	int count = 0;
 	p->name = name;
@@ -223,36 +224,32 @@ void model::player_data(string& name, string& begin, string& end, shared_ptr<pla
 	}
 	snd.notify("player has been set");
 }
-
-void model::team_data(string& name, shared_ptr<team_avg> t)
+ void model::team_data(string& name, shared_ptr<team_avg> t)
 {
 	t = (shared_ptr<team_avg>)m_team[name];
 	snd.notify("team has been set");
 }
-
-void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))
+ void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))
 {
-	// players.clear();
-	// vector<player_avg*> temp = v_player[year];
-	// sort(temp.begin(), temp.end(), cmp);
-	// for(int i=0; i<15; i++)
-	// {
-	// 	shared_ptr<player_avg> p(temp[i]);
-	// 	players.push_back(p);
-	// }
-	// snd.notify("player rank has been set");
+	players.clear();
+	vector<player_avg*> temp = v_player[year];
+	sort(temp.begin(), temp.end(), cmp);
+	for(int i=0; i<15; i++)
+	{
+		shared_ptr<player_avg> p(temp[i]);
+		players.push_back(p);
+	}
+	snd.notify("player rank has been set");
 }
-
-void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*))
+ void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*))
 {
-	// teams.clear();
-	// vector<team_avg*> temp = v_team;
-	// sort(temp.begin(), temp.end(), cmp);
-	// for(int i=0; i<15; i++)
-	// {
-	// 	shared_ptr<team_avg> p(temp[i]);
-	// 	teams.push_back(p);
-	// }
-	// snd.notify("team rank has been set");
+	teams.clear();
+	vector<team_avg*> temp = v_team;
+	sort(temp.begin(), temp.end(), cmp);
+	for(int i=0; i<15; i++)
+	{
+		shared_ptr<team_avg> p(temp[i]);
+		teams.push_back(p);
+	}
+	snd.notify("team rank has been set");
 }
-

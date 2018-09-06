@@ -19,7 +19,7 @@ private:
 	vector<team_avg*> v_team;
 
 public:
-    model():v_team(vector<team_avg*>(5)){};
+	model();
     ~model() = default;
     void InitSender(shared_ptr<receiverFromModel> ptr);
 
