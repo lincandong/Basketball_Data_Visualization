@@ -55,17 +55,6 @@ CMAKE_BINARY_DIR = "D:\ZJU\2017-2018 spring&summer\SummerTermCpp\Basketball_Data
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	C:\Users\Administrator\bin\cmake-gui.exe -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -76,6 +65,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	C:\Users\Administrator\bin\cmake-gui.exe -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -110,44 +110,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named model_test
+# Target rules for targets named test
 
 # Build rule for target.
-model_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 model_test
-.PHONY : model_test
+test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 test
+.PHONY : test
 
 # fast build rule for target.
-model_test/fast:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/build
-.PHONY : model_test/fast
+test/fast:
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/build
+.PHONY : test/fast
 
-68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.obj: 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.obj
+e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.obj: e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.obj
 
-.PHONY : 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.obj
+.PHONY : e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.obj
 
 # target to build an object file
-68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.obj:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.obj
-.PHONY : 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.obj
+e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.obj:
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.obj
+.PHONY : e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.obj
 
-68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.i: 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.i
+e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.i: e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.i
 
-.PHONY : 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.i
+.PHONY : e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.i
 
 # target to preprocess a source file
-68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.i:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.i
-.PHONY : 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.i
+e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.i:
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.i
+.PHONY : e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.i
 
-68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.s: 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.s
+e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.s: e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.s
 
-.PHONY : 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.s
+.PHONY : e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.s
 
 # target to generate assembly for a file
-68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.s:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.s
-.PHONY : 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.cpp.s
+e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.s:
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.s
+.PHONY : e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.cpp.s
 
 main.obj: main.cpp.obj
 
@@ -155,7 +155,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/main.cpp.obj
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -164,7 +164,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -173,7 +173,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 model.obj: model.cpp.obj
@@ -182,7 +182,7 @@ model.obj: model.cpp.obj
 
 # target to build an object file
 model.cpp.obj:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/model.cpp.obj
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/model.cpp.obj
 .PHONY : model.cpp.obj
 
 model.i: model.cpp.i
@@ -191,7 +191,7 @@ model.i: model.cpp.i
 
 # target to preprocess a source file
 model.cpp.i:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/model.cpp.i
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/model.cpp.i
 .PHONY : model.cpp.i
 
 model.s: model.cpp.s
@@ -200,7 +200,7 @@ model.s: model.cpp.s
 
 # target to generate assembly for a file
 model.cpp.s:
-	$(MAKE) -f CMakeFiles\model_test.dir\build.make CMakeFiles/model_test.dir/model.cpp.s
+	$(MAKE) -f CMakeFiles\test.dir\build.make CMakeFiles/test.dir/model.cpp.s
 .PHONY : model.cpp.s
 
 # Help Target
@@ -209,12 +209,12 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... model_test
-	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.obj
-	@echo ... 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.i
-	@echo ... 68802b8632141d52e167e2bf1f7ac9ce/Basketball_Data_Visualization/common/sender.s
+	@echo ... test
+	@echo ... edit_cache
+	@echo ... e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.obj
+	@echo ... e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.i
+	@echo ... e6ed7dc46a6c5d6897ded1184dbb113e/Basketball_Data_Visualization/Basketball_Data_Visualization/common/sender.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
