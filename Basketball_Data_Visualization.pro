@@ -83,8 +83,7 @@ HEADERS += commands/allcommand.h \
            common/rapidjson/filereadstream.h \
            common/rapidjson/msinttypes/stdint.h \
            common/rapidjson/msinttypes/inttypes.h \
-           common/rapidjson/document.h \
-    view/playertablemodel.h
+           common/rapidjson/document.h
 FORMS += view/pageData.ui \
          view/pagePlayer.ui \
          view/pageRank.ui \
@@ -110,6 +109,5 @@ SOURCES += common/sender.cpp \
            view/receiver/viewPropertyReceiver.cpp \
            viewmodel/receiver/receiverFromModel.cpp \
            viewmodel/receiver/receiverFromView.cpp \
-    app/main.cpp \
-    view/playertablemodel.cpp
+    app/main.cpp
 RESOURCES += resources/resources.qrc
