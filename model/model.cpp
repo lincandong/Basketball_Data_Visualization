@@ -83,15 +83,16 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
 		m[v] = temp;
 		fclose(fp);
 	}
-	//cout << m["ÂµÂ¤Ã„Ã¡Ã‹Â¹-ÃŠÂ©Ã‚Ãž"][2]->pts << endl;
+	//cout << m["ÀÕ²¼ÀÊ-Õ²Ä·Ë¹"][2]->pts << endl;
 	
 }
 
 void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
 {
 	vector<string> files;
-	cf_findFileFromDir2("../NBA/data/teams", files);
+	cf_findFileFromDir2("../teams/17-18Èü¼¾", files);
 	char readBuffer[65536];
+	cout << "team" << endl;
 	for(auto& v : files)
 	{
 		FILE* fp = fopen(v.c_str(), "rb");
@@ -142,7 +143,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 		fclose(fp);
 	}
 	
-	
+	//cout << m["¶í¿ËÀ­ºÉÂíÀ×öª¶Ó"]->pts << endl;
 }
 
 
