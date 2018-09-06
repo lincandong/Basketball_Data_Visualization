@@ -11,7 +11,6 @@ using namespace std;
 
 #include "../commands/base/command.h"
 #include "../common/dataType.h"
-#include "playertablemodel.h"
 
 namespace Ui {
 class pageRank;
@@ -54,13 +53,13 @@ private:
     shared_ptr<command> teamRankCommand;
 
     void showShoot();
-    /*void showThree();
+    void showThree();
     void showPenalty();
     void showBackboard();
     void showAssisting();
     void showFalut();
     void showScore();
-    void showVictory();*/
+    void showVictory();
 };
 
 #endif // PAGERANK_H
