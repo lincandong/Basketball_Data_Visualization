@@ -18,14 +18,19 @@ pageRank::pageRank(QWidget *parent) :
     connect(ui->buttonScore, &QPushButton::clicked, this, &pageRank::showScore);
     connect(ui->buttonVictory, &QPushButton::clicked, this, &pageRank::showVictory);
 
-    para = make_shared<rankParameter>("fgper", 17);
-    isTeam = true;
-    showShoot();
 }
 
 pageRank::~pageRank()
 {
     delete ui;
+}
+
+void pageRank::init()
+{
+    para = make_shared<rankParameter>("fgper", 17);
+    isTeam = true;
+
+    showShoot();
 }
 
 void pageRank::showShoot()

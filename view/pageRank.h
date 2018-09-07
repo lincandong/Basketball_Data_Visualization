@@ -30,6 +30,7 @@ public:
     void setPlayerRank(shared_ptr<vector<shared_ptr<player_avg>>> playerRank);
     void setTeamRank(shared_ptr<vector<shared_ptr<team_avg>>> teamRank);
 
+    void init();
 private slots:
     void on_boxSeason_valueChanged(int arg1);
 
