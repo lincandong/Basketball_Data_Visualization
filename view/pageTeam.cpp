@@ -9,8 +9,7 @@ pageTeam::pageTeam(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //para = make_shared<dataParameter>("name", "fgper");
-    // 初始化队伍
+    // players
     /*QVBoxLayout *vb = new QVBoxLayout();
     vb->addWidget(label1);
     vb->addWidget(label2);
@@ -22,6 +21,16 @@ pageTeam::pageTeam(QWidget *parent) :
 
     connect(label1, &myLabel::clicked, this, &pageTeam::showPagePlayer);
     connect(label2, &myLabel::clicked, this, &pageTeam::showPagePlayer);*/
+
+    // team data
+    connect(ui->buttonShoot, &QPushButton::clicked, this, &pageTeam::showShoot);
+    connect(ui->buttonThree, &QPushButton::clicked, this, &pageTeam::showThree);
+    connect(ui->buttonPenalty, &QPushButton::clicked, this, &pageTeam::showPenalty);
+    connect(ui->buttonBackboard, &QPushButton::clicked, this, &pageTeam::showBackboard);
+    connect(ui->buttonAssisting, &QPushButton::clicked, this, &pageTeam::showAssisting);
+    connect(ui->buttonFalut, &QPushButton::clicked, this, &pageTeam::showFalut);
+    connect(ui->buttonScore, &QPushButton::clicked, this, &pageTeam::showScore);
+    connect(ui->buttonVictory, &QPushButton::clicked, this, &pageTeam::showVictory);
 }
 
 pageTeam::~pageTeam()
@@ -29,7 +38,7 @@ pageTeam::~pageTeam()
     delete ui;
 }
 
-void pageTeam::update()
+void pageTeam::init()
 {
     QString str = ":/gif/gif/";
     str.append(name);
@@ -37,6 +46,13 @@ void pageTeam::update()
     QPixmap pix(str);
     ui->labelTeamPix->setPixmap(pix);
     ui->labelTeamEn->setText(name);
+
+    para = make_shared<dataParameter>(name, "fgper", "17", "17");
+    showShoot();
+}
+/*
+void update()
+{
 
     // 更新数据
 //    shared_ptr<dataParameter> temp = make_ptr<dataParameter>(name, "fgper");
@@ -59,78 +75,53 @@ void pageTeam::update()
     // foreach() { count++; if (count == 5) {count = 0; //创建新的layout }}
     // layout->addStretch();
     // 循环中为队员标签添加点击事件 myLabel... connect();
+}*/
+
+void pageTeam::showShoot()
+{
+    // modify parameter and send command
+    para->option = "fgper";
+    teamDataCommand->setParameter(para);
+    teamDataCommand->action();
+
+    // get current data
+
 }
 
-void pageTeam::getData()
+void pageTeam::showThree()
 {
-    data.clear();
-    season.clear();
-    if (para->option == "fgper")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->fgper);
-            season.push_back(temp->season);
-        }
-    else if (para->option == "threepper")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->threepper);
-            season.push_back(temp->season);
-        }
-    else if (para->option == "ftper")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->threepper);
-            season.push_back(temp->season);
-        }
-    else if (para->option == "trb")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->threepper);
-            season.push_back(temp->season);
-        }
-    else if (para->option == "ast")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->ast);
-            season.push_back(temp->season);
-        }
-    else if (para->option == "tov")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->tov);
-            season.push_back(temp->season);
-        }
-    else if (para->option == "pts")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->pts);
-            season.push_back(temp->season);
-        }
-    else if (para->option == "wg")
-        foreach(shared_ptr<team_avg> temp, *teamData)
-        {
-            data.push_back(temp->wg);
-            season.push_back(temp->season);
-        }
+
 }
-/*
-QChart *pageTeam::drawTable(const QString &title)
+
+void pageTeam::showPenalty()
 {
-    QBarSet *set;
-    QLineSeries *series = new QLineSeries;
-    QChart *chart = new QChart;
-    for (unsigned int i = 0; i < data.size(); i++)
-    {
-        set = new QBarSet(QString::fromStdString());
-        *set << data.at(i);
-        series
-    }
-    chart->addSeries(series);
-    chart->createDefaultAxes();
-    chart->setTitle(title);
-    return chart;
-}*/
+
+}
+
+void pageTeam::showBackboard()
+{
+
+}
+
+void pageTeam::showAssisting()
+{
+
+}
+
+void pageTeam::showFalut()
+{
+
+}
+
+void pageTeam::showScore()
+{
+
+}
+
+void pageTeam::showVictory()
+{
+
+}
 
 void pageTeam::setTeam(shared_ptr<vector<shared_ptr<team_avg>>> ptr)
 {
@@ -144,5 +135,5 @@ void pageTeam::setTeamDataCommand(shared_ptr<command> ptr)
 
 void pageTeam::setName(QString name)
 {
-    this->name = name;
+    this->name = name.toStdString();
 }
