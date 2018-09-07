@@ -103,6 +103,7 @@ void view::setPlayerDataCommand(shared_ptr<command> ptr)
 void view::setPlayerRankCommand(shared_ptr<command> ptr)
 {
     this->playerRankCommand = ptr;
+    page_rank->setPlayerRankCommand(ptr);
 
     page_player->setPlayerDataCommand(ptr);
 }

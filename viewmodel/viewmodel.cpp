@@ -37,7 +37,7 @@ shared_ptr<vector<shared_ptr<player_avg>>> viewModel::getPlayer()
 }
 shared_ptr<vector<shared_ptr<player_avg>>> viewModel::getPlayerRank()
 {
-    return tmpPlayer;
+    return PlayerRank;
 }
 shared_ptr<vector<shared_ptr<team_avg>>> viewModel::getTeam()
 {
@@ -89,37 +89,39 @@ void viewModel::RequestPlayerData(shared_ptr<dataParameter> ptr)
 }
 void viewModel::UpdatePlayerData()
 {
+    if (tmpPlayer != nullptr)
     *PlayerData = *tmpPlayer;
 }
 void viewModel::RequestPlayerRank(shared_ptr<rankParameter> ptr)
 {
-    if(ptr->option == "g") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_g);
-    if(ptr->option == "gs") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_gs);
-    if(ptr->option == "mp") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_mp);
-    if(ptr->option == "fgper") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_fgper);
-    if(ptr->option == "fg") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_fg);
-    if(ptr->option == "fga") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_fga);
-    if(ptr->option == "threepper") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_threepper);
-    if(ptr->option == "threep") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_threep);
-    if(ptr->option == "threepa") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_threepa);
-    if(ptr->option == "ftper") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_ftper);
-    if(ptr->option == "ft") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_ft);
-    if(ptr->option == "fta") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_fta);
-    if(ptr->option == "ts") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_ts);
-    if(ptr->option == "trb") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_trb);
-    if(ptr->option == "orb") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_orb);
-    if(ptr->option == "drb") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_drb);
-    if(ptr->option == "ast") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_ast);
-    if(ptr->option == "stl") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_stl);
-    if(ptr->option == "blk") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_blk);
-    if(ptr->option == "tov") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_tov);
-    if(ptr->option == "pf") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_pf);
-    if(ptr->option == "pts") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_pts);
-    if(ptr->option == "w") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_w);
-    if(ptr->option == "l") m.order(ptr->season, *tmpPlayer, &PlayerCompare::cmp_l);
+    if(ptr->option == "g") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_g);
+    if(ptr->option == "gs") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_gs);
+    if(ptr->option == "mp") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_mp);
+    if(ptr->option == "fgper") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_fgper);
+    if(ptr->option == "fg") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_fg);
+    if(ptr->option == "fga") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_fga);
+    if(ptr->option == "threepper") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_threepper);
+    if(ptr->option == "threep") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_threep);
+    if(ptr->option == "threepa") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_threepa);
+    if(ptr->option == "ftper") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_ftper);
+    if(ptr->option == "ft") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_ft);
+    if(ptr->option == "fta") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_fta);
+    if(ptr->option == "ts") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_ts);
+    if(ptr->option == "trb") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_trb);
+    if(ptr->option == "orb") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_orb);
+    if(ptr->option == "drb") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_drb);
+    if(ptr->option == "ast") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_ast);
+    if(ptr->option == "stl") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_stl);
+    if(ptr->option == "blk") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_blk);
+    if(ptr->option == "tov") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_tov);
+    if(ptr->option == "pf") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_pf);
+    if(ptr->option == "pts") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_pts);
+    if(ptr->option == "w") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_w);
+    if(ptr->option == "l") m.order(ptr->season, *PlayerRank, &PlayerCompare::cmp_l);
 }
 void viewModel::UpdatePlayerRank()
 {
+    if (tmpPlayer != nullptr)
     *PlayerRank = *tmpPlayer;
 }
 void viewModel::RequestTeamData(shared_ptr<dataParameter> ptr)
@@ -134,6 +136,7 @@ void viewModel::RequestTeamData(shared_ptr<dataParameter> ptr)
 }
 void viewModel::UpdateTeamData()
 {
+    if (tmpPlayer != nullptr)
     *TeamData = *tmpTeam;
 }
 void viewModel::RequestTeamRank(shared_ptr<rankParameter> ptr)
