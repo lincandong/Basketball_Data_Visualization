@@ -8,7 +8,6 @@ class teamRankCommand : public command
 {
 private:
     viewModel *vm;
-    shared_ptr<rankParameter> para;
 public:
     teamRankCommand();
     void setVm(viewModel* ptr);

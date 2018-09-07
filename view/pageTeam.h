@@ -37,7 +37,7 @@ signals:
 
 private:
     Ui::pageTeam *ui;
-    string name;
+    QString name;
 
     shared_ptr<dataParameter> para;
 

@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
     vm.setSpc(v.getPropertyReceiver());
     
     //set property change receiver in view
-    /* ... */
 
     //binding data
     v.setPlayer(vm.getPlayer());

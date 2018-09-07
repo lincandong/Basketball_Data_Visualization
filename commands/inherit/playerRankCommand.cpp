@@ -13,7 +13,7 @@ void playerRankCommand::setVm(viewModel* ptr)
 
 void playerRankCommand::action()
 {
-    vm->RequestPlayerRank(static_pointer_cast<rankParameter, parameters>(para));
+    vm->RequestPlayerRank(static_pointer_cast<rankParameter>(parameter));
     vm->UpdatePlayerRank();
     vm->scc.notify("player rank has been updated", true);
 }

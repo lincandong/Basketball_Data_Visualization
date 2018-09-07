@@ -13,6 +13,15 @@ viewModel::viewModel()
     TeamRankCmd->setVm(this);
     receiveModel = make_shared<receiverFromModel>();
     // receiveView = make_shared<receiverFromView>();
+
+    // rank and data  instance
+    PlayerRank = make_shared<vector<shared_ptr<player_avg>>>();
+    PlayerData = make_shared<vector<shared_ptr<player_avg>>>();
+    TeamRank = make_shared<vector<shared_ptr<team_avg>>>();
+    TeamData = make_shared<vector<shared_ptr<team_avg>>>();
+
+    // sender
+    m.InitSender(receiveModel);
 }
 shared_ptr<receiverFromModel> viewModel::getModelReceiver()
 {
@@ -154,5 +163,6 @@ void viewModel::RequestTeamRank(shared_ptr<rankParameter> ptr)
 }
 void viewModel::UpdateTeamRank()
 {
+    if (tmpTeam != nullptr)
     *TeamRank = *tmpTeam;
 }

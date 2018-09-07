@@ -47,7 +47,7 @@ void pageTeam::init()
     ui->labelTeamPix->setPixmap(pix);
     ui->labelTeamEn->setText(name);
 
-    para = make_shared<dataParameter>(name, "fgper", "17", "17");
+    para = make_shared<dataParameter>(name.toStdString(), "fgper", "17", "17");
     showShoot();
 }
 /*
@@ -559,5 +559,5 @@ void pageTeam::setTeamDataCommand(shared_ptr<command> ptr)
 
 void pageTeam::setName(QString name)
 {
-    this->name = name.toStdString();
+    this->name = name;
 }

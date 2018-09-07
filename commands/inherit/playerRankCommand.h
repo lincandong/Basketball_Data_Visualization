@@ -9,7 +9,6 @@ class playerRankCommand : public command
 {
 private:
     viewModel *vm;
-    shared_ptr<rankParameter> para;
 public:
     playerRankCommand();
     void setVm(viewModel* ptr);

@@ -173,7 +173,7 @@ void pageRank::showThree()
     series3->append(set3);
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    if (ui->layoutThree->itemAt(0) == nullptr)
     {
         QChart *chart1 = new QChart;
         chart1->setAnimationOptions(QChart::SeriesAnimations);
@@ -195,15 +195,15 @@ void pageRank::showThree()
         QChartView *view3 = new QChartView;
         view3->setChart(chart3);
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        ui->layoutThree->addWidget(view1, 0, 0);
+        ui->layoutThree->addWidget(view2, 0, 1);
+        ui->layoutThree->addWidget(view3, 1, 0);
     }
     else
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
+        QChartView *view1 = (QChartView *)(ui->layoutThree->itemAtPosition(0, 0));
+        QChartView *view2 = (QChartView *)(ui->layoutThree->itemAtPosition(0, 1));
+        QChartView *view3 = (QChartView *)(ui->layoutThree->itemAtPosition(1, 0));
 
         view1->chart()->series().clear();
         view2->chart()->series().clear();
@@ -264,7 +264,7 @@ void pageRank::showPenalty()
     series3->append(set3);
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    if (ui->layoutPenalty->itemAt(0) == nullptr)
     {
         QChart *chart1 = new QChart;
         chart1->setAnimationOptions(QChart::SeriesAnimations);
@@ -286,15 +286,15 @@ void pageRank::showPenalty()
         QChartView *view3 = new QChartView;
         view3->setChart(chart3);
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        ui->layoutPenalty->addWidget(view1, 0, 0);
+        ui->layoutPenalty->addWidget(view2, 0, 1);
+        ui->layoutPenalty->addWidget(view3, 1, 0);
     }
     else
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
+        QChartView *view1 = (QChartView *)(ui->layoutPenalty->itemAtPosition(0, 0));
+        QChartView *view2 = (QChartView *)(ui->layoutPenalty->itemAtPosition(0, 1));
+        QChartView *view3 = (QChartView *)(ui->layoutPenalty->itemAtPosition(1, 0));
 
         view1->chart()->series().clear();
         view2->chart()->series().clear();
@@ -355,7 +355,7 @@ void pageRank::showBackboard()
     series3->append(set3);
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    if (ui->layoutBackboard->itemAt(0) == nullptr)
     {
         QChart *chart1 = new QChart;
         chart1->setAnimationOptions(QChart::SeriesAnimations);
@@ -377,15 +377,15 @@ void pageRank::showBackboard()
         QChartView *view3 = new QChartView;
         view3->setChart(chart3);
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        ui->layoutBackboard->addWidget(view1, 0, 0);
+        ui->layoutBackboard->addWidget(view2, 0, 1);
+        ui->layoutBackboard->addWidget(view3, 1, 0);
     }
     else
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
+        QChartView *view1 = (QChartView *)(ui->layoutBackboard->itemAtPosition(0, 0));
+        QChartView *view2 = (QChartView *)(ui->layoutBackboard->itemAtPosition(0, 1));
+        QChartView *view3 = (QChartView *)(ui->layoutBackboard->itemAtPosition(1, 0));
 
         view1->chart()->series().clear();
         view2->chart()->series().clear();
@@ -446,7 +446,7 @@ void pageRank::showAssisting()
     series3->append(set3);
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    if (ui->layoutAssisting->itemAt(0) == nullptr)
     {
         QChart *chart1 = new QChart;
         chart1->setAnimationOptions(QChart::SeriesAnimations);
@@ -468,15 +468,15 @@ void pageRank::showAssisting()
         QChartView *view3 = new QChartView;
         view3->setChart(chart3);
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        ui->layoutAssisting->addWidget(view1, 0, 0);
+        ui->layoutAssisting->addWidget(view2, 0, 1);
+        ui->layoutAssisting->addWidget(view3, 1, 0);
     }
     else
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
+        QChartView *view1 = (QChartView *)(ui->layoutAssisting->itemAtPosition(0, 0));
+        QChartView *view2 = (QChartView *)(ui->layoutAssisting->itemAtPosition(0, 1));
+        QChartView *view3 = (QChartView *)(ui->layoutAssisting->itemAtPosition(1, 0));
 
         view1->chart()->series().clear();
         view2->chart()->series().clear();
@@ -532,7 +532,7 @@ void pageRank::showFalut()
     series2->append(set2);
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    if (ui->layoutFalut->itemAt(0) == nullptr)
     {
         QChart *chart1 = new QChart;
         chart1->setAnimationOptions(QChart::SeriesAnimations);
@@ -548,13 +548,13 @@ void pageRank::showFalut()
         QChartView *view2 = new QChartView;
         view2->setChart(chart2);
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
+        ui->layoutFalut->addWidget(view1, 0, 0);
+        ui->layoutFalut->addWidget(view2, 0, 1);
     }
     else
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
+        QChartView *view1 = (QChartView *)(ui->layoutFalut->itemAtPosition(0, 0));
+        QChartView *view2 = (QChartView *)(ui->layoutFalut->itemAtPosition(0, 1));
 
         view1->chart()->series().clear();
         view2->chart()->series().clear();
@@ -599,7 +599,7 @@ void pageRank::showScore()
     series1->append(set1);
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    if (ui->layoutScore->itemAt(0) == nullptr)
     {
         QChart *chart1 = new QChart;
         chart1->setAnimationOptions(QChart::SeriesAnimations);
@@ -609,11 +609,11 @@ void pageRank::showScore()
         QChartView *view1 = new QChartView;
         view1->setChart(chart1);
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
+        ui->layoutScore->addWidget(view1, 0, 0);
     }
     else
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
+        QChartView *view1 = (QChartView *)(ui->layoutScore->itemAtPosition(0, 0));
         view1->chart()->series().clear();
         view1->chart()->addSeries(series1);
     }
@@ -664,7 +664,7 @@ void pageRank::showVictory()
     series2->append(set2);
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    if (ui->layoutVictory->itemAt(0) == nullptr)
     {
         QChart *chart1 = new QChart;
         chart1->setAnimationOptions(QChart::SeriesAnimations);
@@ -680,13 +680,13 @@ void pageRank::showVictory()
         QChartView *view2 = new QChartView;
         view2->setChart(chart2);
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
+        ui->layoutVictory->addWidget(view1, 0, 0);
+        ui->layoutVictory->addWidget(view2, 0, 1);
     }
     else
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
+        QChartView *view1 = (QChartView *)(ui->layoutVictory->itemAtPosition(0, 0));
+        QChartView *view2 = (QChartView *)(ui->layoutVictory->itemAtPosition(0, 1));
 
         view1->chart()->series().clear();
         view2->chart()->series().clear();

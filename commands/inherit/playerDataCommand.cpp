@@ -13,7 +13,7 @@ void playerDataCommand::setVm(viewModel* ptr)
 
 void playerDataCommand::action()
 {
-    vm->RequestPlayerData(static_pointer_cast<dataParameter, parameters>(para));
+    vm->RequestPlayerData(static_pointer_cast<dataParameter>(parameter));
     vm->UpdatePlayerData();
     vm->scc.notify("player has been updated", true);
 }
