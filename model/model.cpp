@@ -236,7 +236,7 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
  void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))
 {
 	players.clear();
-	vector<player_avg*> temp = v_player[year];
+    vector<player_avg*> temp = v_player[2017 - year];
 	shared_ptr<player_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
