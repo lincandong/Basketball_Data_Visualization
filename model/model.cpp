@@ -233,10 +233,11 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 {
 	players.clear();
 	vector<player_avg*> temp = v_player[year];
+	shared_ptr<player_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
 	{
-		shared_ptr<player_avg> p(temp[i]);
+		p = make_shared<player_avg>(temp[i]);
 		players.push_back(p);
 	}
 	snd.notify("player rank has been set");
@@ -245,10 +246,11 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 {
 	teams.clear();
 	vector<team_avg*> temp = v_team;
+	shared_ptr<team_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
 	{
-		shared_ptr<team_avg> p(temp[i]);
+		p = make_shared<team_avg>(temp[i]);
 		teams.push_back(p);
 	}
 	snd.notify("team rank has been set");
