@@ -13,7 +13,7 @@ void teamDataCommand::setVm(viewModel* ptr)
 
 void teamDataCommand::action()
 {
-    vm->RequestTeamData(static_pointer_cast<dataParameter, parameters>(para));
+    vm->RequestTeamData(static_pointer_cast<dataParameter>(parameter));
     vm->UpdateTeamData();
     vm->scc.notify("team has been updated", true);
 }

@@ -9,6 +9,7 @@ void model::InitSender(shared_ptr<receiverFromModel> ptr)
 {
     snd.add(ptr);
 }
+
 void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 {
 	files.clear();
@@ -44,47 +45,50 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 		d.ParseStream(is);
 		int pos = v.find(".json");
 		v.erase(pos, 5);
-		for (auto& a : d.GetArray())
-		{
-			player_avg* p = new player_avg;
-			p->name = v;
-			p->season = a["season"][0].GetString();
-			p->tm = a["tm"][0].GetString();
-			p->ast = atof(a["ast"][0].GetString());
-			p->blk = atof(a["blk"][0].GetString());
-			p->g = atof(a["g"][0].GetString());
-			p->gs = atof(a["gs"][0].GetString());
-			p->mp = atof(a["mp"][0].GetString());
-			p->fg = atof(a["fg"][0].GetString());
-			p->threep = atof(a["threep"][0].GetString());
-			p->threepa = atof(a["threepa"][0].GetString());
-			p->ft = atof(a["ft"][0].GetString());
-			p->fta = atof(a["fta"][0].GetString());
-			p->stl = atof(a["stl"][0].GetString());
-			p->trb = atof(a["trb"][0].GetString());
-			p->orb = atof(a["orb"][0].GetString());
-			p->drb = atof(a["drb"][0].GetString());
-			p->tov = atof(a["tov"][0].GetString());
-			p->pf = atof(a["pf"][0].GetString());
-			p->pts = atof(a["pts"][0].GetString());
-			p->w = atof(a["w"][0].GetString());
-			p->l = atof(a["l"][0].GetString());
-			p->fga = atof(a["fga"][0].GetString());
-			p->fgper = p->fg / p->fga * 1.0;
-			p->threepper = p->threep / p->threepa * 1.0;
-			p->ftper = p->ft / p->fta * 1.0;
-			temp.push_back(p);
-			if(p->season == "17-18")
-				s[0].push_back(p);
-			if(p->season == "16-17")
-				s[1].push_back(p);
-			if(p->season == "15-16")
-				s[2].push_back(p);
-			if(p->season == "14-15")
-				s[3].push_back(p);
-			if(p->season == "13-14")
-				s[4].push_back(p);
-		}
+        if (d.IsArray())
+        {
+            for (auto& a : d.GetArray())
+            {
+                player_avg* p = new player_avg;
+                p->name = v;
+                p->season = a["season"][0].GetString();
+                p->tm = a["tm"][0].GetString();
+                p->ast = atof(a["ast"][0].GetString());
+                p->blk = atof(a["blk"][0].GetString());
+                p->g = atof(a["g"][0].GetString());
+                p->gs = atof(a["gs"][0].GetString());
+                p->mp = atof(a["mp"][0].GetString());
+                p->fg = atof(a["fg"][0].GetString());
+                p->threep = atof(a["threep"][0].GetString());
+                p->threepa = atof(a["threepa"][0].GetString());
+                p->ft = atof(a["ft"][0].GetString());
+                p->fta = atof(a["fta"][0].GetString());
+                p->stl = atof(a["stl"][0].GetString());
+                p->trb = atof(a["trb"][0].GetString());
+                p->orb = atof(a["orb"][0].GetString());
+                p->drb = atof(a["drb"][0].GetString());
+                p->tov = atof(a["tov"][0].GetString());
+                p->pf = atof(a["pf"][0].GetString());
+                p->pts = atof(a["pts"][0].GetString());
+                p->w = atof(a["w"][0].GetString());
+                p->l = atof(a["l"][0].GetString());
+                p->fga = atof(a["fga"][0].GetString());
+                p->fgper = p->fg / p->fga * 1.0;
+                p->threepper = p->threep / p->threepa * 1.0;
+                p->ftper = p->ft / p->fta * 1.0;
+                temp.push_back(p);
+                if(p->season == "17-18")
+                    s[0].push_back(p);
+                if(p->season == "16-17")
+                    s[1].push_back(p);
+                if(p->season == "15-16")
+                    s[2].push_back(p);
+                if(p->season == "14-15")
+                    s[3].push_back(p);
+                if(p->season == "13-14")
+                    s[4].push_back(p);
+            }
+        }
 		m[v] = temp;
 		fclose(fp);
 	}
@@ -94,7 +98,7 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
  void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
 {
 	vector<string> files;
-	cf_findFileFromDir2("../teams/17-18Èü¼¾", files);
+    cf_findFileFromDir2("../teams/17-18", files);
 	char readBuffer[65536];
 	cout << "team" << endl;
 	for(auto& v : files)

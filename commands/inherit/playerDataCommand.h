@@ -9,7 +9,6 @@ class playerDataCommand : public command
 {
 private:
     viewModel *vm;
-    shared_ptr<dataParameter> para;
 public:
     playerDataCommand();
     void setVm(viewModel* ptr);

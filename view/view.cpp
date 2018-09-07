@@ -69,8 +69,7 @@ void view::switchPageRank()
         ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_rank);
 
-    // 初始化队伍排名的命令
-    //page_rank->init();
+    page_rank->init();
 }
 
 void view::switchPageData()
@@ -86,7 +85,7 @@ void view::switchPageTeam()
         ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_team);
 
-    page_team->update();
+    page_team->init();
 }
 
 void view::switchPagePlayer()

@@ -22,7 +22,7 @@ private:
     shared_ptr<vector<shared_ptr<team_avg>>> tmpTeam;
 
     shared_ptr<receiverFromModel> receiveModel;
-    // shared_ptr<receiverFromView> receiveView;
+    //shared_ptr<receiverFromView> receiveView;
 
 public:
     //bind data
@@ -33,7 +33,7 @@ public:
 
     //set sender and receiver
     shared_ptr<receiverFromModel> getModelReceiver();
-    // shared_ptr<receiverFromView> getViewReceiver();
+    //shared_ptr<receiverFromView> getViewReceiver();
     void setSpc(shared_ptr<propertyReceiver> ptr);
     void setScc(shared_ptr<commandReceiver> ptr);
 

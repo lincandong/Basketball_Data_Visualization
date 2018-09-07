@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
         "files.associations": {
                 "memory": "cpp",
                 "list": "cpp",
@@ -13,4 +14,9 @@
                 "xstring": "cpp",
                 "xutility": "cpp"
         }
+=======
+    "files.associations": {
+        "bitset": "cpp"
+    }
+>>>>>>> d76344a736ee822233ecd68506e1e005771779d2
 }

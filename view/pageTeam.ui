@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="1,10">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -82,16 +82,9 @@
         <attribute name="title">
          <string>球队数据</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,6">
+        <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,10">
          <item>
           <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="2">
-            <widget class="QPushButton" name="buttonPenalty">
-             <property name="text">
-              <string>罚球</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="3">
             <widget class="QPushButton" name="buttonVictory">
              <property name="text">
@@ -99,10 +92,10 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="buttonShoot">
+           <item row="0" column="2">
+            <widget class="QPushButton" name="buttonPenalty">
              <property name="text">
-              <string>投篮</string>
+              <string>罚球</string>
              </property>
             </widget>
            </item>
@@ -113,13 +106,6 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="3">
-            <widget class="QPushButton" name="buttonBackboard">
-             <property name="text">
-              <string>篮板</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="1">
             <widget class="QPushButton" name="buttonFalut">
              <property name="text">
@@ -127,10 +113,24 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="3">
+            <widget class="QPushButton" name="buttonBackboard">
+             <property name="text">
+              <string>篮板</string>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0">
             <widget class="QPushButton" name="buttonAssisting">
              <property name="text">
               <string>助攻/抢断/盖帽</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="buttonShoot">
+             <property name="text">
+              <string>投篮</string>
              </property>
             </widget>
            </item>
@@ -144,7 +144,67 @@
           </layout>
          </item>
          <item>
-          <layout class="QGridLayout" name="gridLayoutTable"/>
+          <widget class="QStackedWidget" name="stackedWidget">
+           <property name="currentIndex">
+            <number>6</number>
+           </property>
+           <widget class="QWidget" name="pageShoot">
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <layout class="QGridLayout" name="layoutShoot"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="pageThree">
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <item>
+              <layout class="QGridLayout" name="layoutThree"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="pagePenalty">
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <item>
+              <layout class="QGridLayout" name="layoutPenalty"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="pageBackboard">
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <layout class="QGridLayout" name="layoutBackboard"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="pageAssisting">
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <layout class="QGridLayout" name="layoutAssisting"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="pageFalut">
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <item>
+              <layout class="QGridLayout" name="layoutFalut"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="pageScore">
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <layout class="QGridLayout" name="layoutScore"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="pageVictory">
+            <layout class="QVBoxLayout" name="verticalLayout_11">
+             <item>
+              <layout class="QGridLayout" name="layoutVictory"/>
+             </item>
+            </layout>
+           </widget>
+          </widget>
          </item>
         </layout>
        </widget>

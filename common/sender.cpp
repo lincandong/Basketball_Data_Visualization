@@ -23,5 +23,6 @@ void senderPropertyChange::clear()
 }
 void senderPropertyChange::notify(string str)
 {
-    rec->exec(str);
+
+    //rec->exec(str);
 }
