@@ -64,6 +64,11 @@ struct team_avg {
     float pf;
     float pts;
 
+    team_avg() {}
+    team_avg(team_avg *ptr)
+    {
+        memcpy(this, ptr, sizeof(team_avg));
+    }
 };
 
 struct ability
