@@ -8,8 +8,8 @@ class parameters {};
 class dataParameter : public parameters
 {
 public:
-    std::string name;   // 球队名字
-    std::string option; // 球队哪项数据的历史
+    std::string name;   // 球队/球员名字
+    std::string option; // 球队/球员哪项数据的历史
     std::string begin;
     std::string end;
     dataParameter(std::string name, std::string option, std::string begin, std::string end) : name(name), option(option), begin(begin), end(end) {}

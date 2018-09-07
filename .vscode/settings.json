@@ -1,1 +1,16 @@
-{}
+{
+        "files.associations": {
+                "memory": "cpp",
+                "list": "cpp",
+                "regex": "cpp",
+                "stdexcept": "cpp",
+                "system_error": "cpp",
+                "tuple": "cpp",
+                "unordered_map": "cpp",
+                "utility": "cpp",
+                "vector": "cpp",
+                "xlocale": "cpp",
+                "xstring": "cpp",
+                "xutility": "cpp"
+        }
+}
