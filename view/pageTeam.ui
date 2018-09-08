@@ -37,8 +37,8 @@
           <widget class="QLabel" name="labelTeamPix">
            <property name="minimumSize">
             <size>
-             <width>66</width>
-             <height>44</height>
+             <width>150</width>
+             <height>100</height>
             </size>
            </property>
            <property name="text">
