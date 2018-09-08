@@ -55,6 +55,7 @@ void pageRank::showShoot()
     QBarSet *set1 = new QBarSet("投篮");
     QBarSet *set2 = new QBarSet("命中");
     QBarSet *set3 = new QBarSet("出手");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
@@ -63,6 +64,7 @@ void pageRank::showShoot()
             *set1 << (*iter)->fgper;
             *set2 << (*iter)->fg;
             *set3 << (*iter)->fga;
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -73,6 +75,7 @@ void pageRank::showShoot()
             *set1 << (*iter)->fgper;
             *set2 << (*iter)->fg;
             *set3 << (*iter)->fga;
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }
@@ -83,11 +86,20 @@ void pageRank::showShoot()
     QBarSeries *series3 = new QBarSeries;
     series3->append(set3);
 
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
+
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
     chart1->setTitle("投篮");
+    chart1->createDefaultAxes();
+    chart1->setAxisX(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);

@@ -18,10 +18,9 @@ pageTeam::pageTeam(QWidget *parent) :
     hb->addStretch();
     ui->verticalLayoutPlayer->addLayout(hb);
     ui->verticalLayoutPlayer->addStretch();
-
-    connect(label1, &myLabel::clicked, this, &pageTeam::showPagePlayer);
-    connect(label2, &myLabel::clicked, this, &pageTeam::showPagePlayer);*/
-
+    connect(label1, &myLabel::clickedForName, this, &pageTeam::showPagePlayer);
+    connect(label2, &myLabel::clickedForName, this, &pageTeam::showPagePlayer);
+*/
     // team data
     connect(ui->buttonShoot, &QPushButton::clicked, this, &pageTeam::showShoot);
     connect(ui->buttonThree, &QPushButton::clicked, this, &pageTeam::showThree);
@@ -508,4 +507,9 @@ void pageTeam::setTeamDataCommand(shared_ptr<command> ptr)
 void pageTeam::setName(QString name)
 {
     this->name = name;
+}
+
+void pageTeam::setPlayerName(QString name)
+{
+   emit showPagePlayer(name);
 }
