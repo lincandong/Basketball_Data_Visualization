@@ -1,15 +1,8 @@
 #include "model.h"
-model::model()
-{
-	v_player.resize(5);
-	load_player(m_player, v_player);
-	load_team(m_team, v_team);
-}
-void model::InitSender(shared_ptr<receiverFromModel> ptr)
-{
-    snd.add(ptr);
-}
-
+//void model::InitSender(shared_ptr<receiverFromModel> ptr)
+//{
+//    snd.add(ptr);
+//}
 void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 {
 	files.clear();
@@ -31,7 +24,8 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 		_findclose(hFile);
 	}
 }
- void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<vector<player_avg*>>& s)
+
+void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<vector<player_avg*>>& s)
 {
 	vector<string> files2;
 	cf_findFileFromDir2("../NBA/data/players", files2);
@@ -45,60 +39,58 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 		d.ParseStream(is);
 		int pos = v.find(".json");
 		v.erase(pos, 5);
-        if (d.IsArray())
-        {
-            for (auto& a : d.GetArray())
-            {
-                player_avg* p = new player_avg;
-                p->name = v;
-                p->season = a["season"][0].GetString();
-                p->tm = a["tm"][0].GetString();
-                p->ast = atof(a["ast"][0].GetString());
-                p->blk = atof(a["blk"][0].GetString());
-                p->g = atof(a["g"][0].GetString());
-                p->gs = atof(a["gs"][0].GetString());
-                p->mp = atof(a["mp"][0].GetString());
-                p->fg = atof(a["fg"][0].GetString());
-                p->threep = atof(a["threep"][0].GetString());
-                p->threepa = atof(a["threepa"][0].GetString());
-                p->ft = atof(a["ft"][0].GetString());
-                p->fta = atof(a["fta"][0].GetString());
-                p->stl = atof(a["stl"][0].GetString());
-                p->trb = atof(a["trb"][0].GetString());
-                p->orb = atof(a["orb"][0].GetString());
-                p->drb = atof(a["drb"][0].GetString());
-                p->tov = atof(a["tov"][0].GetString());
-                p->pf = atof(a["pf"][0].GetString());
-                p->pts = atof(a["pts"][0].GetString());
-                p->w = atof(a["w"][0].GetString());
-                p->l = atof(a["l"][0].GetString());
-                p->fga = atof(a["fga"][0].GetString());
-                p->fgper = p->fg / p->fga * 1.0;
-                p->threepper = p->threep / p->threepa * 1.0;
-                p->ftper = p->ft / p->fta * 1.0;
-                temp.push_back(p);
-                if(p->season == "17-18")
-                    s[0].push_back(p);
-                if(p->season == "16-17")
-                    s[1].push_back(p);
-                if(p->season == "15-16")
-                    s[2].push_back(p);
-                if(p->season == "14-15")
-                    s[3].push_back(p);
-                if(p->season == "13-14")
-                    s[4].push_back(p);
-            }
-        }
+		for (auto& a : d.GetArray())
+		{
+			player_avg* p = new player_avg;
+			p->name = v;
+			p->season = a["season"][0].GetString();
+			p->tm = a["tm"][0].GetString();
+			p->ast = atof(a["ast"][0].GetString());
+			p->blk = atof(a["blk"][0].GetString());
+			p->g = atof(a["g"][0].GetString());
+			p->gs = atof(a["gs"][0].GetString());
+			p->mp = atof(a["mp"][0].GetString());
+			p->fg = atof(a["fg"][0].GetString());
+			p->threep = atof(a["threep"][0].GetString());
+			p->threepa = atof(a["threepa"][0].GetString());
+			p->ft = atof(a["ft"][0].GetString());
+			p->fta = atof(a["fta"][0].GetString());
+			p->stl = atof(a["stl"][0].GetString());
+			p->trb = atof(a["trb"][0].GetString());
+			p->orb = atof(a["orb"][0].GetString());
+			p->drb = atof(a["drb"][0].GetString());
+			p->tov = atof(a["tov"][0].GetString());
+			p->pf = atof(a["pf"][0].GetString());
+			p->pts = atof(a["pts"][0].GetString());
+			p->w = atof(a["w"][0].GetString());
+			p->l = atof(a["l"][0].GetString());
+			p->fga = atof(a["fga"][0].GetString());
+			p->fgper = p->fg / p->fga * 1.0;
+			p->threepper = p->threep / p->threepa * 1.0;
+			p->ftper = p->ft / p->fta * 1.0;
+			temp.push_back(p);
+			if(p->season == "17-18")
+				s[0].push_back(p);
+			if(p->season == "16-17")
+				s[1].push_back(p);
+			if(p->season == "15-16")
+				s[2].push_back(p);
+			if(p->season == "14-15")
+				s[3].push_back(p);
+			if(p->season == "13-14")
+				s[4].push_back(p);
+		}
 		m[v] = temp;
 		fclose(fp);
 	}
-	//cout << m["Ã€Ã•Â²Â¼Ã€ÃŠ-Ã•Â²Ã„Â·Ã‹Â¹"][2]->pts << endl;
+	//cout << m["ÀÕ²¼ÀÊ-Õ²Ä·Ë¹"][2]->pts << endl;
 	
 }
- void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
+
+void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
 {
 	vector<string> files;
-    cf_findFileFromDir2("../teams/17-18", files);
+	cf_findFileFromDir2("../teams/17-18Èü¼¾", files);
 	char readBuffer[65536];
 	cout << "team" << endl;
 	for(auto& v : files)
@@ -147,7 +139,11 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 			v_team.push_back(p);
 			m[v] = p;
 			}
+<<<<<<< HEAD
 			else if (a.HasMember("name"))
+=======
+			else if(a.HasMember("name"))
+>>>>>>> cc92bcd0d73dbe662132dc9e6e96097a4ef6b076
 			{
 				p->players.push_back(a["name"][0].GetString());
 			}
@@ -155,9 +151,11 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 		fclose(fp);
 	}
 	
-	//cout << m["Â¶Ã­Â¿Ã‹Ã€Â­ÂºÃ‰Ã‚Ã­Ã€Ã—Ã¶ÂªÂ¶Ã“"]->pts << endl;
+	//cout << m["¶í¿ËÀ­ºÉÂíÀ×öª¶Ó"]->pts << endl;
 }
- void model::player_series(string& name, string& begin, string& end, vector<shared_ptr<player_avg>>& players)
+
+
+void model::player_series(string& name, string& begin, string& end, vector<shared_ptr<player_avg>>& players)
 {
 	players.clear();
 	if(m_player.find(name)!=m_player.end())
@@ -173,7 +171,8 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 	}
 	snd.notify("player has been set");
 }
- void model::player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p)
+
+void model::player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p)
 {
 	int count = 0;
 	p->name = name;
@@ -232,34 +231,48 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 	}
 	snd.notify("player has been set");
 }
- void model::team_data(string& name, shared_ptr<team_avg> t)
+
+void model::team_data(string& name, shared_ptr<team_avg> t)
 {
 	t = (shared_ptr<team_avg>)m_team[name];
 	snd.notify("team has been set");
 }
- void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))
+
+void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))
 {
 	players.clear();
-    vector<player_avg*> temp = v_player[2017 - year];
+	vector<player_avg*> temp = v_player[year];
 	shared_ptr<player_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
+<<<<<<< HEAD
     {
+=======
+	{
+		shared_ptr<player_avg> p(temp[i]);
+>>>>>>> cc92bcd0d73dbe662132dc9e6e96097a4ef6b076
 		p = make_shared<player_avg>(temp[i]);
 		players.push_back(p);
 	}
 	snd.notify("player rank has been set");
 }
- void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*))
+
+void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*))
 {
     teams.clear();
 	vector<team_avg*> temp = v_team;
 	shared_ptr<team_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
+<<<<<<< HEAD
     {
+=======
+	{
+		shared_ptr<team_avg> p(temp[i]);
+>>>>>>> cc92bcd0d73dbe662132dc9e6e96097a4ef6b076
 		p = make_shared<team_avg>(temp[i]);
         teams.push_back(p);
 	}
 	snd.notify("team rank has been set");
 }
+
