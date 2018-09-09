@@ -97,7 +97,7 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         labelTeamPix = new QLabel(pageTeam);
         labelTeamPix->setObjectName(QStringLiteral("labelTeamPix"));
-        labelTeamPix->setMinimumSize(QSize(66, 44));
+        labelTeamPix->setMinimumSize(QSize(150, 100));
 
         gridLayout->addWidget(labelTeamPix, 0, 0, 2, 1);
 

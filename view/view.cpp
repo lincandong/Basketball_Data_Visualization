@@ -40,6 +40,9 @@ view::view(QWidget *parent) :
 
     connect(page_data, &pageData::showPageTeam, page_team, &pageTeam::setName);
     connect(page_data, &pageData::showPageTeam, this, &view::switchPageTeam);
+
+    connect(page_team, &pageTeam::showPagePlayer, page_player, &pagePlayer::setName);
+    connect(page_team, &pageTeam::showPagePlayer, this, &view::switchPagePlayer);
 }
 
 view::~view()
@@ -93,6 +96,8 @@ void view::switchPagePlayer()
     if (ui->stackedWidget->currentWidget() != page_player)
         ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_player);
+
+    page_player->init();
 }
 
 void view::setPlayerDataCommand(shared_ptr<command> ptr)

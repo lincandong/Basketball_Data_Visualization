@@ -29,11 +29,12 @@ public:
     void setName(QString name);
     void setTeam(shared_ptr<vector<shared_ptr<team_avg>>> ptr);
     void setTeamDataCommand(shared_ptr<command> ptr);
+    void setPlayerName(QString name);
 
     void init();
 
 signals:
-    void showPagePlayer();
+    void showPagePlayer(QString name);
 
 private:
     Ui::pageTeam *ui;

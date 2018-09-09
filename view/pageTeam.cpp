@@ -18,10 +18,9 @@ pageTeam::pageTeam(QWidget *parent) :
     hb->addStretch();
     ui->verticalLayoutPlayer->addLayout(hb);
     ui->verticalLayoutPlayer->addStretch();
-
-    connect(label1, &myLabel::clicked, this, &pageTeam::showPagePlayer);
-    connect(label2, &myLabel::clicked, this, &pageTeam::showPagePlayer);*/
-
+    connect(label1, &myLabel::clickedForName, this, &pageTeam::showPagePlayer);
+    connect(label2, &myLabel::clickedForName, this, &pageTeam::showPagePlayer);
+*/
     // team data
     connect(ui->buttonShoot, &QPushButton::clicked, this, &pageTeam::showShoot);
     connect(ui->buttonThree, &QPushButton::clicked, this, &pageTeam::showThree);
@@ -49,36 +48,15 @@ void pageTeam::init()
 
     para = make_shared<dataParameter>(name.toStdString(), "fgper", "17", "17");
     showShoot();
-}
-/*
-void update()
-{
 
-    // 更新数据
-//    shared_ptr<dataParameter> temp = make_ptr<dataParameter>(name, "fgper");
-//    teamDataCommand->setParameter(temp);
-//    teamDataCommand->action();
-    // 更新图表
-//    QLineSeries *series = new QLineSeries;
-//    foreach(shared_ptr<team_avg> temp, *teamData)
-//    {
-//        QPoint *point = new QPoint(temp->season, temp->fgper);
-//        series->append(point);
-//    }
-//    QChart *chart = new QChart;
-//    chart->addSeries(series);
-//    ui->widget->setChart(chart);
-    // 更新队员列表
-    // ...
-    // 使用QVBoxLayout,每5个队员用一个QHBoxLayout
-    // int cout = 0;
-    // foreach() { count++; if (count == 5) {count = 0; //创建新的layout }}
-    // layout->addStretch();
-    // 循环中为队员标签添加点击事件 myLabel... connect();
-}*/
+    // initialize players
+}
 
 void pageTeam::showShoot()
 {
+   if (ui->stackedWidget->currentWidget() != ui->pageShoot)
+       ui->stackedWidget->setCurrentWidget(ui->pageShoot);
+
     // modify parameter and send command
     para->option = "fgper";
     teamDataCommand->setParameter(para);
@@ -100,50 +78,43 @@ void pageTeam::showShoot()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    QChart *chart1 = new QChart;
+    chart1->setAnimationOptions(QChart::SeriesAnimations);
+    chart1->addSeries(series1);
+    chart1->setTitle("投篮");
+    QChart *chart2 = new QChart;
+    chart2->setAnimationOptions(QChart::SeriesAnimations);
+    chart2->addSeries(series2);
+    chart2->setTitle("命中");
+    QChart *chart3 = new QChart;
+    chart3->setAnimationOptions(QChart::SeriesAnimations);
+    chart3->addSeries(series3);
+    chart3->setTitle("出手");
+    if (ui->layoutShoot->itemAt(0) != nullptr)
     {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("投篮");
-        QChart *chart2 = new QChart;
-        chart2->setAnimationOptions(QChart::SeriesAnimations);
-        chart2->addSeries(series2);
-        chart2->setTitle("命中");
-        QChart *chart3 = new QChart;
-        chart3->setAnimationOptions(QChart::SeriesAnimations);
-        chart3->addSeries(series3);
-        chart3->setTitle("出手");
-
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-        QChartView *view2 = new QChartView;
-        view2->setChart(chart2);
-        QChartView *view3 = new QChartView;
-        view3->setChart(chart3);
-
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        QLayoutItem *child;
+        while ((child =ui->layoutShoot->takeAt(0)) != 0) {
+            child->widget()->setParent(nullptr);
+            ui->layoutShoot->removeItem(child);
+        }
     }
-    else
-    {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
+    QChartView *view1 = new QChartView;
+    view1->setChart(chart1);
+    QChartView *view2 = new QChartView;
+    view2->setChart(chart2);
+    QChartView *view3 = new QChartView;
+    view3->setChart(chart3);
 
-        view1->chart()->series().clear();
-        view2->chart()->series().clear();
-        view3->chart()->series().clear();
-
-        view1->chart()->addSeries(series1);
-        view2->chart()->addSeries(series2);
-        view3->chart()->addSeries(series3);
-    }
+    ui->layoutShoot->addWidget(view1, 0, 0);
+    ui->layoutShoot->addWidget(view2, 0, 1);
+    ui->layoutShoot->addWidget(view3, 1, 0);
 }
 
 void pageTeam::showThree()
 {
+    if (ui->stackedWidget->currentWidget() != ui->pageThree)
+        ui->stackedWidget->setCurrentWidget(ui->pageThree);
+
     // modify parameter and send command
     para->option = "threepper";
     teamDataCommand->setParameter(para);
@@ -165,50 +136,45 @@ void pageTeam::showThree()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    QChart *chart1 = new QChart;
+    chart1->setAnimationOptions(QChart::SeriesAnimations);
+    chart1->addSeries(series1);
+    chart1->setTitle("三分");
+    QChart *chart2 = new QChart;
+    chart2->setAnimationOptions(QChart::SeriesAnimations);
+    chart2->addSeries(series2);
+    chart2->setTitle("命中");
+    QChart *chart3 = new QChart;
+    chart3->setAnimationOptions(QChart::SeriesAnimations);
+    chart3->addSeries(series3);
+    chart3->setTitle("出手");
+
+    if (ui->layoutShoot->itemAt(0) != nullptr)
     {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("三分");
-        QChart *chart2 = new QChart;
-        chart2->setAnimationOptions(QChart::SeriesAnimations);
-        chart2->addSeries(series2);
-        chart2->setTitle("命中");
-        QChart *chart3 = new QChart;
-        chart3->setAnimationOptions(QChart::SeriesAnimations);
-        chart3->addSeries(series3);
-        chart3->setTitle("出手");
-
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-        QChartView *view2 = new QChartView;
-        view2->setChart(chart2);
-        QChartView *view3 = new QChartView;
-        view3->setChart(chart3);
-
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        QLayoutItem *child;
+        while ((child =ui->layoutThree->takeAt(0)) != 0) {
+            child->widget()->setParent(nullptr);
+            ui->layoutThree->removeItem(child);
+        }
     }
-    else
-    {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
 
-        view1->chart()->series().clear();
-        view2->chart()->series().clear();
-        view3->chart()->series().clear();
+    QChartView *view1 = new QChartView;
+    view1->setChart(chart1);
+    QChartView *view2 = new QChartView;
+    view2->setChart(chart2);
+    QChartView *view3 = new QChartView;
+    view3->setChart(chart3);
 
-        view1->chart()->addSeries(series1);
-        view2->chart()->addSeries(series2);
-        view3->chart()->addSeries(series3);
-    }
+    ui->layoutThree->addWidget(view1, 0, 0);
+    ui->layoutThree->addWidget(view2, 0, 1);
+    ui->layoutThree->addWidget(view3, 1, 0);
 }
 
 void pageTeam::showPenalty()
 {
+    if (ui->stackedWidget->currentWidget() != ui->pagePenalty)
+        ui->stackedWidget->setCurrentWidget(ui->pagePenalty);
+
     // modify parameter and send command
     para->option = "ftper";
     teamDataCommand->setParameter(para);
@@ -230,50 +196,45 @@ void pageTeam::showPenalty()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    QChart *chart1 = new QChart;
+    chart1->setAnimationOptions(QChart::SeriesAnimations);
+    chart1->addSeries(series1);
+    chart1->setTitle("罚球");
+    QChart *chart2 = new QChart;
+    chart2->setAnimationOptions(QChart::SeriesAnimations);
+    chart2->addSeries(series2);
+    chart2->setTitle("命中");
+    QChart *chart3 = new QChart;
+    chart3->setAnimationOptions(QChart::SeriesAnimations);
+    chart3->addSeries(series3);
+    chart3->setTitle("出手");
+
+    if (ui->layoutShoot->itemAt(0) != nullptr)
     {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("罚球");
-        QChart *chart2 = new QChart;
-        chart2->setAnimationOptions(QChart::SeriesAnimations);
-        chart2->addSeries(series2);
-        chart2->setTitle("命中");
-        QChart *chart3 = new QChart;
-        chart3->setAnimationOptions(QChart::SeriesAnimations);
-        chart3->addSeries(series3);
-        chart3->setTitle("出手");
-
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-        QChartView *view2 = new QChartView;
-        view2->setChart(chart2);
-        QChartView *view3 = new QChartView;
-        view3->setChart(chart3);
-
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        QLayoutItem *child;
+        while ((child =ui->layoutPenalty->takeAt(0)) != 0) {
+            child->widget()->setParent(nullptr);
+            ui->layoutPenalty->removeItem(child);
+        }
     }
-    else
-    {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
 
-        view1->chart()->series().clear();
-        view2->chart()->series().clear();
-        view3->chart()->series().clear();
+    QChartView *view1 = new QChartView;
+    view1->setChart(chart1);
+    QChartView *view2 = new QChartView;
+    view2->setChart(chart2);
+    QChartView *view3 = new QChartView;
+    view3->setChart(chart3);
 
-        view1->chart()->addSeries(series1);
-        view2->chart()->addSeries(series2);
-        view3->chart()->addSeries(series3);
-    }
+    ui->layoutPenalty->addWidget(view1, 0, 0);
+    ui->layoutPenalty->addWidget(view2, 0, 1);
+    ui->layoutPenalty->addWidget(view3, 1, 0);
 }
 
 void pageTeam::showBackboard()
 {
+    if (ui->stackedWidget->currentWidget() != ui->pageBackboard)
+        ui->stackedWidget->setCurrentWidget(ui->pageBackboard);
+
     // modify parameter and send command
     para->option = "trb";
     teamDataCommand->setParameter(para);
@@ -295,50 +256,45 @@ void pageTeam::showBackboard()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
+    QChart *chart1 = new QChart;
+    chart1->setAnimationOptions(QChart::SeriesAnimations);
+    chart1->addSeries(series1);
+    chart1->setTitle("篮板");
+    QChart *chart2 = new QChart;
+    chart2->setAnimationOptions(QChart::SeriesAnimations);
+    chart2->addSeries(series2);
+    chart2->setTitle("前场");
+    QChart *chart3 = new QChart;
+    chart3->setAnimationOptions(QChart::SeriesAnimations);
+    chart3->addSeries(series3);
+    chart3->setTitle("后场");
+
+    if (ui->layoutShoot->itemAt(0) != nullptr)
     {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("篮板");
-        QChart *chart2 = new QChart;
-        chart2->setAnimationOptions(QChart::SeriesAnimations);
-        chart2->addSeries(series2);
-        chart2->setTitle("前场");
-        QChart *chart3 = new QChart;
-        chart3->setAnimationOptions(QChart::SeriesAnimations);
-        chart3->addSeries(series3);
-        chart3->setTitle("后场");
-
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-        QChartView *view2 = new QChartView;
-        view2->setChart(chart2);
-        QChartView *view3 = new QChartView;
-        view3->setChart(chart3);
-
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
+        QLayoutItem *child;
+        while ((child =ui->layoutBackboard->takeAt(0)) != 0) {
+            child->widget()->setParent(nullptr);
+            ui->layoutBackboard->removeItem(child);
+        }
     }
-    else
-    {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
 
-        view1->chart()->series().clear();
-        view2->chart()->series().clear();
-        view3->chart()->series().clear();
+    QChartView *view1 = new QChartView;
+    view1->setChart(chart1);
+    QChartView *view2 = new QChartView;
+    view2->setChart(chart2);
+    QChartView *view3 = new QChartView;
+    view3->setChart(chart3);
 
-        view1->chart()->addSeries(series1);
-        view2->chart()->addSeries(series2);
-        view3->chart()->addSeries(series3);
-    }
+    ui->layoutBackboard->addWidget(view1, 0, 0);
+    ui->layoutBackboard->addWidget(view2, 0, 1);
+    ui->layoutBackboard->addWidget(view3, 1, 0);
 }
 
 void pageTeam::showAssisting()
 {
+    if (ui->stackedWidget->currentWidget() != ui->pageAssisting)
+        ui->stackedWidget->setCurrentWidget(ui->pageAssisting);
+
     // modify parameter and send command
     para->option = "ast";
     teamDataCommand->setParameter(para);
@@ -360,50 +316,45 @@ void pageTeam::showAssisting()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
-    {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("助攻");
-        QChart *chart2 = new QChart;
-        chart2->setAnimationOptions(QChart::SeriesAnimations);
-        chart2->addSeries(series2);
-        chart2->setTitle("抢断");
-        QChart *chart3 = new QChart;
-        chart3->setAnimationOptions(QChart::SeriesAnimations);
-        chart3->addSeries(series3);
-        chart3->setTitle("盖帽");
+     QChart *chart1 = new QChart;
+     chart1->setAnimationOptions(QChart::SeriesAnimations);
+     chart1->addSeries(series1);
+     chart1->setTitle("助攻");
+     QChart *chart2 = new QChart;
+     chart2->setAnimationOptions(QChart::SeriesAnimations);
+     chart2->addSeries(series2);
+     chart2->setTitle("抢断");
+     QChart *chart3 = new QChart;
+     chart3->setAnimationOptions(QChart::SeriesAnimations);
+     chart3->addSeries(series3);
+     chart3->setTitle("盖帽");
 
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-        QChartView *view2 = new QChartView;
-        view2->setChart(chart2);
-        QChartView *view3 = new QChartView;
-        view3->setChart(chart3);
+     if (ui->layoutShoot->itemAt(0) != nullptr)
+     {
+         QLayoutItem *child;
+         while ((child =ui->layoutAssisting->takeAt(0)) != 0) {
+             child->widget()->setParent(nullptr);
+             ui->layoutAssisting->removeItem(child);
+         }
+     }
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-        ui->layoutShoot->addWidget(view3, 1, 0);
-    }
-    else
-    {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
-        QChartView *view3 = (QChartView *)(ui->layoutShoot->itemAtPosition(1, 0));
+     QChartView *view1 = new QChartView;
+     view1->setChart(chart1);
+     QChartView *view2 = new QChartView;
+     view2->setChart(chart2);
+     QChartView *view3 = new QChartView;
+     view3->setChart(chart3);
 
-        view1->chart()->series().clear();
-        view2->chart()->series().clear();
-        view3->chart()->series().clear();
-
-        view1->chart()->addSeries(series1);
-        view2->chart()->addSeries(series2);
-        view3->chart()->addSeries(series3);
-    }
+     ui->layoutAssisting->addWidget(view1, 0, 0);
+     ui->layoutAssisting->addWidget(view2, 0, 1);
+     ui->layoutAssisting->addWidget(view3, 1, 0);
 }
 
 void pageTeam::showFalut()
 {
+    if (ui->stackedWidget->currentWidget() != ui->pageFalut)
+        ui->stackedWidget->setCurrentWidget(ui->pageFalut);
+
     // modify parameter and send command
     para->option = "tov";
     teamDataCommand->setParameter(para);
@@ -423,40 +374,38 @@ void pageTeam::showFalut()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
-    {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("失误");
-        QChart *chart2 = new QChart;
-        chart2->setAnimationOptions(QChart::SeriesAnimations);
-        chart2->addSeries(series2);
-        chart2->setTitle("犯规");
+     QChart *chart1 = new QChart;
+     chart1->setAnimationOptions(QChart::SeriesAnimations);
+     chart1->addSeries(series1);
+     chart1->setTitle("失误");
+     QChart *chart2 = new QChart;
+     chart2->setAnimationOptions(QChart::SeriesAnimations);
+     chart2->addSeries(series2);
+     chart2->setTitle("犯规");
 
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-        QChartView *view2 = new QChartView;
-        view2->setChart(chart2);
+     if (ui->layoutShoot->itemAt(0) != nullptr)
+     {
+         QLayoutItem *child;
+         while ((child =ui->layoutFalut->takeAt(0)) != 0) {
+             child->widget()->setParent(nullptr);
+             ui->layoutFalut->removeItem(child);
+         }
+     }
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-    }
-    else
-    {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
+     QChartView *view1 = new QChartView;
+     view1->setChart(chart1);
+     QChartView *view2 = new QChartView;
+     view2->setChart(chart2);
 
-        view1->chart()->series().clear();
-        view2->chart()->series().clear();
-
-        view1->chart()->addSeries(series1);
-        view2->chart()->addSeries(series2);
-    }
+     ui->layoutFalut->addWidget(view1, 0, 0);
+     ui->layoutFalut->addWidget(view2, 0, 1);
 }
 
 void pageTeam::showScore()
 {
+    if (ui->stackedWidget->currentWidget() != ui->pageScore)
+        ui->stackedWidget->setCurrentWidget(ui->pageScore);
+
     // modify parameter and send command
     para->option = "pts";
     teamDataCommand->setParameter(para);
@@ -474,28 +423,31 @@ void pageTeam::showScore()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
-    {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("得分");
+    QChart *chart1 = new QChart;
+    chart1->setAnimationOptions(QChart::SeriesAnimations);
+    chart1->addSeries(series1);
+    chart1->setTitle("得分");
 
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-
-        ui->layoutShoot->addWidget(view1, 0, 0);
-    }
-    else
+    if (ui->layoutShoot->itemAt(0) != nullptr)
     {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        view1->chart()->series().clear();
-        view1->chart()->addSeries(series1);
+        QLayoutItem *child;
+        while ((child =ui->layoutScore->takeAt(0)) != 0) {
+            child->widget()->setParent(nullptr);
+            ui->layoutScore->removeItem(child);
+        }
     }
+
+    QChartView *view1 = new QChartView;
+    view1->setChart(chart1);
+
+    ui->layoutScore->addWidget(view1, 0, 0);
 }
 
 void pageTeam::showVictory()
 {
+    if (ui->stackedWidget->currentWidget() != ui->pageVictory)
+        ui->stackedWidget->setCurrentWidget(ui->pageVictory);
+
     // modify parameter and send command
     para->option = "wg";
     teamDataCommand->setParameter(para);
@@ -515,36 +467,31 @@ void pageTeam::showVictory()
     }
 
     // update view
-    if (ui->layoutShoot->itemAt(0) == nullptr)
-    {
-        QChart *chart1 = new QChart;
-        chart1->setAnimationOptions(QChart::SeriesAnimations);
-        chart1->addSeries(series1);
-        chart1->setTitle("胜");
-        QChart *chart2 = new QChart;
-        chart2->setAnimationOptions(QChart::SeriesAnimations);
-        chart2->addSeries(series2);
-        chart2->setTitle("负");
+     QChart *chart1 = new QChart;
+     chart1->setAnimationOptions(QChart::SeriesAnimations);
+     chart1->addSeries(series1);
+     chart1->setTitle("胜");
+     QChart *chart2 = new QChart;
+     chart2->setAnimationOptions(QChart::SeriesAnimations);
+     chart2->addSeries(series2);
+     chart2->setTitle("负");
 
-        QChartView *view1 = new QChartView;
-        view1->setChart(chart1);
-        QChartView *view2 = new QChartView;
-        view2->setChart(chart2);
+     if (ui->layoutShoot->itemAt(0) != nullptr)
+     {
+         QLayoutItem *child;
+         while ((child =ui->layoutVictory->takeAt(0)) != 0) {
+             child->widget()->setParent(nullptr);
+             ui->layoutVictory->removeItem(child);
+         }
+     }
 
-        ui->layoutShoot->addWidget(view1, 0, 0);
-        ui->layoutShoot->addWidget(view2, 0, 1);
-    }
-    else
-    {
-        QChartView *view1 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 0));
-        QChartView *view2 = (QChartView *)(ui->layoutShoot->itemAtPosition(0, 1));
+     QChartView *view1 = new QChartView;
+     view1->setChart(chart1);
+     QChartView *view2 = new QChartView;
+     view2->setChart(chart2);
 
-        view1->chart()->series().clear();
-        view2->chart()->series().clear();
-
-        view1->chart()->addSeries(series1);
-        view2->chart()->addSeries(series2);
-    }
+     ui->layoutVictory->addWidget(view1, 0, 0);
+     ui->layoutVictory->addWidget(view2, 0, 1);
 }
 
 void pageTeam::setTeam(shared_ptr<vector<shared_ptr<team_avg>>> ptr)
@@ -560,4 +507,9 @@ void pageTeam::setTeamDataCommand(shared_ptr<command> ptr)
 void pageTeam::setName(QString name)
 {
     this->name = name;
+}
+
+void pageTeam::setPlayerName(QString name)
+{
+   emit showPagePlayer(name);
 }

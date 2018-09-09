@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
@@ -47,9 +48,12 @@ public:
     QLabel *label;
     QSpinBox *boxSeason;
     QSpacerItem *horizontalSpacer_2;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_2;
     QStackedWidget *stackedWidget;
     QWidget *pageShoot;
-    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_2;
     QGridLayout *layoutShoot;
     QWidget *pageThree;
     QVBoxLayout *verticalLayout_3;
@@ -177,16 +181,25 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        stackedWidget = new QStackedWidget(pageRank);
+        scrollArea = new QScrollArea(pageRank);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 563, 1500));
+        scrollAreaWidgetContents->setMinimumSize(QSize(500, 1500));
+        verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        stackedWidget = new QStackedWidget(scrollAreaWidgetContents);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         pageShoot = new QWidget();
         pageShoot->setObjectName(QStringLiteral("pageShoot"));
-        verticalLayout_2 = new QVBoxLayout(pageShoot);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        horizontalLayout_2 = new QHBoxLayout(pageShoot);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         layoutShoot = new QGridLayout();
         layoutShoot->setObjectName(QStringLiteral("layoutShoot"));
 
-        verticalLayout_2->addLayout(layoutShoot);
+        horizontalLayout_2->addLayout(layoutShoot);
 
         stackedWidget->addWidget(pageShoot);
         pageThree = new QWidget();
@@ -260,7 +273,11 @@ public:
 
         stackedWidget->addWidget(pageVictory);
 
-        verticalLayout->addWidget(stackedWidget);
+        verticalLayout_2->addWidget(stackedWidget);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout->addWidget(scrollArea);
 
         verticalLayout->setStretch(0, 1);
         verticalLayout->setStretch(1, 2);

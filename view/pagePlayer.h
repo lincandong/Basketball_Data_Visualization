@@ -26,16 +26,18 @@ public:
 
     void setPlayerDataCommand(shared_ptr<command> ptr);
     void setPlayer(shared_ptr<vector<shared_ptr<player_avg>>> player);
+    void setName(QString name);
 
-    void update();
+    void init();
 
 private:
     Ui::pagePlayer *ui;
 
-    QChartView *viewTemp;
+    QString name;
 
     shared_ptr<command> playerDataCommand;
     shared_ptr<vector<shared_ptr<player_avg>>> player;
+    shared_ptr<dataParameter> para;
 
     void showTotal();
     void showShoot();

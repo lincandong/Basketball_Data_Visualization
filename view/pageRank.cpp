@@ -17,7 +17,6 @@ pageRank::pageRank(QWidget *parent) :
     connect(ui->buttonFalut, &QPushButton::clicked, this, &pageRank::showFalut);
     connect(ui->buttonScore, &QPushButton::clicked, this, &pageRank::showScore);
     connect(ui->buttonVictory, &QPushButton::clicked, this, &pageRank::showVictory);
-
 }
 
 pageRank::~pageRank()
@@ -37,6 +36,7 @@ void pageRank::showShoot()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageShoot)
         ui->stackedWidget->setCurrentWidget(ui->pageShoot);
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "fgper";
     para->season = ui->boxSeason->value();
@@ -55,47 +55,67 @@ void pageRank::showShoot()
     QBarSet *set1 = new QBarSet("投篮");
     QBarSet *set2 = new QBarSet("命中");
     QBarSet *set3 = new QBarSet("出手");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter >= teamRank->begin(); iter--)
         {
             *set1 << (*iter)->fgper;
             *set2 << (*iter)->fg;
             *set3 << (*iter)->fga;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
         {
             *set1 << (*iter)->fgper;
             *set2 << (*iter)->fg;
             *set3 << (*iter)->fga;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
 
     }
-    QBarSeries *series1 = new QBarSeries;
+
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
-    QBarSeries *series2 = new QBarSeries;
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+    QHorizontalBarSeries *series2 = new QHorizontalBarSeries;
     series2->append(set2);
-    QBarSeries *series3 = new QBarSeries;
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+    QHorizontalBarSeries *series3 = new QHorizontalBarSeries;
     series3->append(set3);
+    series3->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series3->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("投篮");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("命中");
+    chart2->createDefaultAxes();
+    chart2->setAxisY(axis2, series2);
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
-    chart3->setTitle("出手");
+    chart3->createDefaultAxes();
+    chart3->setAxisY(axis3, series3);
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
         QLayoutItem *child;
@@ -112,14 +132,15 @@ void pageRank::showShoot()
     view3->setChart(chart3);
 
     ui->layoutShoot->addWidget(view1, 0, 0);
-    ui->layoutShoot->addWidget(view2, 0, 1);
-    ui->layoutShoot->addWidget(view3, 1, 0);
+    ui->layoutShoot->addWidget(view2, 1, 0);
+    ui->layoutShoot->addWidget(view3, 2, 0);
 }
 
 void pageRank::showThree()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageThree)
         ui->stackedWidget->setCurrentWidget(ui->pageThree);
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "threepper";
     para->season = ui->boxSeason->value();
@@ -138,47 +159,66 @@ void pageRank::showThree()
     QBarSet *set1 = new QBarSet("三分");
     QBarSet *set2 = new QBarSet("命中");
     QBarSet *set3 = new QBarSet("出手");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
         {
             *set1 << (*iter)->threepper;
             *set2 << (*iter)->threep;
             *set3 << (*iter)->threepa;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
         {
             *set1 << (*iter)->threepper;
             *set2 << (*iter)->threep;
             *set3 << (*iter)->threepa;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
 
     }
-    QBarSeries *series1 = new QBarSeries;
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
-    QBarSeries *series2 = new QBarSeries;
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+    QHorizontalBarSeries *series2 = new QHorizontalBarSeries;
     series2->append(set2);
-    QBarSeries *series3 = new QBarSeries;
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+    QHorizontalBarSeries *series3 = new QHorizontalBarSeries;
     series3->append(set3);
+    series3->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series3->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("三分");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("命中");
+    chart2->createDefaultAxes();
+    chart2->setAxisY(axis2, series2);
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
-    chart3->setTitle("出手");
+    chart3->createDefaultAxes();
+    chart3->setAxisY(axis3, series3);
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
@@ -197,14 +237,15 @@ void pageRank::showThree()
     view3->setChart(chart3);
 
     ui->layoutThree->addWidget(view1, 0, 0);
-    ui->layoutThree->addWidget(view2, 0, 1);
-    ui->layoutThree->addWidget(view3, 1, 0);
+    ui->layoutThree->addWidget(view2, 1, 0);
+    ui->layoutThree->addWidget(view3, 2, 0);
 }
 
 void pageRank::showPenalty()
 {
     if (ui->stackedWidget->currentWidget() != ui->pagePenalty)
         ui->stackedWidget->setCurrentWidget(ui->pagePenalty);
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "ftper";
     para->season = ui->boxSeason->value();
@@ -223,47 +264,66 @@ void pageRank::showPenalty()
     QBarSet *set1 = new QBarSet("罚球");
     QBarSet *set2 = new QBarSet("命中");
     QBarSet *set3 = new QBarSet("出手");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
         {
             *set1 << (*iter)->ftper;
             *set2 << (*iter)->ft;
             *set3 << (*iter)->fta;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
         {
             *set1 << (*iter)->ftper;
             *set2 << (*iter)->ft;
             *set3 << (*iter)->fta;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
 
     }
-    QBarSeries *series1 = new QBarSeries;
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
-    QBarSeries *series2 = new QBarSeries;
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+    QHorizontalBarSeries *series2 = new QHorizontalBarSeries;
     series2->append(set2);
-    QBarSeries *series3 = new QBarSeries;
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+    QHorizontalBarSeries *series3 = new QHorizontalBarSeries;
     series3->append(set3);
+    series3->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series3->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("罚球");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("命中");
+    chart2->createDefaultAxes();
+    chart2->setAxisY(axis2, series2);
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
-    chart3->setTitle("出手");
+    chart3->createDefaultAxes();
+    chart3->setAxisY(axis3, series3);
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
@@ -282,14 +342,15 @@ void pageRank::showPenalty()
     view3->setChart(chart3);
 
     ui->layoutPenalty->addWidget(view1, 0, 0);
-    ui->layoutPenalty->addWidget(view2, 0, 1);
-    ui->layoutPenalty->addWidget(view3, 1, 0);
+    ui->layoutPenalty->addWidget(view2, 1, 0);
+    ui->layoutPenalty->addWidget(view3, 2, 0);
 }
 
 void pageRank::showBackboard()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageBackboard)
         ui->stackedWidget->setCurrentWidget(ui->pageBackboard);
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "trb";
     para->season = ui->boxSeason->value();
@@ -308,47 +369,66 @@ void pageRank::showBackboard()
     QBarSet *set1 = new QBarSet("篮板");
     QBarSet *set2 = new QBarSet("前场");
     QBarSet *set3 = new QBarSet("后场");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
         {
             *set1 << (*iter)->trb;
             *set2 << (*iter)->orb;
             *set3 << (*iter)->drb;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
         {
             *set1 << (*iter)->trb;
             *set2 << (*iter)->orb;
             *set3 << (*iter)->drb;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
 
     }
-    QBarSeries *series1 = new QBarSeries;
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
-    QBarSeries *series2 = new QBarSeries;
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+    QHorizontalBarSeries *series2 = new QHorizontalBarSeries;
     series2->append(set2);
-    QBarSeries *series3 = new QBarSeries;
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+    QHorizontalBarSeries *series3 = new QHorizontalBarSeries;
     series3->append(set3);
+    series3->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series3->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("篮板");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("前场");
+    chart2->createDefaultAxes();
+    chart2->setAxisY(axis2, series2);
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
-    chart3->setTitle("后场");
+    chart3->createDefaultAxes();
+    chart3->setAxisY(axis3, series3);
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
@@ -367,14 +447,15 @@ void pageRank::showBackboard()
     view3->setChart(chart3);
 
     ui->layoutBackboard->addWidget(view1, 0, 0);
-    ui->layoutBackboard->addWidget(view2, 0, 1);
-    ui->layoutBackboard->addWidget(view3, 1, 0);
+    ui->layoutBackboard->addWidget(view2, 1, 0);
+    ui->layoutBackboard->addWidget(view3, 2, 0);
 }
 
 void pageRank::showAssisting()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageAssisting)
         ui->stackedWidget->setCurrentWidget(ui->pageAssisting);
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "ast";
     para->season = ui->boxSeason->value();
@@ -393,47 +474,66 @@ void pageRank::showAssisting()
     QBarSet *set1 = new QBarSet("助攻");
     QBarSet *set2 = new QBarSet("抢断");
     QBarSet *set3 = new QBarSet("盖帽");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
         {
             *set1 << (*iter)->ast;
             *set2 << (*iter)->stl;
             *set3 << (*iter)->blk;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
         {
             *set1 << (*iter)->ast;
             *set2 << (*iter)->stl;
             *set3 << (*iter)->blk;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
 
     }
-    QBarSeries *series1 = new QBarSeries;
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
-    QBarSeries *series2 = new QBarSeries;
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+    QHorizontalBarSeries *series2 = new QHorizontalBarSeries;
     series2->append(set2);
-    QBarSeries *series3 = new QBarSeries;
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+    QHorizontalBarSeries *series3 = new QHorizontalBarSeries;
     series3->append(set3);
+    series3->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series3->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("助攻");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("抢断");
+    chart2->createDefaultAxes();
+    chart2->setAxisY(axis2, series2);
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
-    chart3->setTitle("盖帽");
+    chart3->createDefaultAxes();
+    chart3->setAxisY(axis3, series3);
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
@@ -452,14 +552,15 @@ void pageRank::showAssisting()
     view3->setChart(chart3);
 
     ui->layoutAssisting->addWidget(view1, 0, 0);
-    ui->layoutAssisting->addWidget(view2, 0, 1);
-    ui->layoutAssisting->addWidget(view3, 1, 0);
+    ui->layoutAssisting->addWidget(view2, 1, 0);
+    ui->layoutAssisting->addWidget(view3, 2, 0);
 }
 
 void pageRank::showFalut()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageFalut)
         ui->stackedWidget->setCurrentWidget(ui->pageFalut);
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "tov";
     para->season = ui->boxSeason->value();
@@ -477,39 +578,53 @@ void pageRank::showFalut()
     // get current data
     QBarSet *set1 = new QBarSet("失误");
     QBarSet *set2 = new QBarSet("犯规");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
         {
             *set1 << (*iter)->tov;
             *set2 << (*iter)->pf;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
         {
             *set1 << (*iter)->tov;
             *set2 << (*iter)->pf;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
 
     }
-    QBarSeries *series1 = new QBarSeries;
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
-    QBarSeries *series2 = new QBarSeries;
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+    QHorizontalBarSeries *series2 = new QHorizontalBarSeries;
     series2->append(set2);
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("失误");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("犯规");
+    chart2->createDefaultAxes();
+    chart2->setAxisY(axis2, series2);
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
@@ -526,13 +641,14 @@ void pageRank::showFalut()
     view2->setChart(chart2);
 
     ui->layoutFalut->addWidget(view1, 0, 0);
-    ui->layoutFalut->addWidget(view2, 0, 1);
+    ui->layoutFalut->addWidget(view2, 1, 0);
 }
 
 void pageRank::showScore()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageScore)
         ui->stackedWidget->setCurrentWidget(ui->pageScore);
+    ui->scrollAreaWidgetContents->setMinimumHeight(500);
     // modify parameter and send command
     para->option = "pts";
     para->season = ui->boxSeason->value();
@@ -549,27 +665,36 @@ void pageRank::showScore()
 
     // get current data
     QBarSet *set1 = new QBarSet("得分");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
             *set1 << (*iter)->pts;
+        categories << QString::fromLocal8Bit(((*iter)->name).c_str());
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
             *set1 << (*iter)->pts;
+        categories << QString::fromLocal8Bit(((*iter)->name).c_str());
 
     }
-    QBarSeries *series1 = new QBarSeries;
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    axis1->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("得分");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
@@ -590,6 +715,7 @@ void pageRank::showVictory()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageVictory)
         ui->stackedWidget->setCurrentWidget(ui->pageVictory);
+    ui->scrollAreaWidgetContents->setMinimumHeight(1000);
     // modify parameter and send command
     para->season = ui->boxSeason->value();
     if (isTeam == true)
@@ -608,39 +734,53 @@ void pageRank::showVictory()
     // get current data
     QBarSet *set1 = new QBarSet("胜");
     QBarSet *set2 = new QBarSet("负");
+    QStringList categories;
     if (isTeam)
     {
         vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin(); iter != teamRank->end(); iter++)
+        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
         {
             *set1 << (*iter)->wg;
             *set2 << (*iter)->lg;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->end(); iter++)
+        for (iter = playerRank->begin(); iter != playerRank->begin(); iter--)
         {
             *set1 << (*iter)->w;
             *set2 << (*iter)->l;
+            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
         }
 
     }
-    QBarSeries *series1 = new QBarSeries;
+    QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
-    QBarSeries *series2 = new QBarSeries;
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+    QHorizontalBarSeries *series2 = new QHorizontalBarSeries;
     series2->append(set2);
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("胜");
+    chart1->createDefaultAxes();
+    chart1->setAxisY(axis1, series1);
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("负");
+    chart2->createDefaultAxes();
+    chart2->setAxisY(axis2, series2);
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
@@ -657,7 +797,7 @@ void pageRank::showVictory()
     view2->setChart(chart2);
 
     ui->layoutVictory->addWidget(view1, 0, 0);
-    ui->layoutVictory->addWidget(view2, 0, 1);
+    ui->layoutVictory->addWidget(view2, 1, 0);
 }
 
 void pageRank::setTeamRankCommand(std::shared_ptr<command> ptr)

@@ -121,8 +121,8 @@ void viewModel::RequestPlayerRank(shared_ptr<rankParameter> ptr)
 }
 void viewModel::UpdatePlayerRank()
 {
-    if (tmpPlayer != nullptr)
-    *PlayerRank = *tmpPlayer;
+    //if (tmpPlayer != nullptr)
+    //*PlayerRank = *tmpPlayer;
 }
 void viewModel::RequestTeamData(shared_ptr<dataParameter> ptr)
 {
@@ -136,7 +136,7 @@ void viewModel::RequestTeamData(shared_ptr<dataParameter> ptr)
 }
 void viewModel::UpdateTeamData()
 {
-    if (tmpPlayer != nullptr)
+    if (tmpTeam != nullptr)
     *TeamData = *tmpTeam;
 }
 void viewModel::RequestTeamRank(shared_ptr<rankParameter> ptr)
@@ -166,6 +166,6 @@ void viewModel::RequestTeamRank(shared_ptr<rankParameter> ptr)
 }
 void viewModel::UpdateTeamRank()
 {
-    if (tmpTeam != nullptr)
-    *TeamRank = *tmpTeam;
+    //if (tmpTeam != nullptr)
+    //*TeamRank = *tmpTeam;
 }
