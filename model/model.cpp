@@ -1,8 +1,14 @@
 #include "model.h"
-//void model::InitSender(shared_ptr<receiverFromModel> ptr)
-//{
-//    snd.add(ptr);
-//}
+
+model::model()
+{
+    load_player(m_player, v_player);
+    load_team(m_team, v_team);
+}
+void model::InitSender(shared_ptr<receiverFromModel> ptr)
+{
+    snd.add(ptr);
+}
 void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 {
 	files.clear();
@@ -83,14 +89,14 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
 		m[v] = temp;
 		fclose(fp);
 	}
-	//cout << m["ÀÕ²¼ÀÊ-Õ²Ä·Ë¹"][2]->pts << endl;
+	//cout << m["ï¿½Õ²ï¿½ï¿½ï¿½-Õ²Ä·Ë¹"][2]->pts << endl;
 	
 }
 
 void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
 {
 	vector<string> files;
-	cf_findFileFromDir2("../teams/17-18Èü¼¾", files);
+	cf_findFileFromDir2("../teams/17-18ï¿½ï¿½ï¿½ï¿½", files);
 	char readBuffer[65536];
 	cout << "team" << endl;
 	for(auto& v : files)
@@ -139,11 +145,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 			v_team.push_back(p);
 			m[v] = p;
 			}
-<<<<<<< HEAD
 			else if (a.HasMember("name"))
-=======
-			else if(a.HasMember("name"))
->>>>>>> cc92bcd0d73dbe662132dc9e6e96097a4ef6b076
 			{
 				p->players.push_back(a["name"][0].GetString());
 			}
@@ -151,7 +153,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 		fclose(fp);
 	}
 	
-	//cout << m["¶í¿ËÀ­ºÉÂíÀ×öª¶Ó"]->pts << endl;
+	//cout << m["ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"]->pts << endl;
 }
 
 
@@ -245,12 +247,8 @@ void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)
 	shared_ptr<player_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
-<<<<<<< HEAD
-    {
-=======
 	{
 		shared_ptr<player_avg> p(temp[i]);
->>>>>>> cc92bcd0d73dbe662132dc9e6e96097a4ef6b076
 		p = make_shared<player_avg>(temp[i]);
 		players.push_back(p);
 	}
@@ -264,12 +262,8 @@ void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, te
 	shared_ptr<team_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
-<<<<<<< HEAD
-    {
-=======
 	{
 		shared_ptr<team_avg> p(temp[i]);
->>>>>>> cc92bcd0d73dbe662132dc9e6e96097a4ef6b076
 		p = make_shared<team_avg>(temp[i]);
         teams.push_back(p);
 	}
