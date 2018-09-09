@@ -2,12 +2,12 @@
 #include "ui_pageData.h"
 
 QString teamName[6][5] = {
-    {"ATL", "CHA", "MIA", "ORL", "WAS"},
-    {"CHI", "CLE", "DET", "IND", "MIL"},
-    {"BKN", "BOS", "NYK", "PHI", "TOR"},
-    {"GSW", "LAC", "LAL", "PHO", "SAC"},
-    {"DEN", "MIN", "OKC", "POR", "UTA"},
-    {"DAL", "HOU", "MEM", "NOH", "SAS"}
+    {QString::fromLocal8Bit("亚特兰大老鹰"), QString::fromLocal8Bit("夏洛特黄蜂"), QString::fromLocal8Bit("迈阿密热火"), QString::fromLocal8Bit("奥兰多魔术"), QString::fromLocal8Bit("华盛顿奇才")},
+    {QString::fromLocal8Bit("芝加哥公牛"), QString::fromLocal8Bit("克里夫兰骑士"), QString::fromLocal8Bit("底特律活塞"), QString::fromLocal8Bit("印第安纳步行者"), QString::fromLocal8Bit("密尔沃基雄鹿")},
+    {QString::fromLocal8Bit("布鲁克林篮网"), QString::fromLocal8Bit("波士顿凯尔特人"), QString::fromLocal8Bit("纽约尼克斯"), QString::fromLocal8Bit("费城76人"), QString::fromLocal8Bit("多伦多猛龙")},
+    {QString::fromLocal8Bit("金州勇士"), QString::fromLocal8Bit("洛杉矶快船"), QString::fromLocal8Bit("洛杉矶湖人"), QString::fromLocal8Bit("菲尼克斯太阳"), QString::fromLocal8Bit("萨克拉门托国王")},
+    {QString::fromLocal8Bit("丹佛掘金"), QString::fromLocal8Bit("明尼苏达森林狼"), QString::fromLocal8Bit("俄克拉荷马雷霆"), QString::fromLocal8Bit("波特兰开拓者"), QString::fromLocal8Bit("犹他爵士")},
+    {QString::fromLocal8Bit("达拉斯独行侠"), QString::fromLocal8Bit("休斯顿火箭"), QString::fromLocal8Bit("孟菲斯灰熊"), QString::fromLocal8Bit("新奥尔良鹈鹕"), QString::fromLocal8Bit("圣安东尼奥马刺")}
 };
 
 pageData::pageData(QWidget *parent) :

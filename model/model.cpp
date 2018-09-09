@@ -143,14 +143,16 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 			p->fga = atof(a["fga"][0].GetString());
 			p->fgper = p->fg / p->fga * 1.0;
 			p->threepper = p->threep / p->threepa * 1.0;
-			p->ftper = p->ft / p->fta * 1.0;
-			v_team.push_back(p);
-			m[v] = p;
+            p->ftper = p->ft / p->fta * 1.0;
+            v_team.push_back(p);
+            m[v] = p;
 			}
             if (a.HasMember("name"))
-			{
-				p->players.push_back(a["name"][0].GetString());
-			}
+            {
+                p->players.push_back(a["name"][0].GetString());
+            }
+
+
 		}
 		fclose(fp);
 	}
@@ -246,10 +248,11 @@ void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)
 {
 	players.clear();
     vector<player_avg*> temp = v_player[year];
+    shared_ptr<player_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
-	{
-        shared_ptr<player_avg> p(temp[i]);
+    {
+        p = make_shared<player_avg>(temp[i]);
 		players.push_back(p);
 	}
 	snd.notify("player rank has been set");
@@ -259,10 +262,11 @@ void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, te
 {
     teams.clear();
     vector<team_avg*> temp = v_team;
+    shared_ptr<team_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
-	{
-        shared_ptr<team_avg> p(temp[i]);
+    {
+        p = make_shared<team_avg>(temp[i]);
         teams.push_back(p);
 	}
 	snd.notify("team rank has been set");

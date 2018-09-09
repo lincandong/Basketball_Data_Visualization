@@ -69,6 +69,8 @@ struct team_avg {
     team_avg(team_avg *ptr)
     {
         memcpy(this, ptr, sizeof(team_avg));
+        this->players.resize(ptr->players.size());
+        copy(ptr->players.begin(), ptr->players.end(), this->players.begin());
     }
 };
 

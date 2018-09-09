@@ -110,4 +110,7 @@ SOURCES += common/sender.cpp \
            viewmodel/receiver/receiverFromModel.cpp \
            viewmodel/receiver/receiverFromView.cpp \
     app/main.cpp
-RESOURCES += resources/resources.qrc
+RESOURCES += \
+    resources/resources.qrc
+
+DISTFILES +=
