@@ -23,11 +23,16 @@ public:
     ~model() = default;
     void InitSender(shared_ptr<receiverFromModel> ptr);
 
+	//load one player's data of many years 
 	void player_series(string& name, string& begin, string& end, vector<shared_ptr<player_avg>>& players);
+	//load one player's statistical data(avg etc.)
 	void player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p);
+	//load a team's statistical data
 	void team_data(string& name, shared_ptr<team_avg> t);
+	//load the player rank of a specified entry in one year(top 15) 
 	void order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*));
-    void order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*));
+    //load the team rank in 17-18 season
+	void order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*));
 
 };
 #endif // !MODEL_H
