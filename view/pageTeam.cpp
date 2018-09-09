@@ -9,18 +9,6 @@ pageTeam::pageTeam(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // players
-    /*QVBoxLayout *vb = new QVBoxLayout();
-    vb->addWidget(label1);
-    vb->addWidget(label2);
-    QHBoxLayout *hb = new QHBoxLayout();
-    hb->addLayout(vb);
-    hb->addStretch();
-    ui->verticalLayoutPlayer->addLayout(hb);
-    ui->verticalLayoutPlayer->addStretch();
-    connect(label1, &myLabel::clickedForName, this, &pageTeam::showPagePlayer);
-    connect(label2, &myLabel::clickedForName, this, &pageTeam::showPagePlayer);
-*/
     // team data
     connect(ui->buttonShoot, &QPushButton::clicked, this, &pageTeam::showShoot);
     connect(ui->buttonThree, &QPushButton::clicked, this, &pageTeam::showThree);
@@ -50,7 +38,54 @@ void pageTeam::init()
     showShoot();
 
     // initialize players
+    int size = teamData->at(0)->players.size();
+    int row, col = 5;
+
+    if (size % col != 0)
+        row = size / col + 1;
+    else
+        row = size / col;
+
+    for (int i = 0; i <  row; i++)
+    {
+        for (int j = 0; j < col && i * col + j < size; j++)
+        {
+            QString name = ":/gif/full/";
+            QString temp = QString::fromLocal8Bit(((teamData->at(0)->players).at(i * col + j).c_str()));
+            name.append(temp);
+            name.append(".jpg");
+            QPixmap *pix = new QPixmap(name);
+            if (pix == nullptr)
+                pix = new QPixmap(QString::fromLocal8Bit(":/gif/full/默认.jpg"));
+
+            myLabel *qlabel = new myLabel;
+            qlabel->setPixmap(*pix);
+            qlabel->setScaledContents(true);
+            qlabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+            qlabel->setValue(i * col + j);
+            qlabel->setName(temp);
+            listLabel->push_back(qlabel);
+            addLabel(qlabel, j * 2, i);
+
+            myLabel *qlabelName = new myLabel;
+            qlabelName->setText(temp);
+            qlabelName->setAlignment(Qt::AlignVCenter);
+            qlabelName->setAlignment(Qt::AlignHCenter);
+            qlabelName->setValue(i * col + j);
+            listLabel->push_back(qlabelName);
+            addLabel(qlabel, j * 2 + 1, i);
+        }
+    }
+
+    for (int i = 0; i < 2 * size; i++)
+        connect(listLabel->at(0), &myLabel::clickedForName, this, &pageTeam::setPlayerName);
 }
+
+void pageTeam::addLabel(myLabel *label, int row, int col)
+{
+    ui->layoutPlayers->addWidget(label, row, col);
+}
+
 
 void pageTeam::showShoot()
 {

@@ -11,6 +11,7 @@ using namespace std;
 
 #include "../commands/base/command.h"
 #include "../common/dataType.h"
+#include "myLabel.h"
 
 QT_CHARTS_USE_NAMESPACE
 
@@ -23,6 +24,8 @@ class pageTeam : public QWidget
     Q_OBJECT
 
 public:
+    QList<myLabel *> *listLabel;
+
     explicit pageTeam(QWidget *parent = 0);
     ~pageTeam();
 
@@ -45,6 +48,7 @@ private:
     shared_ptr<command> teamDataCommand;
     shared_ptr<vector<shared_ptr<team_avg>>> teamData;
 
+    void addLabel(myLabel *label, int row, int col);
     void showShoot();
     void showThree();
     void showPenalty();

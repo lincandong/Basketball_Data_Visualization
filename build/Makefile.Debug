@@ -2252,6 +2252,9 @@ debug/moc_pageTeam.cpp: ../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/i
 		../commands/base/parameters.h \
 		../common/dataType.h \
 		../common/common.h \
+		../view/myLabel.h \
+		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QLabel \
+		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/QMouseEvent \
 		../view/pageTeam.h \
 		debug/moc_predefs.h \
 		../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/bin/moc.exe
@@ -3119,21 +3122,7 @@ debug/pageData.o: ../view/pageData.cpp ../view/pageData.h \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/QMouseEvent \
 		../common/dataType.h \
 		../common/common.h \
-		ui_pageData.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QVariant \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QVBoxLayout
+		ui_pageData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\pageData.o ..\view\pageData.cpp
 
 debug/pagePlayer.o: ../view/pagePlayer.cpp ../view/pagePlayer.h \
@@ -3683,18 +3672,8 @@ debug/pagePlayer.o: ../view/pagePlayer.cpp ../view/pagePlayer.h \
 		../common/dataType.h \
 		../common/common.h \
 		ui_pagePlayer.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHBoxLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QLabel \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QSpacerItem \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QStackedWidget \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QVBoxLayout \
 		../view/myLabel.h \
+		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QLabel \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\pagePlayer.o ..\view\pagePlayer.cpp
 
@@ -4244,19 +4223,7 @@ debug/pageRank.o: ../view/pageRank.cpp ../view/pageRank.h \
 		../commands/base/parameters.h \
 		../common/dataType.h \
 		../common/common.h \
-		ui_pageRank.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHBoxLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QLabel \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QSpacerItem \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QSpinBox \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QStackedWidget \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QVBoxLayout
+		ui_pageRank.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\pageRank.o ..\view\pageRank.cpp
 
 debug/pageStart.o: ../view/pageStart.cpp ../view/pageStart.h \
@@ -4365,26 +4332,7 @@ debug/pageStart.o: ../view/pageStart.cpp ../view/pageStart.h \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/qtouchdevice.h \
 		../commands/base/command.h \
 		../commands/base/parameters.h \
-		ui_pageStart.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QVariant \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qapplication.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qcoreapplication.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qeventloop.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/qguiapplication.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/qinputmethod.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHBoxLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qabstractbutton.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/qicon.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QSpacerItem \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QVBoxLayout
+		ui_pageStart.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\pageStart.o ..\view\pageStart.cpp
 
 debug/pageTeam.o: ../view/pageTeam.cpp ../view/pageTeam.h \
@@ -4934,21 +4882,10 @@ debug/pageTeam.o: ../view/pageTeam.cpp ../view/pageTeam.h \
 		../commands/base/parameters.h \
 		../common/dataType.h \
 		../common/common.h \
-		ui_pageTeam.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QButtonGroup \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHBoxLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHeaderView \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QLabel \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QSpacerItem \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QStackedWidget \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QTabWidget \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QVBoxLayout \
 		../view/myLabel.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/QMouseEvent
+		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QLabel \
+		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtGui/QMouseEvent \
+		ui_pageTeam.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\pageTeam.o ..\view\pageTeam.cpp
 
 debug/view.o: ../view/view.cpp ../view/view.h \
@@ -5511,12 +5448,7 @@ debug/view.o: ../view/view.cpp ../view/view.h \
 		../view/receiver/viewCommandReceiver.h \
 		../common/receiver.h \
 		../view/receiver/viewPropertyReceiver.h \
-		ui_view.h \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHBoxLayout \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QStackedWidget \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QToolBar
+		ui_view.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\view.o ..\view\view.cpp
 
 debug/viewmodel.o: ../viewmodel/viewmodel.cpp ../viewmodel/viewmodel.h \

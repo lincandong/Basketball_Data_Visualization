@@ -116,11 +116,11 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 		}
 		//if (!d.IsArray())
 		//cout << "no " << endl;
+		team_avg* p = new team_avg;
 		for (auto& a : d.GetArray())
 		{
 			if(a.HasMember("pts"))
 			{
-			team_avg* p = new team_avg;
 			p->name = v;
 			//p->season = a["season"].GetString();
 			p->ast = atof(a["ast"][0].GetString());
@@ -146,6 +146,10 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 			p->ftper = p->ft / p->fta * 1.0;
 			v_team.push_back(p);
 			m[v] = p;
+			}
+			else if (a.HasMember("name"))
+			{
+				p->players.push_back(a["name"][0].GetString());
 			}
 		}
 		fclose(fp);
@@ -240,7 +244,7 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 	shared_ptr<player_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
-	{
+    {
 		p = make_shared<player_avg>(temp[i]);
 		players.push_back(p);
 	}
@@ -248,14 +252,14 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 }
  void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*))
 {
-	teams.clear();
+    teams.clear();
 	vector<team_avg*> temp = v_team;
 	shared_ptr<team_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
-	{
+    {
 		p = make_shared<team_avg>(temp[i]);
-		teams.push_back(p);
+        teams.push_back(p);
 	}
 	snd.notify("team rank has been set");
 }
