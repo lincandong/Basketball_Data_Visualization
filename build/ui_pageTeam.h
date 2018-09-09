@@ -76,7 +76,7 @@ public:
     QGridLayout *layoutVictory;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_3;
-    QVBoxLayout *verticalLayoutPlayer;
+    QGridLayout *layoutPlayers;
 
     void setupUi(QWidget *pageTeam)
     {
@@ -260,10 +260,10 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         verticalLayout_3 = new QVBoxLayout(tab_2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        verticalLayoutPlayer = new QVBoxLayout();
-        verticalLayoutPlayer->setObjectName(QStringLiteral("verticalLayoutPlayer"));
+        layoutPlayers = new QGridLayout();
+        layoutPlayers->setObjectName(QStringLiteral("layoutPlayers"));
 
-        verticalLayout_3->addLayout(verticalLayoutPlayer);
+        verticalLayout_3->addLayout(layoutPlayers);
 
         tabWidget->addTab(tab_2, QString());
 
@@ -277,7 +277,7 @@ public:
 
         retranslateUi(pageTeam);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         stackedWidget->setCurrentIndex(6);
 
 

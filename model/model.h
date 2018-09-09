@@ -27,7 +27,7 @@ public:
 	void player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p);
 	void team_data(string& name, shared_ptr<team_avg> t);
 	void order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*));
-	void order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*));
+    void order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, team_avg*));
 
 };
 #endif // !MODEL_H

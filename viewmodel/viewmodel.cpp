@@ -141,31 +141,31 @@ void viewModel::UpdateTeamData()
 }
 void viewModel::RequestTeamRank(shared_ptr<rankParameter> ptr)
 {
-    if(ptr->option == "g") m.order(*TeamRank, &TeamCompare::cmp_g);
-    if(ptr->option == "wg") m.order(*TeamRank, &TeamCompare::cmp_wg);
-    if(ptr->option == "lg") m.order(*TeamRank, &TeamCompare::cmp_lg);
-    if(ptr->option == "fgper") m.order(*TeamRank, &TeamCompare::cmp_fgper);
-    if(ptr->option == "fg") m.order(*TeamRank, &TeamCompare::cmp_fg);
-    if(ptr->option == "fga") m.order(*TeamRank, &TeamCompare::cmp_fga);
-    if(ptr->option == "threepper") m.order(*TeamRank, &TeamCompare::cmp_threepper);
-    if(ptr->option == "threep") m.order(*TeamRank, &TeamCompare::cmp_threep);
-    if(ptr->option == "threepa") m.order(*TeamRank, &TeamCompare::cmp_threepa);
-    if(ptr->option == "ftper") m.order(*TeamRank, &TeamCompare::cmp_ftper);
-    if(ptr->option == "ft") m.order(*TeamRank, &TeamCompare::cmp_ft);
-    if(ptr->option == "fta") m.order(*TeamRank, &TeamCompare::cmp_fta);
-    if(ptr->option == "ts") m.order(*TeamRank, &TeamCompare::cmp_ts);
-    if(ptr->option == "trb") m.order(*TeamRank, &TeamCompare::cmp_trb);
-    if(ptr->option == "orb") m.order(*TeamRank, &TeamCompare::cmp_orb);
-    if(ptr->option == "drb") m.order(*TeamRank, &TeamCompare::cmp_drb);
-    if(ptr->option == "ast") m.order(*TeamRank, &TeamCompare::cmp_ast);
-    if(ptr->option == "stl") m.order(*TeamRank, &TeamCompare::cmp_stl);
-    if(ptr->option == "blk") m.order(*TeamRank, &TeamCompare::cmp_blk);
-    if(ptr->option == "tov") m.order(*TeamRank, &TeamCompare::cmp_tov);
-    if(ptr->option == "pf") m.order(*TeamRank, &TeamCompare::cmp_pf);
-    if(ptr->option == "pts") m.order(*TeamRank, &TeamCompare::cmp_pts);
+    tmpTeam = make_shared<vector<shared_ptr<team_avg>>>();
+    if(ptr->option == "g") m.order(*tmpTeam, &TeamCompare::cmp_g);
+    if(ptr->option == "wg") m.order(*tmpTeam, &TeamCompare::cmp_wg);
+    if(ptr->option == "lg") m.order(*tmpTeam, &TeamCompare::cmp_lg);
+    if(ptr->option == "fgper") m.order(*tmpTeam, &TeamCompare::cmp_fgper);
+    if(ptr->option == "fg") m.order(*tmpTeam, &TeamCompare::cmp_fg);
+    if(ptr->option == "fga") m.order(*tmpTeam, &TeamCompare::cmp_fga);
+    if(ptr->option == "threepper") m.order(*tmpTeam, &TeamCompare::cmp_threepper);
+    if(ptr->option == "threep") m.order(*tmpTeam, &TeamCompare::cmp_threep);
+    if(ptr->option == "threepa") m.order(*tmpTeam, &TeamCompare::cmp_threepa);
+    if(ptr->option == "ftper") m.order(*tmpTeam, &TeamCompare::cmp_ftper);
+    if(ptr->option == "ft") m.order(*tmpTeam, &TeamCompare::cmp_ft);
+    if(ptr->option == "fta") m.order(*tmpTeam, &TeamCompare::cmp_fta);
+    if(ptr->option == "ts") m.order(*tmpTeam, &TeamCompare::cmp_ts);
+    if(ptr->option == "trb") m.order(*tmpTeam, &TeamCompare::cmp_trb);
+    if(ptr->option == "orb") m.order(*tmpTeam, &TeamCompare::cmp_orb);
+    if(ptr->option == "drb") m.order(*tmpTeam, &TeamCompare::cmp_drb);
+    if(ptr->option == "ast") m.order(*tmpTeam, &TeamCompare::cmp_ast);
+    if(ptr->option == "stl") m.order(*tmpTeam, &TeamCompare::cmp_stl);
+    if(ptr->option == "blk") m.order(*tmpTeam, &TeamCompare::cmp_blk);
+    if(ptr->option == "tov") m.order(*tmpTeam, &TeamCompare::cmp_tov);
+    if(ptr->option == "pf") m.order(*tmpTeam, &TeamCompare::cmp_pf);
+    if(ptr->option == "pts") m.order(*tmpTeam, &TeamCompare::cmp_pts);
 }
 void viewModel::UpdateTeamRank()
 {
-    //if (tmpTeam != nullptr)
-    //*TeamRank = *tmpTeam;
+    *TeamRank = *tmpTeam;
 }
