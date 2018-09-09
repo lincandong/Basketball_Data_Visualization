@@ -42,6 +42,7 @@ struct team_avg {
 	string name;
 	string season;
 	float g;
+	vector<string> players;
     float wg;
     float lg;
     float fgper;
