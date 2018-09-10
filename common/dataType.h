@@ -41,8 +41,7 @@ struct player_avg {
 struct team_avg {
 	string name;
 	string season;
-	float g;
-	vector<string> players;
+    float g;
     float wg;
     float lg;
     float fgper;
@@ -64,13 +63,37 @@ struct team_avg {
     float tov;
     float pf;
     float pts;
+    vector<string> players;
 
     team_avg() {}
     team_avg(team_avg *ptr)
     {
-        memcpy(this, ptr, sizeof(team_avg));
-        this->players.resize(ptr->players.size());
-        copy(ptr->players.begin(), ptr->players.end(), this->players.begin());
+        name = ptr->name;
+        season = ptr->season;
+        g = ptr->g;
+        wg = ptr->wg;
+        lg = ptr->lg;
+        fgper = ptr->fgper;
+        fg = ptr->fg;
+        fga = ptr->fga;
+        threepper = ptr->threepper;
+        threep = ptr->threep;
+        threepa = ptr->threepa;
+        ftper = ptr->ftper;
+        ft = ptr->ft;
+        fta = ptr->fta;
+        ts = ptr->ts;
+        trb = ptr->trb;
+        orb = ptr->orb;
+        drb = ptr->drb;
+        ast = ptr->ast;
+        stl = ptr->stl;
+        blk = ptr->blk;
+        tov = ptr->tov;
+        pf = ptr->pf;
+        pts = ptr->pts;
+        for (vector<string>::iterator it = ptr->players.begin(); it != ptr->players.end(); it++)
+            players.push_back(*it);
     }
 };
 

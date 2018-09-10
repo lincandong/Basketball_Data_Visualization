@@ -98,7 +98,7 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
 void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_team)
 {
 	vector<string> files;
-    cf_findFileFromDir2("../teams/17-18", files);
+    cf_findFileFromDir2("../teams/17-18season", files);
 	char readBuffer[65536];
 	cout << "team" << endl;
 	for(auto& v : files)
@@ -267,6 +267,14 @@ void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, te
 	for(int i=0; i<15; i++)
     {
         p = make_shared<team_avg>(temp[i]);
+        ///
+        if (i == 0)
+        {
+            cout << &(p->players[0]) << endl;
+            cout << "next" << endl;
+            cout << &(temp[i]->players[0]) << endl;
+        }
+        ///
         teams.push_back(p);
 	}
 	snd.notify("team rank has been set");
