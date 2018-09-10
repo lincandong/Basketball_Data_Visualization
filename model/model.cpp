@@ -247,7 +247,7 @@ void model::team_data(string& name, shared_ptr<team_avg> t)
 void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))
 {
 	players.clear();
-    vector<player_avg*> temp = v_player[year];
+    vector<player_avg*> temp = v_player[2017 - year];
     shared_ptr<player_avg> p;
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
@@ -267,14 +267,6 @@ void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, te
 	for(int i=0; i<15; i++)
     {
         p = make_shared<team_avg>(temp[i]);
-        ///
-        if (i == 0)
-        {
-            cout << &(p->players[0]) << endl;
-            cout << "next" << endl;
-            cout << &(temp[i]->players[0]) << endl;
-        }
-        ///
         teams.push_back(p);
 	}
 	snd.notify("team rank has been set");
