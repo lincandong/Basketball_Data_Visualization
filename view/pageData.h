@@ -20,7 +20,7 @@ public:
     explicit pageData(QWidget *parent = 0);
     ~pageData();
 
-    void setTeamName(int value);
+    void setTeamName(string name);
     void initialize();
 
 signals:

@@ -9,10 +9,7 @@ void myLabel::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
         Q_UNUSED(event)
-    {
-        emit clicked(value);
         emit clickedForName(name);
-    }
 }
 
 void myLabel::setValue(int v)

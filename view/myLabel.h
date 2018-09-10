@@ -21,7 +21,6 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
 signals:
-    void clicked(int value);
     void clickedForName(string name);
 
 private:

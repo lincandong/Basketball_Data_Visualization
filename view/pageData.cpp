@@ -30,7 +30,7 @@ pageData::pageData(QWidget *parent) :
             qlabel->setPixmap(pix);
             qlabel->setScaledContents(true);
             qlabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-            qlabel->setValue(i * 5 + j);
+            qlabel->setName(teamName[i][j]);
             listLabel->push_back(qlabel);
             addLabel(qlabel, j * 2, i);
 
@@ -38,14 +38,14 @@ pageData::pageData(QWidget *parent) :
             qlabelName->setText(QString::fromStdString(teamName[i][j]));
             qlabelName->setAlignment(Qt::AlignVCenter);
             qlabelName->setAlignment(Qt::AlignHCenter);
-            qlabelName->setValue(i * 5 + j);
+            qlabel->setName(teamName[i][j]);
             listLabel->push_back(qlabelName);
             addLabel(qlabelName, j * 2 + 1, i);
         }
     }
 
     for (int i = 0; i < 60; i++)
-        connect(listLabel->at(i), &myLabel::clicked, this, &pageData::setTeamName);
+        connect(listLabel->at(i), &myLabel::clickedForName, this, &pageData::setTeamName);
 }
 
 pageData::~pageData()
@@ -53,13 +53,9 @@ pageData::~pageData()
     delete ui;
 }
 
-void pageData::setTeamName(int value)
+void pageData::setTeamName(string name)
 {
-    int i, j;
-    i = value / 5;
-    j = value % 5;
-
-   emit showPageTeam(teamName[i][j]);
+   emit showPageTeam(name);
 }
 
 

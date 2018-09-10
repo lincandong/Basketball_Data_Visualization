@@ -35,14 +35,8 @@ view::view(QWidget *parent) :
     connect(ui->actionStart, &QAction::triggered, this, &view::switchPageStart);
     connect(ui->actionRank, &QAction::triggered, this, &view::switchPageRank);
     connect(ui->actionData, &QAction::triggered, this, &view::switchPageData);
-
     connect(page_team, &pageTeam::showPagePlayer, this, &view::switchPagePlayer);
-
-    connect(page_data, &pageData::showPageTeam, page_team, &pageTeam::setName);
     connect(page_data, &pageData::showPageTeam, this, &view::switchPageTeam);
-
-    connect(page_team, &pageTeam::showPagePlayer, page_player, &pagePlayer::setName);
-    connect(page_team, &pageTeam::showPagePlayer, this, &view::switchPagePlayer);
 }
 
 view::~view()
@@ -82,36 +76,37 @@ void view::switchPageData()
     ui->stackedWidget->setCurrentWidget(page_data);
 }
 
-void view::switchPageTeam()
+void view::switchPageTeam(string name)
 {
-    system("pause");
     if (ui->stackedWidget->currentWidget() != page_team)
         ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_team);
 
+    page_team->setName(name);
     page_team->init();
 }
 
-void view::switchPagePlayer()
+void view::switchPagePlayer(string name)
 {
     if (ui->stackedWidget->currentWidget() != page_player)
         ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_player);
 
+    page_player->setName(name);
     page_player->init();
 }
 
 void view::setPlayerDataCommand(shared_ptr<command> ptr)
 {
     this->playerDataCommand = ptr;
+
+    page_player->setPlayerDataCommand(ptr);
 }
 
 void view::setPlayerRankCommand(shared_ptr<command> ptr)
 {
     this->playerRankCommand = ptr;
     page_rank->setPlayerRankCommand(ptr);
-
-    page_player->setPlayerDataCommand(ptr);
 }
 
 void view::setTeamDataCommand(shared_ptr<command> ptr)

@@ -42,7 +42,7 @@ void pageTeam::init()
     int size = teamData->at(0)->players.size();
     int row, col = 4;
 
-    if (size % row != 0)
+    if (size % col != 0)
         row = size / col + 1;
     else
         row = size / col;

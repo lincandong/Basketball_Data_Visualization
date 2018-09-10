@@ -36,8 +36,8 @@ public:
     void switchPageStart();
     void switchPageRank();
     void switchPageData();
-    void switchPageTeam();
-    void switchPagePlayer();
+    void switchPageTeam(string name);
+    void switchPagePlayer(string name);
 
     // set
     void setPlayerDataCommand(shared_ptr<command> ptr);

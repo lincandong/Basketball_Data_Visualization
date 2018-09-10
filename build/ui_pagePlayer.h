@@ -18,7 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -30,10 +30,9 @@ class Ui_pagePlayer
 public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
-    QSpacerItem *horizontalSpacer_2;
+    QVBoxLayout *verticalLayout_10;
     QLabel *labelPlayerPix;
     QLabel *labelPlayerName;
-    QSpacerItem *horizontalSpacer;
     QGridLayout *gridLayout;
     QPushButton *buttonAssisting;
     QPushButton *buttonFalut;
@@ -43,6 +42,9 @@ public:
     QPushButton *buttonThree;
     QPushButton *buttonPenalty;
     QPushButton *buttonBackboard;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_11;
     QStackedWidget *stackedWidget;
     QWidget *pageShoot;
     QVBoxLayout *verticalLayout_2;
@@ -78,27 +80,23 @@ public:
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_2);
-
+        verticalLayout_10 = new QVBoxLayout();
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
         labelPlayerPix = new QLabel(pagePlayer);
         labelPlayerPix->setObjectName(QStringLiteral("labelPlayerPix"));
-        labelPlayerPix->setMinimumSize(QSize(85, 110));
+        labelPlayerPix->setMinimumSize(QSize(220, 275));
+        labelPlayerPix->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout->addWidget(labelPlayerPix);
+        verticalLayout_10->addWidget(labelPlayerPix);
 
         labelPlayerName = new QLabel(pagePlayer);
         labelPlayerName->setObjectName(QStringLiteral("labelPlayerName"));
+        labelPlayerName->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout->addWidget(labelPlayerName);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
+        verticalLayout_10->addWidget(labelPlayerName);
 
 
-        verticalLayout->addLayout(horizontalLayout);
+        horizontalLayout->addLayout(verticalLayout_10);
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
@@ -143,9 +141,20 @@ public:
         gridLayout->addWidget(buttonBackboard, 0, 3, 1, 1);
 
 
-        verticalLayout->addLayout(gridLayout);
+        horizontalLayout->addLayout(gridLayout);
 
-        stackedWidget = new QStackedWidget(pagePlayer);
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        scrollArea = new QScrollArea(pagePlayer);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 580, 69));
+        verticalLayout_11 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        stackedWidget = new QStackedWidget(scrollAreaWidgetContents);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         pageShoot = new QWidget();
         pageShoot->setObjectName(QStringLiteral("pageShoot"));
@@ -228,11 +237,13 @@ public:
 
         stackedWidget->addWidget(pageVictory);
 
-        verticalLayout->addWidget(stackedWidget);
+        verticalLayout_11->addWidget(stackedWidget);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout->addWidget(scrollArea);
 
         verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(1, 1);
-        verticalLayout->setStretch(2, 10);
 
         retranslateUi(pagePlayer);
 

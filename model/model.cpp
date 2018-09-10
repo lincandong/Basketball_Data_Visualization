@@ -153,7 +153,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 	vector<string> files;
     cf_findFileFromDir2("../teams/17-18season", files);
 	char readBuffer[65536];
-	cout << "team" << endl;
+    //cout << "team" << endl;
 	for(auto& v : files)
     {
 		FILE* fp = fopen(v.c_str(), "rb");

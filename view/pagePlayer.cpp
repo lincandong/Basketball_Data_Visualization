@@ -26,11 +26,15 @@ pagePlayer::~pagePlayer()
 void pagePlayer::init()
 {
     ui->labelPlayerName->setText(QString::fromStdString(name.c_str()));
-    /*QPixmap pix(":/gif/gif/1717.jpg");
-    pix = pix.scaled(85, 110);
-    ui->labelPlayerPix->setPixmap(pix);
-*/
-    para = make_shared<dataParameter>(name, "fgper", "17", "17");
+    QString filename = ":/full/full/";
+    filename.append(QString::fromStdString(name));
+    filename.append(".jpg");
+    QPixmap *pix = new QPixmap(filename);
+    if (pix->data_ptr() == nullptr)
+        pix = new QPixmap(QString::fromStdString(":/full/full/默认.jpg"));
+    ui->labelPlayerPix->setPixmap(*pix);
+
+    para = make_shared<dataParameter>(name, "fgper", "2017", "2017");
     showShoot();
 }
 
@@ -38,7 +42,7 @@ void pagePlayer::showShoot()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageShoot)
         ui->stackedWidget->setCurrentWidget(ui->pageShoot);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "fgper";
     playerDataCommand->setParameter(para);
@@ -88,15 +92,15 @@ void pagePlayer::showShoot()
     view3->setChart(chart3);
 
     ui->layoutShoot->addWidget(view1, 0, 0);
-    ui->layoutShoot->addWidget(view2, 0, 1);
-    ui->layoutShoot->addWidget(view3, 1, 0);
+    ui->layoutShoot->addWidget(view2, 1, 0);
+    ui->layoutShoot->addWidget(view3, 2, 0);
 }
 
 void pagePlayer::showThree()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageThree)
         ui->stackedWidget->setCurrentWidget(ui->pageThree);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "threepper";
     playerDataCommand->setParameter(para);
@@ -148,15 +152,15 @@ void pagePlayer::showThree()
     view3->setChart(chart3);
 
     ui->layoutThree->addWidget(view1, 0, 0);
-    ui->layoutThree->addWidget(view2, 0, 1);
-    ui->layoutThree->addWidget(view3, 1, 0);
+    ui->layoutThree->addWidget(view2, 1, 0);
+    ui->layoutThree->addWidget(view3, 2, 0);
 }
 
 void pagePlayer::showPenalty()
 {
     if (ui->stackedWidget->currentWidget() != ui->pagePenalty)
         ui->stackedWidget->setCurrentWidget(ui->pagePenalty);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "ftper";
     playerDataCommand->setParameter(para);
@@ -208,15 +212,15 @@ void pagePlayer::showPenalty()
     view3->setChart(chart3);
 
     ui->layoutPenalty->addWidget(view1, 0, 0);
-    ui->layoutPenalty->addWidget(view2, 0, 1);
-    ui->layoutPenalty->addWidget(view3, 1, 0);
+    ui->layoutPenalty->addWidget(view2, 1, 0);
+    ui->layoutPenalty->addWidget(view3, 2, 0);
 }
 
 void pagePlayer::showBackboard()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageBackboard)
         ui->stackedWidget->setCurrentWidget(ui->pageBackboard);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "trb";
     playerDataCommand->setParameter(para);
@@ -268,15 +272,15 @@ void pagePlayer::showBackboard()
     view3->setChart(chart3);
 
     ui->layoutBackboard->addWidget(view1, 0, 0);
-    ui->layoutBackboard->addWidget(view2, 0, 1);
-    ui->layoutBackboard->addWidget(view3, 1, 0);
+    ui->layoutBackboard->addWidget(view2, 1, 0);
+    ui->layoutBackboard->addWidget(view3, 2, 0);
 }
 
 void pagePlayer::showAssisting()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageAssisting)
         ui->stackedWidget->setCurrentWidget(ui->pageAssisting);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "ast";
     playerDataCommand->setParameter(para);
@@ -328,15 +332,15 @@ void pagePlayer::showAssisting()
      view3->setChart(chart3);
 
      ui->layoutAssisting->addWidget(view1, 0, 0);
-     ui->layoutAssisting->addWidget(view2, 0, 1);
-     ui->layoutAssisting->addWidget(view3, 1, 0);
+     ui->layoutAssisting->addWidget(view2, 1, 0);
+     ui->layoutAssisting->addWidget(view3, 2, 0);
 }
 
 void pagePlayer::showFalut()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageFalut)
         ui->stackedWidget->setCurrentWidget(ui->pageFalut);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(1000);
     // modify parameter and send command
     para->option = "tov";
     playerDataCommand->setParameter(para);
@@ -380,14 +384,14 @@ void pagePlayer::showFalut()
      view2->setChart(chart2);
 
      ui->layoutFalut->addWidget(view1, 0, 0);
-     ui->layoutFalut->addWidget(view2, 0, 1);
+     ui->layoutFalut->addWidget(view2, 1, 0);
 }
 
 void pagePlayer::showScore()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageScore)
         ui->stackedWidget->setCurrentWidget(ui->pageScore);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(500);
     // modify parameter and send command
     para->option = "pts";
     playerDataCommand->setParameter(para);
@@ -429,7 +433,7 @@ void pagePlayer::showVictory()
 {
     if (ui->stackedWidget->currentWidget() != ui->pageVictory)
         ui->stackedWidget->setCurrentWidget(ui->pageVictory);
-
+    ui->scrollAreaWidgetContents->setMinimumHeight(1000);
     // modify parameter and send command
     para->option = "wg";
     playerDataCommand->setParameter(para);
@@ -473,7 +477,7 @@ void pagePlayer::showVictory()
      view2->setChart(chart2);
 
      ui->layoutVictory->addWidget(view1, 0, 0);
-     ui->layoutVictory->addWidget(view2, 0, 1);
+     ui->layoutVictory->addWidget(view2, 1, 0);
 }
 
 void pagePlayer::setPlayerDataCommand(shared_ptr<command> ptr)
