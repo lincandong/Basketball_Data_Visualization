@@ -24,7 +24,7 @@ public:
     void initialize();
 
 signals:
-    void showPageTeam(QString name);
+    void showPageTeam(string name);
 
 private:
     Ui::pageData *ui;

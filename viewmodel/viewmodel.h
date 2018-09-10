@@ -19,7 +19,8 @@ private:
     shared_ptr<vector<shared_ptr<team_avg>>> TeamRank;
     //temp variables storing updated value
     shared_ptr<vector<shared_ptr<player_avg>>> tmpPlayer;
-    shared_ptr<vector<shared_ptr<team_avg>>> tmpTeam;
+    //shared_ptr<vector<shared_ptr<team_avg>>> tmpTeam;
+    shared_ptr<team_avg> tmpTeam;
 
     shared_ptr<receiverFromModel> receiveModel;
     //shared_ptr<receiverFromView> receiveView;

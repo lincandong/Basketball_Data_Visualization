@@ -26,14 +26,14 @@ public:
 
     void setPlayerDataCommand(shared_ptr<command> ptr);
     void setPlayer(shared_ptr<vector<shared_ptr<player_avg>>> player);
-    void setName(QString name);
+    void setName(string name);
 
     void init();
 
 private:
     Ui::pagePlayer *ui;
 
-    QString name;
+    string name;
 
     shared_ptr<command> playerDataCommand;
     shared_ptr<vector<shared_ptr<player_avg>>> player;

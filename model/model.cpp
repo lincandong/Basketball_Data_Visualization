@@ -10,6 +10,60 @@ void model::InitSender(shared_ptr<receiverFromModel> ptr)
 {
     snd.add(ptr);
 }
+///
+std::string model::UTF8_To_string(const std::string & str)
+{
+int nwLen = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, NULL, 0);
+
+wchar_t * pwBuf = new wchar_t[nwLen + 1];//一定要加1，不然会出现尾巴
+memset(pwBuf, 0, nwLen * 2 + 2);
+
+MultiByteToWideChar(CP_UTF8, 0, str.c_str(), str.length(), pwBuf, nwLen);
+
+int nLen = WideCharToMultiByte(CP_ACP, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
+
+char * pBuf = new char[nLen + 1];
+memset(pBuf, 0, nLen + 1);
+
+WideCharToMultiByte(CP_ACP, 0, pwBuf, nwLen, pBuf, nLen, NULL, NULL);
+
+std::string retStr = pBuf;
+
+delete []pBuf;
+delete []pwBuf;
+
+pBuf = NULL;
+pwBuf = NULL;
+
+return retStr;
+}
+std::string model::string_To_UTF8(const std::string & str)
+{
+int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
+
+wchar_t * pwBuf = new wchar_t[nwLen + 1];//一定要加1，不然会出现尾巴
+ZeroMemory(pwBuf, nwLen * 2 + 2);
+
+::MultiByteToWideChar(CP_ACP, 0, str.c_str(), str.length(), pwBuf, nwLen);
+
+int nLen = ::WideCharToMultiByte(CP_UTF8, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
+
+char * pBuf = new char[nLen + 1];
+ZeroMemory(pBuf, nLen + 1);
+
+::WideCharToMultiByte(CP_UTF8, 0, pwBuf, nwLen, pBuf, nLen, NULL, NULL);
+
+std::string retStr(pBuf);
+
+delete []pwBuf;
+delete []pBuf;
+
+pwBuf = NULL;
+pBuf  = NULL;
+
+return retStr;
+}
+///
 void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 {
 	files.clear();
@@ -23,9 +77,8 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 		do
 		{
 			if (!(fileinfo.attrib & _A_SUBDIR))
-			{
-				char filename[_MAX_PATH];
-				files.push_back(fileinfo.name);
+            {
+                files.push_back(fileinfo.name);
 			}
 		} while (_findnext(hFile, &fileinfo) == 0);
 		_findclose(hFile);
@@ -38,7 +91,7 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
 	cf_findFileFromDir2("../NBA/data/players", files2);
 	char readBuffer[65536];
 	for(auto& v : files2)
-	{
+    {
 		vector<player_avg*> temp;
 		FILE* fp = fopen(v.c_str(), "rb");
 		rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
@@ -50,7 +103,7 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
             for (auto& a : d.GetArray())
             {
                 player_avg* p = new player_avg;
-                p->name = v;
+                p->name = string_To_UTF8(v);
                 p->season = a["season"][0].GetString();
                 p->tm = a["tm"][0].GetString();
                 p->ast = atof(a["ast"][0].GetString());
@@ -88,7 +141,7 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
                 if(p->season == "13-14")
                     s[4].push_back(p);
             }
-		m[v] = temp;
+        m[string_To_UTF8(v)] = temp;
 		fclose(fp);
 	}
 	//cout << m["�ղ���-ղķ˹"][2]->pts << endl;
@@ -102,7 +155,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 	char readBuffer[65536];
 	cout << "team" << endl;
 	for(auto& v : files)
-	{
+    {
 		FILE* fp = fopen(v.c_str(), "rb");
 		rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
 		rapidjson::Document d;
@@ -121,7 +174,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 		{
 			if(a.HasMember("pts"))
 			{
-			p->name = v;
+            p->name = string_To_UTF8(v);
 			//p->season = a["season"].GetString();
 			p->ast = atof(a["ast"][0].GetString());
 			p->blk = atof(a["blk"][0].GetString());
@@ -145,7 +198,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 			p->threepper = p->threep / p->threepa * 1.0;
             p->ftper = p->ft / p->fta * 1.0;
             v_team.push_back(p);
-            m[v] = p;
+            m[string_To_UTF8(v)] = p;
 			}
             if (a.HasMember("name"))
             {
@@ -238,10 +291,13 @@ void model::player_data(string& name, string& begin, string& end, shared_ptr<pla
 	snd.notify("player has been set");
 }
 
-void model::team_data(string& name, shared_ptr<team_avg> t)
+shared_ptr<team_avg> model::team_data(string& name)
 {
-	t = (shared_ptr<team_avg>)m_team[name];
+    string str = name;
+    str.append("队");
+    shared_ptr<team_avg> t = make_shared<team_avg>(m_team[str]);
 	snd.notify("team has been set");
+    return t;
 }
 
 void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))

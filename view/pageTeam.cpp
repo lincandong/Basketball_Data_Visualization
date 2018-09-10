@@ -8,6 +8,7 @@ pageTeam::pageTeam(QWidget *parent) :
     ui(new Ui::pageTeam)
 {
     ui->setupUi(this);
+    listLabel = new QList<myLabel *>;
 
     // team data
     connect(ui->buttonShoot, &QPushButton::clicked, this, &pageTeam::showShoot);
@@ -28,20 +29,20 @@ pageTeam::~pageTeam()
 void pageTeam::init()
 {
     QString str = ":/gif/gif/";
-    str.append(name);
+    str.append(QString::fromStdString(name));
     str.append(".gif");
     QPixmap pix(str);
     ui->labelTeamPix->setPixmap(pix);
-    ui->labelTeamEn->setText(name);
+    ui->labelTeamEn->setText(QString::fromStdString(name));
 
-    para = make_shared<dataParameter>(name.toStdString(), "fgper", "17", "17");
+    para = make_shared<dataParameter>(name, "fgper", "17", "17");
     showShoot();
 
     // initialize players
     int size = teamData->at(0)->players.size();
-    int row, col = 5;
+    int row, col = 4;
 
-    if (size % col != 0)
+    if (size % row != 0)
         row = size / col + 1;
     else
         row = size / col;
@@ -50,14 +51,13 @@ void pageTeam::init()
     {
         for (int j = 0; j < col && i * col + j < size; j++)
         {
-            QString name = ":/gif/full/";
-            QString temp = QString::fromLocal8Bit(((teamData->at(0)->players).at(i * col + j).c_str()));
-            name.append(temp);
+            QString name = ":/full/full/";
+            string temp = (teamData->at(0)->players).at(i * col + j);
+            name.append(QString::fromStdString(temp));
             name.append(".jpg");
             QPixmap *pix = new QPixmap(name);
-            if (pix == nullptr)
-                pix = new QPixmap(QString::fromLocal8Bit(":/gif/full/默认.jpg"));
-
+            if (pix->data_ptr() == nullptr)
+                pix = new QPixmap(QString::fromStdString(":/full/full/默认.jpg"));
             myLabel *qlabel = new myLabel;
             qlabel->setPixmap(*pix);
             qlabel->setScaledContents(true);
@@ -65,20 +65,21 @@ void pageTeam::init()
             qlabel->setValue(i * col + j);
             qlabel->setName(temp);
             listLabel->push_back(qlabel);
-            addLabel(qlabel, j * 2, i);
+            addLabel(qlabel, i * 2, j);
 
             myLabel *qlabelName = new myLabel;
-            qlabelName->setText(temp);
+            qlabelName->setText(QString::fromStdString(temp));
             qlabelName->setAlignment(Qt::AlignVCenter);
             qlabelName->setAlignment(Qt::AlignHCenter);
             qlabelName->setValue(i * col + j);
             listLabel->push_back(qlabelName);
-            addLabel(qlabel, j * 2 + 1, i);
+            addLabel(qlabelName, i * 2 + 1, j);
         }
     }
+    ui->scrollAreaWidgetContents->setMinimumHeight(size * 80);
 
     for (int i = 0; i < 2 * size; i++)
-        connect(listLabel->at(0), &myLabel::clickedForName, this, &pageTeam::setPlayerName);
+        connect(listLabel->at(i), &myLabel::clickedForName, this, &pageTeam::setPlayerName);
 }
 
 void pageTeam::addLabel(myLabel *label, int row, int col)
@@ -539,12 +540,12 @@ void pageTeam::setTeamDataCommand(shared_ptr<command> ptr)
     teamDataCommand = ptr;
 }
 
-void pageTeam::setName(QString name)
+void pageTeam::setName(string name)
 {
     this->name = name;
 }
 
-void pageTeam::setPlayerName(QString name)
+void pageTeam::setPlayerName(string name)
 {
    emit showPagePlayer(name);
 }

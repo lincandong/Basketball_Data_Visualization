@@ -29,19 +29,19 @@ public:
     explicit pageTeam(QWidget *parent = 0);
     ~pageTeam();
 
-    void setName(QString name);
+    void setName(string name);
     void setTeam(shared_ptr<vector<shared_ptr<team_avg>>> ptr);
     void setTeamDataCommand(shared_ptr<command> ptr);
-    void setPlayerName(QString name);
+    void setPlayerName(string name);
 
     void init();
 
 signals:
-    void showPagePlayer(QString name);
+    void showPagePlayer(string name);
 
 private:
     Ui::pageTeam *ui;
-    QString name;
+    string name;
 
     shared_ptr<dataParameter> para;
 

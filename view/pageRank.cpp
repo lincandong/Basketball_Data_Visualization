@@ -64,7 +64,7 @@ void pageRank::showShoot()
             *set1 << (*iter)->fgper;
             *set2 << (*iter)->fg;
             *set3 << (*iter)->fga;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -75,7 +75,7 @@ void pageRank::showShoot()
             *set1 << (*iter)->fgper;
             *set2 << (*iter)->fg;
             *set3 << (*iter)->fga;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }
@@ -168,7 +168,7 @@ void pageRank::showThree()
             *set1 << (*iter)->threepper;
             *set2 << (*iter)->threep;
             *set3 << (*iter)->threepa;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -179,7 +179,7 @@ void pageRank::showThree()
             *set1 << (*iter)->threepper;
             *set2 << (*iter)->threep;
             *set3 << (*iter)->threepa;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }
@@ -273,7 +273,7 @@ void pageRank::showPenalty()
             *set1 << (*iter)->ftper;
             *set2 << (*iter)->ft;
             *set3 << (*iter)->fta;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -284,7 +284,7 @@ void pageRank::showPenalty()
             *set1 << (*iter)->ftper;
             *set2 << (*iter)->ft;
             *set3 << (*iter)->fta;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }
@@ -378,7 +378,7 @@ void pageRank::showBackboard()
             *set1 << (*iter)->trb;
             *set2 << (*iter)->orb;
             *set3 << (*iter)->drb;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -389,7 +389,7 @@ void pageRank::showBackboard()
             *set1 << (*iter)->trb;
             *set2 << (*iter)->orb;
             *set3 << (*iter)->drb;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }
@@ -483,7 +483,7 @@ void pageRank::showAssisting()
             *set1 << (*iter)->ast;
             *set2 << (*iter)->stl;
             *set3 << (*iter)->blk;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -494,7 +494,7 @@ void pageRank::showAssisting()
             *set1 << (*iter)->ast;
             *set2 << (*iter)->stl;
             *set3 << (*iter)->blk;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }
@@ -586,7 +586,7 @@ void pageRank::showFalut()
         {
             *set1 << (*iter)->tov;
             *set2 << (*iter)->pf;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -596,7 +596,7 @@ void pageRank::showFalut()
         {
             *set1 << (*iter)->tov;
             *set2 << (*iter)->pf;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }
@@ -671,14 +671,14 @@ void pageRank::showScore()
         vector<shared_ptr<team_avg>>::iterator iter;
         for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
             *set1 << (*iter)->pts;
-        categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+        categories << QString::fromStdString((*iter)->name);
     }
     else
     {
         vector<shared_ptr<player_avg>>::iterator iter;
         for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
             *set1 << (*iter)->pts;
-        categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+        categories << QString::fromStdString((*iter)->name);
 
     }
     QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
@@ -742,7 +742,7 @@ void pageRank::showVictory()
         {
             *set1 << (*iter)->wg;
             *set2 << (*iter)->lg;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
     }
     else
@@ -752,7 +752,7 @@ void pageRank::showVictory()
         {
             *set1 << (*iter)->w;
             *set2 << (*iter)->l;
-            categories << QString::fromLocal8Bit(((*iter)->name).c_str());
+            categories << QString::fromStdString((*iter)->name);
         }
 
     }

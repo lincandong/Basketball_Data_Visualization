@@ -129,15 +129,15 @@ void viewModel::RequestTeamData(shared_ptr<dataParameter> ptr)
     //if request a team's one year data
     if(ptr->begin == ptr->end)
     {
-        tmpTeam = make_shared<vector<shared_ptr<team_avg>>>();
-        tmpTeam->push_back(make_shared<team_avg>());
-        m.team_data(ptr->name, (*tmpTeam)[0]);
+        //tmpTeam = make_shared<vector<shared_ptr<team_avg>>>();
+        //tmpTeam->push_back(make_shared<team_avg>());
+        tmpTeam = m.team_data(ptr->name);
     }
 }
 void viewModel::UpdateTeamData()
 {
     if (tmpTeam != nullptr)
-    *TeamData = *tmpTeam;
+    TeamData->push_back(tmpTeam);
 }
 void viewModel::RequestTeamRank(shared_ptr<rankParameter> ptr)
 {

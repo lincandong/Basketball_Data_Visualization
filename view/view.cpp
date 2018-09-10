@@ -84,6 +84,7 @@ void view::switchPageData()
 
 void view::switchPageTeam()
 {
+    system("pause");
     if (ui->stackedWidget->currentWidget() != page_team)
         ui->stackedWidget->currentWidget()->hide();
     ui->stackedWidget->setCurrentWidget(page_team);

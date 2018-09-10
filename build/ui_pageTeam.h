@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
@@ -76,6 +77,9 @@ public:
     QGridLayout *layoutVictory;
     QWidget *tab_2;
     QVBoxLayout *verticalLayout_3;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_12;
     QGridLayout *layoutPlayers;
 
     void setupUi(QWidget *pageTeam)
@@ -260,10 +264,23 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         verticalLayout_3 = new QVBoxLayout(tab_2);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        scrollArea = new QScrollArea(tab_2);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 537, 2000));
+        scrollAreaWidgetContents->setMinimumSize(QSize(0, 2000));
+        verticalLayout_12 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_12->setObjectName(QStringLiteral("verticalLayout_12"));
         layoutPlayers = new QGridLayout();
         layoutPlayers->setObjectName(QStringLiteral("layoutPlayers"));
 
-        verticalLayout_3->addLayout(layoutPlayers);
+        verticalLayout_12->addLayout(layoutPlayers);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        verticalLayout_3->addWidget(scrollArea);
 
         tabWidget->addTab(tab_2, QString());
 

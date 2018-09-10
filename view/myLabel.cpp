@@ -2,14 +2,17 @@
 
 myLabel::myLabel()
 {
-
+    name = " ";
 }
 
 void myLabel::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
         Q_UNUSED(event)
-            emit clicked(value);
+    {
+        emit clicked(value);
+        emit clickedForName(name);
+    }
 }
 
 void myLabel::setValue(int v)
@@ -22,12 +25,12 @@ int myLabel::getValue() const
     return value;
 }
 
-void myLabel::setName(QString name)
+void myLabel::setName(string name)
 {
     this->name = name;
 }
 
-QString myLabel::getName() const
+string myLabel::getName() const
 {
     return name;
 }

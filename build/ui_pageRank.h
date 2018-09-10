@@ -286,6 +286,9 @@ public:
 
         retranslateUi(pageRank);
 
+        stackedWidget->setCurrentIndex(1);
+
+
         QMetaObject::connectSlotsByName(pageRank);
     } // setupUi
 

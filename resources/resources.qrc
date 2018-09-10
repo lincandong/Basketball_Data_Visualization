@@ -21,7 +21,6 @@
         <file>gif/密尔沃基雄鹿.gif</file>
         <file>gif/明尼苏达森林狼.gif</file>
         <file>gif/纽约尼克斯.gif</file>
-        <file>gif/萨特拉门托国王.gif</file>
         <file>gif/圣安东尼奥马刺.gif</file>
         <file>gif/夏洛特黄蜂.gif</file>
         <file>gif/新奥尔良鹈鹕.gif</file>
@@ -30,6 +29,7 @@
         <file>gif/印第安纳步行者.gif</file>
         <file>gif/犹他爵士.gif</file>
         <file>gif/芝加哥公牛.gif</file>
+        <file>gif/萨克拉门托国王.gif</file>
     </qresource>
     <qresource prefix="/full">
         <file>full/C.J. Miles.jpg</file>

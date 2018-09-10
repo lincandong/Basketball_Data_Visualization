@@ -3,6 +3,8 @@
 
 #include <QLabel>
 #include <QMouseEvent>
+#include <string>
+using namespace std;
 
 class myLabel : public QLabel
 {
@@ -12,19 +14,19 @@ public:
     myLabel();
     void setValue(int v);
     int getValue() const;
-    void setName(QString name);
-    QString getName() const;
+    void setName(string name);
+    string getName() const;
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
 signals:
     void clicked(int value);
-    void clickedForName(QString name);
+    void clickedForName(string name);
 
 private:
     int value;
-    QString name;
+    string name;
 };
 
 #endif // MYLABEL_H

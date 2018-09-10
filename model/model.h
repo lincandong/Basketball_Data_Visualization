@@ -18,6 +18,9 @@ private:
 	vector<vector<player_avg*>> v_player;
 	vector<team_avg*> v_team;
 
+    std::string UTF8_To_string(const std::string & str);
+    std::string string_To_UTF8(const std::string & str);
+
 public:
 	model();
     ~model() = default;
@@ -28,7 +31,7 @@ public:
 	//load one player's statistical data(avg etc.)
 	void player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p);
 	//load a team's statistical data
-	void team_data(string& name, shared_ptr<team_avg> t);
+    shared_ptr<team_avg> team_data(string& name);
 	//load the player rank of a specified entry in one year(top 15) 
 	void order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*));
     //load the team rank in 17-18 season

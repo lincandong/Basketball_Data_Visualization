@@ -25,12 +25,12 @@ pagePlayer::~pagePlayer()
 
 void pagePlayer::init()
 {
-    ui->labelPlayerName->setText(name);
+    ui->labelPlayerName->setText(QString::fromStdString(name.c_str()));
     /*QPixmap pix(":/gif/gif/1717.jpg");
     pix = pix.scaled(85, 110);
     ui->labelPlayerPix->setPixmap(pix);
 */
-    para = make_shared<dataParameter>(name.toStdString(), "fgper", "17", "17");
+    para = make_shared<dataParameter>(name, "fgper", "17", "17");
     showShoot();
 }
 
@@ -486,7 +486,7 @@ void pagePlayer::setPlayer(shared_ptr<vector<shared_ptr<player_avg>> > player)
     this->player = player;
 }
 
-void pagePlayer::setName(QString name)
+void pagePlayer::setName(string name)
 {
     this->name = name;
 }
