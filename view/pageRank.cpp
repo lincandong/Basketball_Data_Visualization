@@ -39,7 +39,7 @@ void pageRank::showShoot()
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "fgper";
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -58,24 +58,24 @@ void pageRank::showShoot()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter >= teamRank->begin(); iter--)
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
         {
-            *set1 << (*iter)->fgper;
-            *set2 << (*iter)->fg;
-            *set3 << (*iter)->fga;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->fgper;
+            *set2 << (*riter)->fg;
+            *set3 << (*riter)->fga;
+            categories << QString::fromStdString((*riter)->name);
         }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
         {
-            *set1 << (*iter)->fgper;
-            *set2 << (*iter)->fg;
-            *set3 << (*iter)->fga;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->fgper;
+            *set2 << (*riter)->fg;
+            *set3 << (*riter)->fga;
+            categories << QString::fromStdString((*riter)->name);
         }
 
     }
@@ -143,7 +143,7 @@ void pageRank::showThree()
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "threepper";
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -162,24 +162,24 @@ void pageRank::showThree()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
         {
-            *set1 << (*iter)->threepper;
-            *set2 << (*iter)->threep;
-            *set3 << (*iter)->threepa;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->threepper;
+            *set2 << (*riter)->threep;
+            *set3 << (*riter)->threepa;
+            categories << QString::fromStdString((*riter)->name);
         }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
         {
-            *set1 << (*iter)->threepper;
-            *set2 << (*iter)->threep;
-            *set3 << (*iter)->threepa;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->threepper;
+            *set2 << (*riter)->threep;
+            *set3 << (*riter)->threepa;
+            categories << QString::fromStdString((*riter)->name);
         }
 
     }
@@ -248,7 +248,7 @@ void pageRank::showPenalty()
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "ftper";
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -267,24 +267,24 @@ void pageRank::showPenalty()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
         {
-            *set1 << (*iter)->ftper;
-            *set2 << (*iter)->ft;
-            *set3 << (*iter)->fta;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->ftper;
+            *set2 << (*riter)->ft;
+            *set3 << (*riter)->fta;
+            categories << QString::fromStdString((*riter)->name);
         }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
         {
-            *set1 << (*iter)->ftper;
-            *set2 << (*iter)->ft;
-            *set3 << (*iter)->fta;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->ftper;
+            *set2 << (*riter)->ft;
+            *set3 << (*riter)->fta;
+            categories << QString::fromStdString((*riter)->name);
         }
 
     }
@@ -353,7 +353,7 @@ void pageRank::showBackboard()
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "trb";
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -372,24 +372,24 @@ void pageRank::showBackboard()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
         {
-            *set1 << (*iter)->trb;
-            *set2 << (*iter)->orb;
-            *set3 << (*iter)->drb;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->trb;
+            *set2 << (*riter)->orb;
+            *set3 << (*riter)->drb;
+            categories << QString::fromStdString((*riter)->name);
         }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
         {
-            *set1 << (*iter)->trb;
-            *set2 << (*iter)->orb;
-            *set3 << (*iter)->drb;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->trb;
+            *set2 << (*riter)->orb;
+            *set3 << (*riter)->drb;
+            categories << QString::fromStdString((*riter)->name);
         }
 
     }
@@ -458,7 +458,7 @@ void pageRank::showAssisting()
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "ast";
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -477,24 +477,24 @@ void pageRank::showAssisting()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
         {
-            *set1 << (*iter)->ast;
-            *set2 << (*iter)->stl;
-            *set3 << (*iter)->blk;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->ast;
+            *set2 << (*riter)->stl;
+            *set3 << (*riter)->blk;
+            categories << QString::fromStdString((*riter)->name);
         }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
         {
-            *set1 << (*iter)->ast;
-            *set2 << (*iter)->stl;
-            *set3 << (*iter)->blk;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->ast;
+            *set2 << (*riter)->stl;
+            *set3 << (*riter)->blk;
+            categories << QString::fromStdString((*riter)->name);
         }
 
     }
@@ -563,7 +563,7 @@ void pageRank::showFalut()
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
     // modify parameter and send command
     para->option = "tov";
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -581,22 +581,22 @@ void pageRank::showFalut()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
         {
-            *set1 << (*iter)->tov;
-            *set2 << (*iter)->pf;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->tov;
+            *set2 << (*riter)->pf;
+            categories << QString::fromStdString((*riter)->name);
         }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
         {
-            *set1 << (*iter)->tov;
-            *set2 << (*iter)->pf;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->tov;
+            *set2 << (*riter)->pf;
+            categories << QString::fromStdString((*riter)->name);
         }
 
     }
@@ -651,7 +651,7 @@ void pageRank::showScore()
     ui->scrollAreaWidgetContents->setMinimumHeight(500);
     // modify parameter and send command
     para->option = "pts";
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         teamRankCommand->setParameter(para);
@@ -668,18 +668,21 @@ void pageRank::showScore()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
-            *set1 << (*iter)->pts;
-        categories << QString::fromStdString((*iter)->name);
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
+        {
+            *set1 << (*riter)->pts;
+            categories << QString::fromStdString((*riter)->name);
+        }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin() + 14; iter != playerRank->begin(); iter--)
-            *set1 << (*iter)->pts;
-        categories << QString::fromStdString((*iter)->name);
-
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
+        {
+            *set1 << (*riter)->pts;
+            categories << QString::fromStdString((*riter)->name);
+        }
     }
     QHorizontalBarSeries *series1 = new QHorizontalBarSeries;
     series1->append(set1);
@@ -717,7 +720,7 @@ void pageRank::showVictory()
         ui->stackedWidget->setCurrentWidget(ui->pageVictory);
     ui->scrollAreaWidgetContents->setMinimumHeight(1000);
     // modify parameter and send command
-    para->season = ui->boxSeason->value();
+    para->season = 2017;
     if (isTeam == true)
     {
         para->option = "wg";
@@ -737,22 +740,22 @@ void pageRank::showVictory()
     QStringList categories;
     if (isTeam)
     {
-        vector<shared_ptr<team_avg>>::iterator iter;
-        for (iter = teamRank->begin() + 14; iter != teamRank->begin(); iter--)
+        vector<shared_ptr<team_avg>>::reverse_iterator riter;
+        for (riter = teamRank->rbegin(); riter != teamRank->rend(); riter++)
         {
-            *set1 << (*iter)->wg;
-            *set2 << (*iter)->lg;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->wg;
+            *set2 << (*riter)->lg;
+            categories << QString::fromStdString((*riter)->name);
         }
     }
     else
     {
-        vector<shared_ptr<player_avg>>::iterator iter;
-        for (iter = playerRank->begin(); iter != playerRank->begin(); iter--)
+        vector<shared_ptr<player_avg>>::reverse_iterator riter;
+        for (riter = playerRank->rbegin(); riter != playerRank->rend(); riter++)
         {
-            *set1 << (*iter)->w;
-            *set2 << (*iter)->l;
-            categories << QString::fromStdString((*iter)->name);
+            *set1 << (*riter)->w;
+            *set2 << (*riter)->l;
+            categories << QString::fromStdString((*riter)->name);
         }
 
     }
@@ -819,23 +822,6 @@ void pageRank::setPlayerRank(shared_ptr<vector<shared_ptr<player_avg>>> playerRa
 void pageRank::setTeamRank(shared_ptr<vector<shared_ptr<team_avg>>> teamRank)
 {
     this->teamRank = teamRank;
-}
-
-void pageRank::on_boxSeason_valueChanged(int arg1)
-{
-    if (isTeam == true)
-    {
-        para->season = arg1;
-
-        teamRankCommand->setParameter(para);
-        teamRankCommand->action();
-    }
-    else
-    {
-        para->season = arg1;
-        playerRankCommand->setParameter(para);
-        playerRankCommand->action();
-    }
 }
 
 void pageRank::on_buttonTeam_clicked()

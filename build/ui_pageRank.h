@@ -16,11 +16,9 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -44,10 +42,6 @@ public:
     QPushButton *buttonThree;
     QPushButton *buttonPenalty;
     QPushButton *buttonAssisting;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label;
-    QSpinBox *boxSeason;
-    QSpacerItem *horizontalSpacer_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QVBoxLayout *verticalLayout_2;
@@ -155,32 +149,6 @@ public:
 
         verticalLayout->addLayout(gridLayout);
 
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(pageRank);
-        label->setObjectName(QStringLiteral("label"));
-        label->setMinimumSize(QSize(70, 0));
-        label->setTextFormat(Qt::AutoText);
-        label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        horizontalLayout->addWidget(label);
-
-        boxSeason = new QSpinBox(pageRank);
-        boxSeason->setObjectName(QStringLiteral("boxSeason"));
-        boxSeason->setMinimumSize(QSize(100, 0));
-        boxSeason->setMinimum(2012);
-        boxSeason->setMaximum(2017);
-        boxSeason->setValue(2017);
-
-        horizontalLayout->addWidget(boxSeason);
-
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_2);
-
-
-        verticalLayout->addLayout(horizontalLayout);
-
         scrollArea = new QScrollArea(pageRank);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setWidgetResizable(true);
@@ -281,8 +249,7 @@ public:
 
         verticalLayout->setStretch(0, 1);
         verticalLayout->setStretch(1, 2);
-        verticalLayout->setStretch(2, 1);
-        verticalLayout->setStretch(3, 10);
+        verticalLayout->setStretch(2, 10);
 
         retranslateUi(pageRank);
 
@@ -305,7 +272,6 @@ public:
         buttonThree->setText(QApplication::translate("pageRank", "\344\270\211\345\210\206", nullptr));
         buttonPenalty->setText(QApplication::translate("pageRank", "\347\275\232\347\220\203", nullptr));
         buttonAssisting->setText(QApplication::translate("pageRank", "\345\212\251\346\224\273/\346\212\242\346\226\255/\347\233\226\345\270\275", nullptr));
-        label->setText(QApplication::translate("pageRank", "<html><head/><body><p><span style=\" font-size:12pt;\">\350\265\233\345\255\243\357\274\232</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };

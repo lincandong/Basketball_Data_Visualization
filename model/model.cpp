@@ -109,7 +109,7 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
             for (auto& a : d.GetArray())
             {
             	//get members of players data by members of JSON
-                player_avg* p = new player_avg;
+                player_avg* p = new player_avg();
                 p->name = string_To_UTF8(v);
                 p->season = a["season"][0].GetString();
                 p->tm = a["tm"][0].GetString();
@@ -133,9 +133,18 @@ void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<ve
                 p->w = atof(a["w"][0].GetString());
                 p->l = atof(a["l"][0].GetString());
                 p->fga = atof(a["fga"][0].GetString());
-                p->fgper = p->fg / p->fga * 1.0;
-                p->threepper = p->threep / p->threepa * 1.0;
-                p->ftper = p->ft / p->fta * 1.0;
+                if (p->fga == 0.0)
+                    p->fgper = 0;
+                else
+                    p->fgper = p->fg / p->fga * 1.0;
+                if (p->threepa == 0.0)
+                    p->threepper = 0;
+                else
+                    p->threepper = p->threep / p->threepa * 1.0;
+                if (p->fta == 0.0)
+                    p->ftper = 0;
+                else
+                    p->ftper = p->ft / p->fta * 1.0;
                 temp.push_back(p);
                 if(p->season == "17-18")
                     s[0].push_back(p);

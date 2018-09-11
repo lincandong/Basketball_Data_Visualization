@@ -32,8 +32,6 @@ public:
 
     void init();
 private slots:
-    void on_boxSeason_valueChanged(int arg1);
-
     void on_buttonTeam_clicked();
 
     void on_buttonPlayer_clicked();
