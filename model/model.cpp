@@ -214,9 +214,9 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 }
 
 
-void model::player_series(string& name, string& begin, string& end, vector<shared_ptr<player_avg>>& players)
+shared_ptr<vector<shared_ptr<player_avg>>> model::player_series(string& name, string& begin, string& end)
 {
-	players.clear();
+    shared_ptr<vector<shared_ptr<player_avg>>> players = make_shared<vector<shared_ptr<player_avg>>>();
 	if(m_player.find(name)!=m_player.end())
 	{
 		vector<player_avg*> v = m_player[name];
@@ -224,11 +224,12 @@ void model::player_series(string& name, string& begin, string& end, vector<share
 		{
 			if(value->season>=begin && value->season<=end)
 			{
-				players.push_back(make_shared<player_avg>(value));
+                players->push_back(make_shared<player_avg>(value));
 			}
 		}
 	}
 	snd.notify("player has been set");
+    return players;
 }
 
 void model::player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p)

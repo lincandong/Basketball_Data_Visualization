@@ -34,7 +34,7 @@ void pagePlayer::init()
         pix = new QPixmap(QString::fromStdString(":/full/full/默认.jpg"));
     ui->labelPlayerPix->setPixmap(*pix);
 
-    para = make_shared<dataParameter>(name, "fgper", "2017", "2017");
+    para = make_shared<dataParameter>(name, "fgper", "12-13", "17-18");
     showShoot();
 }
 

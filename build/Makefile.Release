@@ -3687,7 +3687,7 @@ release/pagePlayer.o: ../view/pagePlayer.cpp ../view/pagePlayer.h \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHeaderView \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QLabel \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QPushButton \
-		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QSpacerItem \
+		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QScrollArea \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QStackedWidget \
 		../../../../ProgramFiles/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QVBoxLayout \
 		../view/myLabel.h \

@@ -28,6 +28,14 @@ pageTeam::~pageTeam()
 
 void pageTeam::init()
 {
+    QList<myLabel *>::iterator it;
+    for (it = listLabel->begin(); it != listLabel->end(); it++)
+    {
+        (*it)->setParent(nullptr);
+        ui->layoutPlayers->removeWidget(*it);
+    }
+    listLabel->clear();
+
     QString str = ":/gif/gif/";
     str.append(QString::fromStdString(name));
     str.append(".gif");
@@ -37,6 +45,8 @@ void pageTeam::init()
 
     para = make_shared<dataParameter>(name, "fgper", "17", "17");
     showShoot();
+    if (ui->tabWidget->currentWidget() != ui->tab)
+        ui->tabWidget->setCurrentWidget(ui->tab);
 
     // initialize players
     int size = teamData->at(0)->players.size();

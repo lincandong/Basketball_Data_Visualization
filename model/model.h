@@ -27,7 +27,7 @@ public:
     void InitSender(shared_ptr<receiverFromModel> ptr);
 
 	//load one player's data of many years 
-	void player_series(string& name, string& begin, string& end, vector<shared_ptr<player_avg>>& players);
+    shared_ptr<vector<shared_ptr<player_avg>>> player_series(string& name, string& begin, string& end);
 	//load one player's statistical data(avg etc.)
 	void player_data(string& name, string& begin, string& end, shared_ptr<player_avg> p);
 	//load a team's statistical data

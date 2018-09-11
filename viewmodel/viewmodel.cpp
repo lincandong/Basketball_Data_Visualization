@@ -83,14 +83,14 @@ void viewModel::RequestPlayerData(shared_ptr<dataParameter> ptr)
     //else if request a player's multi year average data
     else if(ptr->begin < ptr->end)
     {
-        tmpPlayer = make_shared<vector<shared_ptr<player_avg>>>();
-        m.player_series(ptr->name, ptr->begin, ptr->end, *tmpPlayer);
+        //tmpPlayer = make_shared<vector<shared_ptr<player_avg>>>();
+        tmpPlayer = m.player_series(ptr->name, ptr->begin, ptr->end);
     }
 }
 void viewModel::UpdatePlayerData()
 {
     if (tmpPlayer != nullptr)
-    *PlayerData = *tmpPlayer;
+        *PlayerData = *tmpPlayer;
 }
 void viewModel::RequestPlayerRank(shared_ptr<rankParameter> ptr)
 {
@@ -137,7 +137,10 @@ void viewModel::RequestTeamData(shared_ptr<dataParameter> ptr)
 void viewModel::UpdateTeamData()
 {
     if (tmpTeam != nullptr)
-    TeamData->push_back(tmpTeam);
+    {
+        TeamData->clear();
+        TeamData->push_back(tmpTeam);
+    }
 }
 void viewModel::RequestTeamRank(shared_ptr<rankParameter> ptr)
 {
