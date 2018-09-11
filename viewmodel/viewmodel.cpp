@@ -133,6 +133,10 @@ void viewModel::RequestTeamData(shared_ptr<dataParameter> ptr)
         //tmpTeam->push_back(make_shared<team_avg>());
         tmpTeam = m.team_data(ptr->name);
     }
+    else if (ptr->begin < ptr->end)
+    {
+        tmpTeam;
+    }
 }
 void viewModel::UpdateTeamData()
 {

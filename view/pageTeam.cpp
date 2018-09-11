@@ -9,16 +9,6 @@ pageTeam::pageTeam(QWidget *parent) :
 {
     ui->setupUi(this);
     listLabel = new QList<myLabel *>;
-
-    // team data
-    connect(ui->buttonShoot, &QPushButton::clicked, this, &pageTeam::showShoot);
-    connect(ui->buttonThree, &QPushButton::clicked, this, &pageTeam::showThree);
-    connect(ui->buttonPenalty, &QPushButton::clicked, this, &pageTeam::showPenalty);
-    connect(ui->buttonBackboard, &QPushButton::clicked, this, &pageTeam::showBackboard);
-    connect(ui->buttonAssisting, &QPushButton::clicked, this, &pageTeam::showAssisting);
-    connect(ui->buttonFalut, &QPushButton::clicked, this, &pageTeam::showFalut);
-    connect(ui->buttonScore, &QPushButton::clicked, this, &pageTeam::showScore);
-    connect(ui->buttonVictory, &QPushButton::clicked, this, &pageTeam::showVictory);
 }
 
 pageTeam::~pageTeam()
@@ -44,7 +34,7 @@ void pageTeam::init()
     ui->labelTeamEn->setText(QString::fromStdString(name));
 
     para = make_shared<dataParameter>(name, "fgper", "17", "17");
-    showShoot();
+    showTeamData();
     if (ui->tabWidget->currentWidget() != ui->tab)
         ui->tabWidget->setCurrentWidget(ui->tab);
 
@@ -98,10 +88,12 @@ void pageTeam::addLabel(myLabel *label, int row, int col)
 }
 
 
-void pageTeam::showShoot()
+void pageTeam::showTeamData()
 {
-   if (ui->stackedWidget->currentWidget() != ui->pageShoot)
-       ui->stackedWidget->setCurrentWidget(ui->pageShoot);
+    if (ui->tabWidget->currentWidget() != ui->tab)
+        ui->tabWidget->setCurrentWidget(ui->tab);
+
+    ui->scrollAreaWidgetContents_2->setMinimumHeight(2000);
 
     // modify parameter and send command
     para->option = "fgper";
@@ -109,435 +101,171 @@ void pageTeam::showShoot()
     teamDataCommand->action();
 
     // get current data
-    QLineSeries *series1 = new QLineSeries;
-    QLineSeries *series2 = new QLineSeries;
-    QLineSeries *series3 = new QLineSeries;
-
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
+    QBarSet *set1 = new QBarSet("投篮");
+    QBarSet *set2 = new QBarSet("三分");
+    QBarSet *set3 = new QBarSet("罚球");
+    QBarSet *set4 = new QBarSet("篮板");
+    QBarSet *set5 = new QBarSet("助攻/抢断/盖帽");
+    QBarSet *set6 = new QBarSet("失误/犯规");
+    QBarSet *set7 = new QBarSet("得分");
+    QBarSet *set8 = new QBarSet("胜负");
+    if (teamData->begin() != teamData->end())
     {
-        series1->append(count, (*iter)->fgper);
-        series2->append(count, (*iter)->fg);
-        series3->append(count, (*iter)->fga);
-        count++;
+        shared_ptr<team_avg> temp = teamData->at(0);
+        *set1 << temp->fgper << temp->fg << temp->fga;
+        *set2 << temp->threepper << temp->threep << temp->threepa;
+        *set3 << temp->ftper << temp->ft << temp->fta;
+        *set4 << temp->trb << temp->orb << temp->drb;
+        *set5 << temp->ast << temp->stl << temp->blk;
+        *set6 << temp->tov << temp->pf;
+        *set7 << temp->pts;
+        *set8 << temp->wg << temp->lg;
     }
+    QBarSeries *series1 = new QBarSeries;
+    series1->append(set1);
+    series1->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series1->setLabelsVisible(true);
+
+    QBarSeries *series2 = new QBarSeries;
+    series2->append(set2);
+    series2->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series2->setLabelsVisible(true);
+
+    QBarSeries *series3 = new QBarSeries;
+    series3->append(set3);
+    series3->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series3->setLabelsVisible(true);
+
+    QBarSeries *series4 = new QBarSeries;
+    series4->append(set4);
+    series4->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series4->setLabelsVisible(true);
+
+    QBarSeries *series5 = new QBarSeries;
+    series5->append(set5);
+    series5->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series5->setLabelsVisible(true);
+
+    QBarSeries *series6 = new QBarSeries;
+    series6->append(set6);
+    series6->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series6->setLabelsVisible(true);
+
+    QBarSeries *series7 = new QBarSeries;
+    series7->append(set7);
+    series7->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series7->setLabelsVisible(true);
+
+    QBarSeries *series8 = new QBarSeries;
+    series8->append(set8);
+    series8->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
+    series8->setLabelsVisible(true);
+
+    QStringList categories1 = {"投篮", "命中", "出手"};
+    QStringList categories2 = {"三分", "命中", "出手"};
+    QStringList categories3 = {"罚球", "命中", "出手"};
+    QStringList categories4 = {"篮板", "前场", "后场"};
+    QStringList categories5 = {"助攻", "抢断", "盖帽"};
+    QStringList categories6 = {"失误", "犯规"};
+    QStringList categories7 = {"得分"};
+    QStringList categories8 = {"胜", "负"};
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    axis1->append(categories1);
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    axis2->append(categories2);
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis3->append(categories3);
+    QBarCategoryAxis *axis4 = new QBarCategoryAxis();
+    axis4->append(categories4);
+    QBarCategoryAxis *axis5 = new QBarCategoryAxis();
+    axis5->append(categories5);
+    QBarCategoryAxis *axis6 = new QBarCategoryAxis();
+    axis6->append(categories6);
+    QBarCategoryAxis *axis7 = new QBarCategoryAxis();
+    axis7->append(categories7);
+    QBarCategoryAxis *axis8 = new QBarCategoryAxis();
+    axis8->append(categories8);
 
     // update view
+    if (ui->layoutTeamData->itemAt(0) != nullptr)
+    {
+        QLayoutItem *child;
+        while ((child =ui->layoutTeamData->takeAt(0)) != 0) {
+            child->widget()->setParent(nullptr);
+            ui->layoutTeamData->removeItem(child);
+        }
+    }
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
-    chart1->setTitle("投篮");
+    chart1->createDefaultAxes();
+    chart1->setAxisX(axis1, series1);
+    QChartView *view1 = new QChartView;
+    view1->setChart(chart1);
+    ui->layoutTeamData->addWidget(view1, 0, 0);
+
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
-    chart2->setTitle("命中");
+    chart2->createDefaultAxes();
+    chart2->setAxisX(axis2, series2);
+    QChartView *view2 = new QChartView;
+    view2->setChart(chart2);
+    ui->layoutTeamData->addWidget(view2, 0, 1);
+
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
-    chart3->setTitle("出手");
-    if (ui->layoutShoot->itemAt(0) != nullptr)
-    {
-        QLayoutItem *child;
-        while ((child =ui->layoutShoot->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
-            ui->layoutShoot->removeItem(child);
-        }
-    }
-    QChartView *view1 = new QChartView;
-    view1->setChart(chart1);
-    QChartView *view2 = new QChartView;
-    view2->setChart(chart2);
+    chart3->createDefaultAxes();
+    chart3->setAxisX(axis3, series3);
     QChartView *view3 = new QChartView;
     view3->setChart(chart3);
+    ui->layoutTeamData->addWidget(view3, 1, 0);
 
-    ui->layoutShoot->addWidget(view1, 0, 0);
-    ui->layoutShoot->addWidget(view2, 0, 1);
-    ui->layoutShoot->addWidget(view3, 1, 0);
-}
+    QChart *chart4 = new QChart;
+    chart4->setAnimationOptions(QChart::SeriesAnimations);
+    chart4->addSeries(series4);
+    chart4->createDefaultAxes();
+    chart4->setAxisX(axis4, series4);
+    QChartView *view4 = new QChartView;
+    view4->setChart(chart4);
+    ui->layoutTeamData->addWidget(view4, 1, 1);
 
-void pageTeam::showThree()
-{
-    if (ui->stackedWidget->currentWidget() != ui->pageThree)
-        ui->stackedWidget->setCurrentWidget(ui->pageThree);
+    QChart *chart5 = new QChart;
+    chart5->setAnimationOptions(QChart::SeriesAnimations);
+    chart5->addSeries(series5);
+    chart5->createDefaultAxes();
+    chart5->setAxisX(axis5, series5);
+    QChartView *view5 = new QChartView;
+    view5->setChart(chart5);
+    ui->layoutTeamData->addWidget(view5, 2, 0);
 
-    // modify parameter and send command
-    para->option = "threepper";
-    teamDataCommand->setParameter(para);
-    teamDataCommand->action();
+    QChart *chart6 = new QChart;
+    chart6->setAnimationOptions(QChart::SeriesAnimations);
+    chart6->addSeries(series6);
+    chart6->createDefaultAxes();
+    chart6->setAxisX(axis6, series6);
+    QChartView *view6 = new QChartView;
+    view6->setChart(chart6);
+    ui->layoutTeamData->addWidget(view6, 2, 1);
 
-    // get current data
-    QLineSeries *series1 = new QLineSeries;
-    QLineSeries *series2 = new QLineSeries;
-    QLineSeries *series3 = new QLineSeries;
+    QChart *chart7 = new QChart;
+    chart7->setAnimationOptions(QChart::SeriesAnimations);
+    chart7->addSeries(series7);
+    chart7->createDefaultAxes();
+    chart7->setAxisX(axis7, series7);
+    QChartView *view7 = new QChartView;
+    view7->setChart(chart7);
+    ui->layoutTeamData->addWidget(view7, 3, 0);
 
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
-    {
-        series1->append(count, (*iter)->threepper);
-        series2->append(count, (*iter)->threep);
-        series3->append(count, (*iter)->threepa);
-        count++;
-    }
-
-    // update view
-    QChart *chart1 = new QChart;
-    chart1->setAnimationOptions(QChart::SeriesAnimations);
-    chart1->addSeries(series1);
-    chart1->setTitle("三分");
-    QChart *chart2 = new QChart;
-    chart2->setAnimationOptions(QChart::SeriesAnimations);
-    chart2->addSeries(series2);
-    chart2->setTitle("命中");
-    QChart *chart3 = new QChart;
-    chart3->setAnimationOptions(QChart::SeriesAnimations);
-    chart3->addSeries(series3);
-    chart3->setTitle("出手");
-
-    if (ui->layoutShoot->itemAt(0) != nullptr)
-    {
-        QLayoutItem *child;
-        while ((child =ui->layoutThree->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
-            ui->layoutThree->removeItem(child);
-        }
-    }
-
-    QChartView *view1 = new QChartView;
-    view1->setChart(chart1);
-    QChartView *view2 = new QChartView;
-    view2->setChart(chart2);
-    QChartView *view3 = new QChartView;
-    view3->setChart(chart3);
-
-    ui->layoutThree->addWidget(view1, 0, 0);
-    ui->layoutThree->addWidget(view2, 0, 1);
-    ui->layoutThree->addWidget(view3, 1, 0);
-}
-
-void pageTeam::showPenalty()
-{
-    if (ui->stackedWidget->currentWidget() != ui->pagePenalty)
-        ui->stackedWidget->setCurrentWidget(ui->pagePenalty);
-
-    // modify parameter and send command
-    para->option = "ftper";
-    teamDataCommand->setParameter(para);
-    teamDataCommand->action();
-
-    // get current data
-    QLineSeries *series1 = new QLineSeries;
-    QLineSeries *series2 = new QLineSeries;
-    QLineSeries *series3 = new QLineSeries;
-
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
-    {
-        series1->append(count, (*iter)->ftper);
-        series2->append(count, (*iter)->ft);
-        series3->append(count, (*iter)->fta);
-        count++;
-    }
-
-    // update view
-    QChart *chart1 = new QChart;
-    chart1->setAnimationOptions(QChart::SeriesAnimations);
-    chart1->addSeries(series1);
-    chart1->setTitle("罚球");
-    QChart *chart2 = new QChart;
-    chart2->setAnimationOptions(QChart::SeriesAnimations);
-    chart2->addSeries(series2);
-    chart2->setTitle("命中");
-    QChart *chart3 = new QChart;
-    chart3->setAnimationOptions(QChart::SeriesAnimations);
-    chart3->addSeries(series3);
-    chart3->setTitle("出手");
-
-    if (ui->layoutShoot->itemAt(0) != nullptr)
-    {
-        QLayoutItem *child;
-        while ((child =ui->layoutPenalty->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
-            ui->layoutPenalty->removeItem(child);
-        }
-    }
-
-    QChartView *view1 = new QChartView;
-    view1->setChart(chart1);
-    QChartView *view2 = new QChartView;
-    view2->setChart(chart2);
-    QChartView *view3 = new QChartView;
-    view3->setChart(chart3);
-
-    ui->layoutPenalty->addWidget(view1, 0, 0);
-    ui->layoutPenalty->addWidget(view2, 0, 1);
-    ui->layoutPenalty->addWidget(view3, 1, 0);
-}
-
-void pageTeam::showBackboard()
-{
-    if (ui->stackedWidget->currentWidget() != ui->pageBackboard)
-        ui->stackedWidget->setCurrentWidget(ui->pageBackboard);
-
-    // modify parameter and send command
-    para->option = "trb";
-    teamDataCommand->setParameter(para);
-    teamDataCommand->action();
-
-    // get current data
-    QLineSeries *series1 = new QLineSeries;
-    QLineSeries *series2 = new QLineSeries;
-    QLineSeries *series3 = new QLineSeries;
-
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
-    {
-        series1->append(count, (*iter)->trb);
-        series2->append(count, (*iter)->orb);
-        series3->append(count, (*iter)->drb);
-        count++;
-    }
-
-    // update view
-    QChart *chart1 = new QChart;
-    chart1->setAnimationOptions(QChart::SeriesAnimations);
-    chart1->addSeries(series1);
-    chart1->setTitle("篮板");
-    QChart *chart2 = new QChart;
-    chart2->setAnimationOptions(QChart::SeriesAnimations);
-    chart2->addSeries(series2);
-    chart2->setTitle("前场");
-    QChart *chart3 = new QChart;
-    chart3->setAnimationOptions(QChart::SeriesAnimations);
-    chart3->addSeries(series3);
-    chart3->setTitle("后场");
-
-    if (ui->layoutShoot->itemAt(0) != nullptr)
-    {
-        QLayoutItem *child;
-        while ((child =ui->layoutBackboard->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
-            ui->layoutBackboard->removeItem(child);
-        }
-    }
-
-    QChartView *view1 = new QChartView;
-    view1->setChart(chart1);
-    QChartView *view2 = new QChartView;
-    view2->setChart(chart2);
-    QChartView *view3 = new QChartView;
-    view3->setChart(chart3);
-
-    ui->layoutBackboard->addWidget(view1, 0, 0);
-    ui->layoutBackboard->addWidget(view2, 0, 1);
-    ui->layoutBackboard->addWidget(view3, 1, 0);
-}
-
-void pageTeam::showAssisting()
-{
-    if (ui->stackedWidget->currentWidget() != ui->pageAssisting)
-        ui->stackedWidget->setCurrentWidget(ui->pageAssisting);
-
-    // modify parameter and send command
-    para->option = "ast";
-    teamDataCommand->setParameter(para);
-    teamDataCommand->action();
-
-    // get current data
-    QLineSeries *series1 = new QLineSeries;
-    QLineSeries *series2 = new QLineSeries;
-    QLineSeries *series3 = new QLineSeries;
-
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
-    {
-        series1->append(count, (*iter)->ast);
-        series2->append(count, (*iter)->stl);
-        series3->append(count, (*iter)->blk);
-        count++;
-    }
-
-    // update view
-     QChart *chart1 = new QChart;
-     chart1->setAnimationOptions(QChart::SeriesAnimations);
-     chart1->addSeries(series1);
-     chart1->setTitle("助攻");
-     QChart *chart2 = new QChart;
-     chart2->setAnimationOptions(QChart::SeriesAnimations);
-     chart2->addSeries(series2);
-     chart2->setTitle("抢断");
-     QChart *chart3 = new QChart;
-     chart3->setAnimationOptions(QChart::SeriesAnimations);
-     chart3->addSeries(series3);
-     chart3->setTitle("盖帽");
-
-     if (ui->layoutShoot->itemAt(0) != nullptr)
-     {
-         QLayoutItem *child;
-         while ((child =ui->layoutAssisting->takeAt(0)) != 0) {
-             child->widget()->setParent(nullptr);
-             ui->layoutAssisting->removeItem(child);
-         }
-     }
-
-     QChartView *view1 = new QChartView;
-     view1->setChart(chart1);
-     QChartView *view2 = new QChartView;
-     view2->setChart(chart2);
-     QChartView *view3 = new QChartView;
-     view3->setChart(chart3);
-
-     ui->layoutAssisting->addWidget(view1, 0, 0);
-     ui->layoutAssisting->addWidget(view2, 0, 1);
-     ui->layoutAssisting->addWidget(view3, 1, 0);
-}
-
-void pageTeam::showFalut()
-{
-    if (ui->stackedWidget->currentWidget() != ui->pageFalut)
-        ui->stackedWidget->setCurrentWidget(ui->pageFalut);
-
-    // modify parameter and send command
-    para->option = "tov";
-    teamDataCommand->setParameter(para);
-    teamDataCommand->action();
-
-    // get current data
-    QLineSeries *series1 = new QLineSeries;
-    QLineSeries *series2 = new QLineSeries;
-
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
-    {
-        series1->append(count, (*iter)->tov);
-        series2->append(count, (*iter)->pf);
-        count++;
-    }
-
-    // update view
-     QChart *chart1 = new QChart;
-     chart1->setAnimationOptions(QChart::SeriesAnimations);
-     chart1->addSeries(series1);
-     chart1->setTitle("失误");
-     QChart *chart2 = new QChart;
-     chart2->setAnimationOptions(QChart::SeriesAnimations);
-     chart2->addSeries(series2);
-     chart2->setTitle("犯规");
-
-     if (ui->layoutShoot->itemAt(0) != nullptr)
-     {
-         QLayoutItem *child;
-         while ((child =ui->layoutFalut->takeAt(0)) != 0) {
-             child->widget()->setParent(nullptr);
-             ui->layoutFalut->removeItem(child);
-         }
-     }
-
-     QChartView *view1 = new QChartView;
-     view1->setChart(chart1);
-     QChartView *view2 = new QChartView;
-     view2->setChart(chart2);
-
-     ui->layoutFalut->addWidget(view1, 0, 0);
-     ui->layoutFalut->addWidget(view2, 0, 1);
-}
-
-void pageTeam::showScore()
-{
-    if (ui->stackedWidget->currentWidget() != ui->pageScore)
-        ui->stackedWidget->setCurrentWidget(ui->pageScore);
-
-    // modify parameter and send command
-    para->option = "pts";
-    teamDataCommand->setParameter(para);
-    teamDataCommand->action();
-
-    // get current data
-    QLineSeries *series1 = new QLineSeries;
-
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
-    {
-        series1->append(count, (*iter)->pts);
-        count++;
-    }
-
-    // update view
-    QChart *chart1 = new QChart;
-    chart1->setAnimationOptions(QChart::SeriesAnimations);
-    chart1->addSeries(series1);
-    chart1->setTitle("得分");
-
-    if (ui->layoutShoot->itemAt(0) != nullptr)
-    {
-        QLayoutItem *child;
-        while ((child =ui->layoutScore->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
-            ui->layoutScore->removeItem(child);
-        }
-    }
-
-    QChartView *view1 = new QChartView;
-    view1->setChart(chart1);
-
-    ui->layoutScore->addWidget(view1, 0, 0);
-}
-
-void pageTeam::showVictory()
-{
-    if (ui->stackedWidget->currentWidget() != ui->pageVictory)
-        ui->stackedWidget->setCurrentWidget(ui->pageVictory);
-
-    // modify parameter and send command
-    para->option = "wg";
-    teamDataCommand->setParameter(para);
-    teamDataCommand->action();
-
-    // get current data
-    QLineSeries *series1 = new QLineSeries;
-    QLineSeries *series2 = new QLineSeries;
-
-    vector<shared_ptr<team_avg>>::iterator iter;
-    int count = 1;
-    for (iter = teamData->begin(); iter != teamData->end(); iter++)
-    {
-        series1->append(count, (*iter)->wg);
-        series2->append(count, (*iter)->lg);
-        count++;
-    }
-
-    // update view
-     QChart *chart1 = new QChart;
-     chart1->setAnimationOptions(QChart::SeriesAnimations);
-     chart1->addSeries(series1);
-     chart1->setTitle("胜");
-     QChart *chart2 = new QChart;
-     chart2->setAnimationOptions(QChart::SeriesAnimations);
-     chart2->addSeries(series2);
-     chart2->setTitle("负");
-
-     if (ui->layoutShoot->itemAt(0) != nullptr)
-     {
-         QLayoutItem *child;
-         while ((child =ui->layoutVictory->takeAt(0)) != 0) {
-             child->widget()->setParent(nullptr);
-             ui->layoutVictory->removeItem(child);
-         }
-     }
-
-     QChartView *view1 = new QChartView;
-     view1->setChart(chart1);
-     QChartView *view2 = new QChartView;
-     view2->setChart(chart2);
-
-     ui->layoutVictory->addWidget(view1, 0, 0);
-     ui->layoutVictory->addWidget(view2, 0, 1);
+    QChart *chart8 = new QChart;
+    chart8->setAnimationOptions(QChart::SeriesAnimations);
+    chart8->addSeries(series8);
+    chart8->createDefaultAxes();
+    chart8->setAxisX(axis8, series8);
+    QChartView *view8 = new QChartView;
+    view8->setChart(chart8);
+    ui->layoutTeamData->addWidget(view8, 3, 1);
 }
 
 void pageTeam::setTeam(shared_ptr<vector<shared_ptr<team_avg>>> ptr)

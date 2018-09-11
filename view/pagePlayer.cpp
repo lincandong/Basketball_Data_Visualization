@@ -52,35 +52,53 @@ void pagePlayer::showShoot()
     QLineSeries *series1 = new QLineSeries;
     QLineSeries *series2 = new QLineSeries;
     QLineSeries *series3 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->fgper);
         series2->append(count, (*iter)->fg);
         series3->append(count, (*iter)->fga);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
+    chart1->createDefaultAxes();
+    chart1->setAxisX(axis1, series1);
     chart1->setTitle("投篮");
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
+    chart2->createDefaultAxes();
+    chart2->setAxisX(axis2, series2);
     chart2->setTitle("命中");
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
+    chart3->createDefaultAxes();
+    chart3->setAxisX(axis3, series3);
     chart3->setTitle("出手");
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
         QLayoutItem *child;
-        while ((child =ui->layoutShoot->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
+        while ((child = ui->layoutShoot->takeAt(0)) != 0) {
+            if (child->widget() != 0)
+                child->widget()->setParent(nullptr);
             ui->layoutShoot->removeItem(child);
         }
     }
@@ -110,36 +128,54 @@ void pagePlayer::showThree()
     QLineSeries *series1 = new QLineSeries;
     QLineSeries *series2 = new QLineSeries;
     QLineSeries *series3 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->threepper);
         series2->append(count, (*iter)->threep);
         series3->append(count, (*iter)->threepa);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
+    chart1->createDefaultAxes();
+    chart1->setAxisX(axis1, series1);
     chart1->setTitle("三分");
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
+    chart2->createDefaultAxes();
+    chart2->setAxisX(axis2, series2);
     chart2->setTitle("命中");
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
+    chart3->createDefaultAxes();
+    chart3->setAxisX(axis3, series3);
     chart3->setTitle("出手");
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
         QLayoutItem *child;
         while ((child =ui->layoutThree->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
+            if (child->widget() != 0)
+                child->widget()->setParent(nullptr);
             ui->layoutThree->removeItem(child);
         }
     }
@@ -170,36 +206,54 @@ void pagePlayer::showPenalty()
     QLineSeries *series1 = new QLineSeries;
     QLineSeries *series2 = new QLineSeries;
     QLineSeries *series3 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->ftper);
         series2->append(count, (*iter)->ft);
         series3->append(count, (*iter)->fta);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
+    chart1->createDefaultAxes();
+    chart1->setAxisX(axis1, series1);
     chart1->setTitle("罚球");
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
+    chart2->createDefaultAxes();
+    chart2->setAxisX(axis2, series2);
     chart2->setTitle("命中");
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
+    chart3->createDefaultAxes();
+    chart3->setAxisX(axis3, series3);
     chart3->setTitle("出手");
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
         QLayoutItem *child;
         while ((child =ui->layoutPenalty->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
+            if (child->widget() != 0)
+                child->widget()->setParent(nullptr);
             ui->layoutPenalty->removeItem(child);
         }
     }
@@ -230,36 +284,54 @@ void pagePlayer::showBackboard()
     QLineSeries *series1 = new QLineSeries;
     QLineSeries *series2 = new QLineSeries;
     QLineSeries *series3 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->trb);
         series2->append(count, (*iter)->orb);
         series3->append(count, (*iter)->drb);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
+    chart1->createDefaultAxes();
+    chart1->setAxisX(axis1, series1);
     chart1->setTitle("篮板");
     QChart *chart2 = new QChart;
     chart2->setAnimationOptions(QChart::SeriesAnimations);
     chart2->addSeries(series2);
+    chart2->createDefaultAxes();
+    chart2->setAxisX(axis2, series2);
     chart2->setTitle("前场");
     QChart *chart3 = new QChart;
     chart3->setAnimationOptions(QChart::SeriesAnimations);
     chart3->addSeries(series3);
+    chart3->createDefaultAxes();
+    chart3->setAxisX(axis3, series3);
     chart3->setTitle("后场");
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
         QLayoutItem *child;
         while ((child =ui->layoutBackboard->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
+            if (child->widget() != 0)
+                child->widget()->setParent(nullptr);
             ui->layoutBackboard->removeItem(child);
         }
     }
@@ -290,36 +362,54 @@ void pagePlayer::showAssisting()
     QLineSeries *series1 = new QLineSeries;
     QLineSeries *series2 = new QLineSeries;
     QLineSeries *series3 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->ast);
         series2->append(count, (*iter)->stl);
         series3->append(count, (*iter)->blk);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis3 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
+    axis3->append(categories);
 
     // update view
      QChart *chart1 = new QChart;
      chart1->setAnimationOptions(QChart::SeriesAnimations);
      chart1->addSeries(series1);
+     chart1->createDefaultAxes();
+     chart1->setAxisX(axis1, series1);
      chart1->setTitle("助攻");
      QChart *chart2 = new QChart;
      chart2->setAnimationOptions(QChart::SeriesAnimations);
      chart2->addSeries(series2);
+     chart2->createDefaultAxes();
+     chart2->setAxisX(axis2, series2);
      chart2->setTitle("抢断");
      QChart *chart3 = new QChart;
      chart3->setAnimationOptions(QChart::SeriesAnimations);
      chart3->addSeries(series3);
+     chart3->createDefaultAxes();
+     chart3->setAxisX(axis3, series3);
      chart3->setTitle("盖帽");
 
      if (ui->layoutShoot->itemAt(0) != nullptr)
      {
          QLayoutItem *child;
          while ((child =ui->layoutAssisting->takeAt(0)) != 0) {
-             child->widget()->setParent(nullptr);
+             if (child->widget() != 0)
+                 child->widget()->setParent(nullptr);
              ui->layoutAssisting->removeItem(child);
          }
      }
@@ -349,31 +439,45 @@ void pagePlayer::showFalut()
     // get current data
     QLineSeries *series1 = new QLineSeries;
     QLineSeries *series2 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->tov);
         series2->append(count, (*iter)->pf);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
 
     // update view
      QChart *chart1 = new QChart;
      chart1->setAnimationOptions(QChart::SeriesAnimations);
      chart1->addSeries(series1);
+     chart1->createDefaultAxes();
+     chart1->setAxisX(axis1, series1);
      chart1->setTitle("失误");
      QChart *chart2 = new QChart;
      chart2->setAnimationOptions(QChart::SeriesAnimations);
      chart2->addSeries(series2);
+     chart2->createDefaultAxes();
+     chart2->setAxisX(axis2, series2);
      chart2->setTitle("犯规");
 
      if (ui->layoutShoot->itemAt(0) != nullptr)
      {
          QLayoutItem *child;
          while ((child =ui->layoutFalut->takeAt(0)) != 0) {
-             child->widget()->setParent(nullptr);
+             if (child->widget() != 0)
+                 child->widget()->setParent(nullptr);
              ui->layoutFalut->removeItem(child);
          }
      }
@@ -399,26 +503,36 @@ void pagePlayer::showScore()
 
     // get current data
     QLineSeries *series1 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->pts);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    axis1->append(categories);
 
     // update view
     QChart *chart1 = new QChart;
     chart1->setAnimationOptions(QChart::SeriesAnimations);
     chart1->addSeries(series1);
+    chart1->createDefaultAxes();
+    chart1->setAxisX(axis1, series1);
     chart1->setTitle("得分");
 
     if (ui->layoutShoot->itemAt(0) != nullptr)
     {
         QLayoutItem *child;
         while ((child =ui->layoutScore->takeAt(0)) != 0) {
-            child->widget()->setParent(nullptr);
+            if (child->widget() != 0)
+                child->widget()->setParent(nullptr);
             ui->layoutScore->removeItem(child);
         }
     }
@@ -435,38 +549,52 @@ void pagePlayer::showVictory()
         ui->stackedWidget->setCurrentWidget(ui->pageVictory);
     ui->scrollAreaWidgetContents->setMinimumHeight(1000);
     // modify parameter and send command
-    para->option = "wg";
+    para->option = "w";
     playerDataCommand->setParameter(para);
     playerDataCommand->action();
 
     // get current data
     QLineSeries *series1 = new QLineSeries;
     QLineSeries *series2 = new QLineSeries;
+    QStringList categories;
 
     vector<shared_ptr<player_avg>>::iterator iter;
-    int count = 1;
+    int count = 4;
     for (iter = player->begin(); iter != player->end(); iter++)
     {
         series1->append(count, (*iter)->w);
         series2->append(count, (*iter)->l);
-        count++;
+        count--;
     }
+    vector<shared_ptr<player_avg>>::reverse_iterator riter;
+    for (riter = player->rbegin(); riter != player->rend(); riter++)
+        categories << QString::fromStdString((*riter)->season);
+
+    QBarCategoryAxis *axis1 = new QBarCategoryAxis();
+    QBarCategoryAxis *axis2 = new QBarCategoryAxis();
+    axis1->append(categories);
+    axis2->append(categories);
 
     // update view
      QChart *chart1 = new QChart;
      chart1->setAnimationOptions(QChart::SeriesAnimations);
      chart1->addSeries(series1);
+     chart1->createDefaultAxes();
+     chart1->setAxisX(axis1, series1);
      chart1->setTitle("胜");
      QChart *chart2 = new QChart;
      chart2->setAnimationOptions(QChart::SeriesAnimations);
      chart2->addSeries(series2);
+     chart2->createDefaultAxes();
+     chart2->setAxisX(axis2, series2);
      chart2->setTitle("负");
 
      if (ui->layoutShoot->itemAt(0) != nullptr)
      {
          QLayoutItem *child;
          while ((child =ui->layoutVictory->takeAt(0)) != 0) {
-             child->widget()->setParent(nullptr);
+             if (child->widget() != 0)
+                 child->widget()->setParent(nullptr);
              ui->layoutVictory->removeItem(child);
          }
      }

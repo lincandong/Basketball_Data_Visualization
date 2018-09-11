@@ -49,14 +49,7 @@ private:
     shared_ptr<vector<shared_ptr<team_avg>>> teamData;
 
     void addLabel(myLabel *label, int row, int col);
-    void showShoot();
-    void showThree();
-    void showPenalty();
-    void showBackboard();
-    void showAssisting();
-    void showFalut();
-    void showScore();
-    void showVictory();
+    void showTeamData();
 };
 
 #endif // PAGETEAM_H

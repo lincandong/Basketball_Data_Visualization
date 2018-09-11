@@ -2,6 +2,7 @@
 
 model::model()
 {
+	//load teams and players, resize vectors
     v_player.resize(5);
     load_player(m_player, v_player);
     load_team(m_team, v_team);
@@ -15,9 +16,10 @@ std::string model::UTF8_To_string(const std::string & str)
 {
 int nwLen = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, NULL, 0);
 
-wchar_t * pwBuf = new wchar_t[nwLen + 1];//一定要加1，不然会出现尾巴
+wchar_t * pwBuf = new wchar_t[nwLen + 1];//+1 to ensure it is true
 memset(pwBuf, 0, nwLen * 2 + 2);
 
+// 
 MultiByteToWideChar(CP_UTF8, 0, str.c_str(), str.length(), pwBuf, nwLen);
 
 int nLen = WideCharToMultiByte(CP_ACP, 0, pwBuf, -1, NULL, NULL, NULL, NULL);
@@ -41,7 +43,7 @@ std::string model::string_To_UTF8(const std::string & str)
 {
 int nwLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);
 
-wchar_t * pwBuf = new wchar_t[nwLen + 1];//一定要加1，不然会出现尾巴
+wchar_t * pwBuf = new wchar_t[nwLen + 1];//+1 to ensure it is true
 ZeroMemory(pwBuf, nwLen * 2 + 2);
 
 ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), str.length(), pwBuf, nwLen);
@@ -68,10 +70,11 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 {
 	files.clear();
 	const char *dir = mainDir.c_str();
+	//change directory
 	_chdir(dir);
 	long hFile;
 	_finddata_t fileinfo;
- 
+ 	// use system function to find files in a directory
 	if ((hFile = _findfirst("*.*", &fileinfo)) != -1)
 	{
 		do
@@ -88,20 +91,24 @@ void model::cf_findFileFromDir2(string mainDir, vector<string>& files)
 void model::load_player(unordered_map<string, vector<player_avg*>>& m, vector<vector<player_avg*>>& s)
 {
 	vector<string> files2;
+	//get all files
 	cf_findFileFromDir2("../NBA/data/players", files2);
 	char readBuffer[65536];
 	for(auto& v : files2)
     {
 		vector<player_avg*> temp;
 		FILE* fp = fopen(v.c_str(), "rb");
+		//read and parse JSON files using rapidjson
 		rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
 		rapidjson::Document d;
 		d.ParseStream(is);
 		int pos = v.find(".json");
 		v.erase(pos, 5);
+		//get information according to the format of JSON
         if (d.IsArray())
             for (auto& a : d.GetArray())
             {
+            	//get members of players data by members of JSON
                 player_avg* p = new player_avg;
                 p->name = string_To_UTF8(v);
                 p->season = a["season"][0].GetString();
@@ -157,11 +164,13 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 	for(auto& v : files)
     {
 		FILE* fp = fopen(v.c_str(), "rb");
+		//read and parse JSON files using rapidjson
 		rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
 		rapidjson::Document d;
 		d.ParseStream(is);
 		int pos = v.find(".json");
 		v.erase(pos, 5);
+		//get information according to the format of JSON
 		if (!d.IsArray())
 		{
 			cout << v << endl;
@@ -172,6 +181,7 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 		team_avg* p = new team_avg;
 		for (auto& a : d.GetArray())
 		{
+			//get members of teams data by members of JSON
 			if(a.HasMember("pts"))
 			{
             p->name = string_To_UTF8(v);
@@ -216,12 +226,14 @@ void model::load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& v_
 
 shared_ptr<vector<shared_ptr<player_avg>>> model::player_series(string& name, string& begin, string& end)
 {
-    shared_ptr<vector<shared_ptr<player_avg>>> players = make_shared<vector<shared_ptr<player_avg>>>();
+	shared_ptr<vector<shared_ptr<player_avg>>> players = make_shared<vector<shared_ptr<player_avg>>>();
+	//find player data in the map and store them in a vector, for a certain time period
 	if(m_player.find(name)!=m_player.end())
 	{
 		vector<player_avg*> v = m_player[name];
 		for(auto& value: v)
 		{
+			//judge if it is in the given period
 			if(value->season>=begin && value->season<=end)
 			{
                 players->push_back(make_shared<player_avg>(value));
@@ -236,11 +248,13 @@ void model::player_data(string& name, string& begin, string& end, shared_ptr<pla
 {
 	int count = 0;
 	p->name = name;
+	//find player data in the map and store them in a single struct, for a certain time period
 	if(m_player.find(name)!=m_player.end())
 	{
 		vector<player_avg*> v = m_player[name];
 		for(auto& value: v)
 		{
+			//update the average data
 			if(value->season>=begin && value->season<=end)
 			{
 				count += 1;
@@ -294,6 +308,8 @@ void model::player_data(string& name, string& begin, string& end, shared_ptr<pla
 
 shared_ptr<team_avg> model::team_data(string& name)
 {
+	
+	//find team data in the map
     string str = name;
     str.append("队");
     shared_ptr<team_avg> t = make_shared<team_avg>(m_team[str]);
@@ -301,11 +317,13 @@ shared_ptr<team_avg> model::team_data(string& name)
     return t;
 }
 
+// compare players or teams according to a given standard
 void model::order(int year, vector<shared_ptr<player_avg>>& players, bool (*cmp)(player_avg*, player_avg*))
 {
 	players.clear();
     vector<player_avg*> temp = v_player[2017 - year];
     shared_ptr<player_avg> p;
+    // sort and take top15
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
     {
@@ -320,6 +338,7 @@ void model::order(vector<shared_ptr<team_avg>>& teams, bool (*cmp)(team_avg*, te
     teams.clear();
     vector<team_avg*> temp = v_team;
     shared_ptr<team_avg> p;
+    // sort and take top15
 	sort(temp.begin(), temp.end(), cmp);
 	for(int i=0; i<15; i++)
     {

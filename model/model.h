@@ -9,15 +9,21 @@
 class model
 {
 private:    
+	//notify when data is got or work is finished
     senderPropertyChange snd;
+    //find files from a directory
     void cf_findFileFromDir2(string mainDir, vector<string>& files);
+    // load players from files
 	void load_player(unordered_map<string, vector<player_avg*>>& m, vector<vector<player_avg*>>& s);
+	//load teams from files
 	void load_team(unordered_map<string, team_avg*>& m, vector<team_avg*>& teams);
+	//map name with data
 	unordered_map<string, vector<player_avg*>> m_player;
 	unordered_map<string, team_avg*> m_team;
+	//store all data in a vector
 	vector<vector<player_avg*>> v_player;
 	vector<team_avg*> v_team;
-
+	// change format between UTF and string
     std::string UTF8_To_string(const std::string & str);
     std::string string_To_UTF8(const std::string & str);
 
