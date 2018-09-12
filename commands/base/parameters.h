@@ -18,7 +18,7 @@ public:
 class rankParameter : public parameters
 {
 public:
-    std::string option;  // 用来排序的选项，按照爬去的名字来看
+    std::string option;  // 排序依据的选项
     int season; // 赛季
     
     rankParameter(std::string option, int season): option(option), season(season) {}
