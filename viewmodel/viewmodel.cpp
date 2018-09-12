@@ -27,10 +27,6 @@ shared_ptr<receiverFromModel> viewModel::getModelReceiver()
 {
     return receiveModel;
 }
-// shared_ptr<receiverFromView> viewModel::getViewReceiver()
-// {
-//     return receiveView;
-// }
 shared_ptr<vector<shared_ptr<player_avg>>> viewModel::getPlayer()
 {
     return PlayerData;
