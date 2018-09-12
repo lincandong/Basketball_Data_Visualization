@@ -13,8 +13,5 @@ ViewPropertyReceiver::ViewPropertyReceiver(view *ptr)
 
 void ViewPropertyReceiver::exec(std::string str)
 {
-    if (str == "season")
-    {
-        //
-    }
+    // do nothing
 }

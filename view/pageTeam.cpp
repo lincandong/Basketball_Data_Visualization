@@ -2,12 +2,12 @@
 #include "ui_pageTeam.h"
 #include "myLabel.h"
 
-
 pageTeam::pageTeam(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::pageTeam)
 {
     ui->setupUi(this);
+
     listLabel = new QList<myLabel *>;
 }
 
@@ -18,6 +18,7 @@ pageTeam::~pageTeam()
 
 void pageTeam::init()
 {
+    // clear listlabel and layout
     QList<myLabel *>::iterator it;
     for (it = listLabel->begin(); it != listLabel->end(); it++)
     {
@@ -26,6 +27,7 @@ void pageTeam::init()
     }
     listLabel->clear();
 
+    // show team's name and picture
     QString str = ":/gif/gif/";
     str.append(QString::fromStdString(name));
     str.append(".gif");
@@ -33,24 +35,24 @@ void pageTeam::init()
     ui->labelTeamPix->setPixmap(pix);
     ui->labelTeamEn->setText(QString::fromStdString(name));
 
+    //  send command and show charts for team
     para = make_shared<dataParameter>(name, "fgper", "17", "17");
     showTeamData();
     if (ui->tabWidget->currentWidget() != ui->tab)
         ui->tabWidget->setCurrentWidget(ui->tab);
 
-    // initialize players
+    // initialize players in the team
     int size = teamData->at(0)->players.size();
     int row, col = 4;
-
     if (size % col != 0)
         row = size / col + 1;
     else
         row = size / col;
-
     for (int i = 0; i <  row; i++)
     {
         for (int j = 0; j < col && i * col + j < size; j++)
         {
+            // get player's picture
             QString name = ":/full/full/";
             string temp = (teamData->at(0)->players).at(i * col + j);
             name.append(QString::fromStdString(temp));
@@ -58,26 +60,28 @@ void pageTeam::init()
             QPixmap *pix = new QPixmap(name);
             if (pix->data_ptr() == nullptr)
                 pix = new QPixmap(QString::fromStdString(":/full/full/默认.jpg"));
+
+            // show player's picture and add it to layout
             myLabel *qlabel = new myLabel;
             qlabel->setPixmap(*pix);
             qlabel->setScaledContents(true);
             qlabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-            qlabel->setValue(i * col + j);
             qlabel->setName(temp);
             listLabel->push_back(qlabel);
             addLabel(qlabel, i * 2, j);
 
+            // show player's name and add it to layout
             myLabel *qlabelName = new myLabel;
             qlabelName->setText(QString::fromStdString(temp));
             qlabelName->setAlignment(Qt::AlignVCenter);
             qlabelName->setAlignment(Qt::AlignHCenter);
-            qlabelName->setValue(i * col + j);
             listLabel->push_back(qlabelName);
             addLabel(qlabelName, i * 2 + 1, j);
         }
     }
-    ui->scrollAreaWidgetContents->setMinimumHeight(size * 80);
+    ui->scrollAreaWidgetContents->setMinimumHeight(size * 80);  // initialize scroll area
 
+    // set connection
     for (int i = 0; i < 2 * size; i++)
         connect(listLabel->at(i), &myLabel::clickedForName, this, &pageTeam::setPlayerName);
 }
@@ -87,12 +91,11 @@ void pageTeam::addLabel(myLabel *label, int row, int col)
     ui->layoutPlayers->addWidget(label, row, col);
 }
 
-
 void pageTeam::showTeamData()
 {
+    // show chart page and set scroll area's height
     if (ui->tabWidget->currentWidget() != ui->tab)
         ui->tabWidget->setCurrentWidget(ui->tab);
-
     ui->scrollAreaWidgetContents_2->setMinimumHeight(2000);
 
     // modify parameter and send command
@@ -100,7 +103,7 @@ void pageTeam::showTeamData()
     teamDataCommand->setParameter(para);
     teamDataCommand->action();
 
-    // get current data
+    // get current data and initialize charts
     QBarSet *set1 = new QBarSet("投篮");
     QBarSet *set2 = new QBarSet("三分");
     QBarSet *set3 = new QBarSet("罚球");
@@ -161,6 +164,7 @@ void pageTeam::showTeamData()
     series8->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
     series8->setLabelsVisible(true);
 
+    //  set axis for chart
     QStringList categories1 = {"投篮", "命中", "出手"};
     QStringList categories2 = {"三分", "命中", "出手"};
     QStringList categories3 = {"罚球", "命中", "出手"};

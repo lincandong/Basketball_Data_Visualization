@@ -30,6 +30,8 @@
         <file>gif/犹他爵士.gif</file>
         <file>gif/芝加哥公牛.gif</file>
         <file>gif/萨克拉门托国王.gif</file>
+        <file>gif/Basketball.jpg</file>
+        <file>gif/nba.jpg</file>
     </qresource>
     <qresource prefix="/full">
         <file>full/C.J. Miles.jpg</file>

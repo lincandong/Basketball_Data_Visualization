@@ -24,10 +24,11 @@ public:
     explicit pagePlayer(QWidget *parent = 0);
     ~pagePlayer();
 
-    void setPlayerDataCommand(shared_ptr<command> ptr);
-    void setPlayer(shared_ptr<vector<shared_ptr<player_avg>>> player);
-    void setName(string name);
+    void setPlayerDataCommand(shared_ptr<command> ptr);                 // set command
+    void setPlayer(shared_ptr<vector<shared_ptr<player_avg>>> player);  // set player's data
+    void setName(string name);                                          // set player's name
 
+    // initialize chart
     void init();
 
 private:
@@ -39,6 +40,7 @@ private:
     shared_ptr<vector<shared_ptr<player_avg>>> player;
     shared_ptr<dataParameter> para;
 
+    // switch charts
     void showTotal();
     void showShoot();
     void showThree();

@@ -43,6 +43,11 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(view->sizePolicy().hasHeightForWidth());
         view->setSizePolicy(sizePolicy);
+        view->setStyleSheet(QLatin1String("#buttonRank, #buttonData {\n"
+"	background: #2086bf;\n"
+"	border: 1px solid black;\n"
+"	border-radius: 20px; \n"
+"}"));
         actionStart = new QAction(view);
         actionStart->setObjectName(QStringLiteral("actionStart"));
         actionRank = new QAction(view);

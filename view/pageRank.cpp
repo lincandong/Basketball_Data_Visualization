@@ -9,6 +9,7 @@ pageRank::pageRank(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // connections
     connect(ui->buttonShoot, &QPushButton::clicked, this, &pageRank::showShoot);
     connect(ui->buttonThree, &QPushButton::clicked, this, &pageRank::showThree);
     connect(ui->buttonPenalty, &QPushButton::clicked, this, &pageRank::showPenalty);
@@ -26,17 +27,20 @@ pageRank::~pageRank()
 
 void pageRank::init()
 {
+    // initialize parameter
     para = make_shared<rankParameter>("fgper", 17);
     isTeam = true;
-
+    // show chart
     showShoot();
 }
 
 void pageRank::showShoot()
 {
+    // show chart page and set scroll area's height
     if (ui->stackedWidget->currentWidget() != ui->pageShoot)
         ui->stackedWidget->setCurrentWidget(ui->pageShoot);
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
+
     // modify parameter and send command
     para->option = "fgper";
     para->season = 2017;
@@ -93,6 +97,7 @@ void pageRank::showShoot()
     series3->setLabelsPosition(QAbstractBarSeries::LabelsInsideEnd);
     series3->setLabelsVisible(true);
 
+    // set axis
     QBarCategoryAxis *axis1 = new QBarCategoryAxis();
     QBarCategoryAxis *axis2 = new QBarCategoryAxis();
     QBarCategoryAxis *axis3 = new QBarCategoryAxis();

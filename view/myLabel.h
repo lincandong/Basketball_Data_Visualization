@@ -12,8 +12,6 @@ class myLabel : public QLabel
 
 public:
     myLabel();
-    void setValue(int v);
-    int getValue() const;
     void setName(string name);
     string getName() const;
 
@@ -24,7 +22,6 @@ signals:
     void clickedForName(string name);
 
 private:
-    int value;
     string name;
 };
 

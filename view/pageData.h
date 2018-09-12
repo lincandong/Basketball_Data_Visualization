@@ -20,8 +20,8 @@ public:
     explicit pageData(QWidget *parent = 0);
     ~pageData();
 
-    void setTeamName(string name);
-    void initialize();
+    void setTeamName(string name);  // set team's name
+    void initialize();              // initialize page elements
 
 signals:
     void showPageTeam(string name);
@@ -29,7 +29,7 @@ signals:
 private:
     Ui::pageData *ui;
 
-    void addLabel(myLabel *label, int row, int col);
+    void addLabel(myLabel *label, int row, int col);    // add label to layout
 };
 
 #endif // PAGEDATA_H

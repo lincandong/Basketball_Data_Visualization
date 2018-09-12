@@ -21,12 +21,14 @@ pageData::pageData(QWidget *parent) :
     {
         for (int j = 0; j < 5; j++)
         {
+            // get team's picture
             QString name = ":/gif/gif/";
             name.append(QString::fromStdString(teamName[i][j]));
             name.append(".gif");
             QPixmap pix(name);
-            myLabel *qlabel = new myLabel;
 
+            // show team's picture
+            myLabel *qlabel = new myLabel;
             qlabel->setPixmap(pix);
             qlabel->setScaledContents(true);
             qlabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -34,6 +36,7 @@ pageData::pageData(QWidget *parent) :
             listLabel->push_back(qlabel);
             addLabel(qlabel, j * 2, i);
 
+            // show team's name
             myLabel *qlabelName = new myLabel;
             qlabelName->setText(QString::fromStdString(teamName[i][j]));
             qlabelName->setAlignment(Qt::AlignVCenter);
@@ -44,6 +47,7 @@ pageData::pageData(QWidget *parent) :
         }
     }
 
+    // connections
     for (int i = 0; i < 60; i++)
         connect(listLabel->at(i), &myLabel::clickedForName, this, &pageData::setTeamName);
 }

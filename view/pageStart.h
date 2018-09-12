@@ -21,6 +21,7 @@ signals:
     void showPageRank();
 
 private slots:
+    // clicked events
     void on_buttonRank_clicked();
     void on_buttonData_clicked();
 

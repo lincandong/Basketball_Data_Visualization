@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -26,10 +27,11 @@ class Ui_pageStart
 {
 public:
     QVBoxLayout *verticalLayout;
-    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout;
+    QLabel *label;
+    QVBoxLayout *verticalLayout_2;
+    QSpacerItem *verticalSpacer;
     QPushButton *buttonRank;
-    QSpacerItem *horizontalSpacer;
     QPushButton *buttonData;
     QSpacerItem *verticalSpacer_2;
 
@@ -38,14 +40,23 @@ public:
         if (pageStart->objectName().isEmpty())
             pageStart->setObjectName(QStringLiteral("pageStart"));
         pageStart->resize(600, 600);
+        pageStart->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(pageStart);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
-
-        verticalLayout->addItem(verticalSpacer);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        label = new QLabel(pageStart);
+        label->setObjectName(QStringLiteral("label"));
+        label->setPixmap(QPixmap(QString::fromUtf8(":/gif/gif/nba.jpg")));
+
+        horizontalLayout->addWidget(label);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer);
+
         buttonRank = new QPushButton(pageStart);
         buttonRank->setObjectName(QStringLiteral("buttonRank"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -56,11 +67,7 @@ public:
         buttonRank->setMinimumSize(QSize(200, 200));
         buttonRank->setStyleSheet(QStringLiteral("font: 25 48pt \"Microsoft YaHei\";"));
 
-        horizontalLayout->addWidget(buttonRank);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
+        verticalLayout_2->addWidget(buttonRank);
 
         buttonData = new QPushButton(pageStart);
         buttonData->setObjectName(QStringLiteral("buttonData"));
@@ -70,14 +77,19 @@ public:
         buttonData->setStyleSheet(QLatin1String("font: 72pt \"Arial\";\n"
 "font: 25 48pt \"Microsoft YaHei\";"));
 
-        horizontalLayout->addWidget(buttonData);
+        verticalLayout_2->addWidget(buttonData);
 
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer_2);
+
+
+        horizontalLayout->addLayout(verticalLayout_2);
+
+        horizontalLayout->setStretch(0, 5);
+        horizontalLayout->setStretch(1, 2);
 
         verticalLayout->addLayout(horizontalLayout);
-
-        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Preferred);
-
-        verticalLayout->addItem(verticalSpacer_2);
 
 
         retranslateUi(pageStart);
@@ -88,6 +100,7 @@ public:
     void retranslateUi(QWidget *pageStart)
     {
         pageStart->setWindowTitle(QApplication::translate("pageStart", "Form", nullptr));
+        label->setText(QString());
         buttonRank->setText(QApplication::translate("pageStart", "\346\216\222\350\241\214", nullptr));
         buttonData->setText(QApplication::translate("pageStart", "\346\225\260\346\215\256", nullptr));
     } // retranslateUi

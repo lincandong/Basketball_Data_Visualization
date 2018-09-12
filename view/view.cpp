@@ -9,6 +9,10 @@ view::view(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowTitle("Basketball");
+    setWindowIcon(QIcon(":gif/gif/Basketball.jpg"));
+
+    // initialize receivers and pages
     commandReceiver = make_shared<ViewCommandReceiver>(this);
     propertyReceiver = make_shared<ViewPropertyReceiver>(this);
 
@@ -27,16 +31,15 @@ view::view(QWidget *parent) :
     ui->stackedWidget->setCurrentWidget(page_start);
     this->move(0, 0);
 
-    // connect
+    // connect functions
     connect(page_start, &pageStart::showPageData, this, &view::switchPageData);
     connect(page_start, &pageStart::showPageRank, this, &view::switchPageRank);
+    connect(page_team, &pageTeam::showPagePlayer, this, &view::switchPagePlayer);
+    connect(page_data, &pageData::showPageTeam, this, &view::switchPageTeam);
 
-    // connect
     connect(ui->actionStart, &QAction::triggered, this, &view::switchPageStart);
     connect(ui->actionRank, &QAction::triggered, this, &view::switchPageRank);
     connect(ui->actionData, &QAction::triggered, this, &view::switchPageData);
-    connect(page_team, &pageTeam::showPagePlayer, this, &view::switchPagePlayer);
-    connect(page_data, &pageData::showPageTeam, this, &view::switchPageTeam);
 }
 
 view::~view()
@@ -99,7 +102,6 @@ void view::switchPagePlayer(string name)
 void view::setPlayerDataCommand(shared_ptr<command> ptr)
 {
     this->playerDataCommand = ptr;
-
     page_player->setPlayerDataCommand(ptr);
 }
 
@@ -112,14 +114,12 @@ void view::setPlayerRankCommand(shared_ptr<command> ptr)
 void view::setTeamDataCommand(shared_ptr<command> ptr)
 {
     this->teamDataCommand = ptr;
-
     page_team->setTeamDataCommand(ptr);
 }
 
 void view::setTeamRankCommand(shared_ptr<command> ptr)
 {
     this->teamRankCommand = ptr;
-
     page_rank->setTeamRankCommand(ptr);
 }
 

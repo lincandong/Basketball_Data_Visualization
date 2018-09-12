@@ -19,6 +19,13 @@
   <property name="windowTitle">
    <string>view</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#buttonRank, #buttonData {
+	background: #2086bf;
+	border: 1px solid black;
+	border-radius: 20px; 
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>

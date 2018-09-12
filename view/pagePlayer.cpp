@@ -8,6 +8,7 @@ pagePlayer::pagePlayer(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // connection
     connect(ui->buttonShoot, &QPushButton::clicked, this, &pagePlayer::showShoot);
     connect(ui->buttonThree, &QPushButton::clicked, this, &pagePlayer::showThree);
     connect(ui->buttonPenalty, &QPushButton::clicked, this, &pagePlayer::showPenalty);
@@ -25,24 +26,30 @@ pagePlayer::~pagePlayer()
 
 void pagePlayer::init()
 {
+    // show player's name
     ui->labelPlayerName->setText(QString::fromStdString(name.c_str()));
     QString filename = ":/full/full/";
     filename.append(QString::fromStdString(name));
     filename.append(".jpg");
+
+    // show player's picture
     QPixmap *pix = new QPixmap(filename);
     if (pix->data_ptr() == nullptr)
         pix = new QPixmap(QString::fromStdString(":/full/full/默认.jpg"));
     ui->labelPlayerPix->setPixmap(*pix);
 
+    // show chart
     para = make_shared<dataParameter>(name, "fgper", "12-13", "17-18");
     showShoot();
 }
 
 void pagePlayer::showShoot()
 {
+    // show chart page and set scroll area's height
     if (ui->stackedWidget->currentWidget() != ui->pageShoot)
         ui->stackedWidget->setCurrentWidget(ui->pageShoot);
     ui->scrollAreaWidgetContents->setMinimumHeight(1500);
+
     // modify parameter and send command
     para->option = "fgper";
     playerDataCommand->setParameter(para);
@@ -67,6 +74,7 @@ void pagePlayer::showShoot()
     for (riter = player->rbegin(); riter != player->rend(); riter++)
         categories << QString::fromStdString((*riter)->season);
 
+    // set axis
     QBarCategoryAxis *axis1 = new QBarCategoryAxis();
     QBarCategoryAxis *axis2 = new QBarCategoryAxis();
     QBarCategoryAxis *axis3 = new QBarCategoryAxis();

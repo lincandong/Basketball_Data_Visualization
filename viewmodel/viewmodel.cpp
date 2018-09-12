@@ -11,7 +11,7 @@ viewModel::viewModel()
     TeamDataCmd->setVm(this);
     TeamRankCmd = make_shared<teamRankCommand>();
     TeamRankCmd->setVm(this);
-    receiveModel = make_shared<receiverFromModel>();
+    receiveModel = make_shared<receiverFromModel>(this);
     // receiveView = make_shared<receiverFromView>();
 
     // rank and data  instance
